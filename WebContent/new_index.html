@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<!-- jquery lib-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- angular js lib -->
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+  <script src="js/jquery.js"></script> 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  
+  <script>
+  $(function() {
+	//  $("#dialog").dialog();
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+  
+
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Car For Tour is platform for cab for tours and tourism and travaling. Car For Tour ie cab for tour will include intercity, intracity traveling.  All kind of vehicle will be available here. vehicle will be of 4 seaters to 49 seaters.">
+    <meta name="keywords" content="car for tour,cab for tour,cab,cabs,travel,tour,tourism,corporate cab">
+    <meta name="author" content="Car For Tour">
+    <meta name="authorUrl" content="http://carfortour.Com">
+
+    <title>Car For Tour</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/half-slider.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/logo/pp.jpg">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+<!-- tracking code -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-67537614-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- scripting -->
+ <script>
+$("document").ready(function(){
+	$("#profile-name-id").hide();
+	$("#profile-image-icon-id").hide();
+	$("#signout-btn-id").hide();
+
+});
+ </script>
+<!--  -->
+
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+	
+	$scope.go = function(){
+		console.log($scope.email);
+  $http.get('http://carfortour.com/rest/suscribe?email='+$scope.email)
+  .success(function (response) {
+	  
+	$scope.messsageCode = response.messsageCode;
+	  
+	  console.log($scope.messsageCode);
+  
+	  
+  if($scope.messsageCode == 'SCS')
+	console.log($scope.email+ 'success');
+	else
+	console.log($scope.email+ 'fail');
+	  
+	  
+  });
+  
+	console.log($scope.email);
+}
+  
+});
+
+
+</script>
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img style=" margin-top: -0px ;"  class="img-rounded"  width="35%"  height="25%" src="./img/logo/pp.jpg">
+                <!-- <a class="navbar-brand" href="#">CarForTour</a>  --> 
+            </div>
+
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+	   <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#about">Services</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+
+			<li>
+				<a href="#" id="profile-name-id" class="profile-name"></a>
+			</li>
+			<li>
+				<img src="" id="profile-image-icon-id" class="img-rounded" alt="" width="30" height="30">
+			</li>
+			<li>
+				<!-- <div id="g-signin2-id" class="g-signin2" data-onsuccess="onSignIn" ></div> -->
+				<a href="#" id="signout-btn-id" onclick="signOut();" >Sign out</a>
+			</li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Full Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('./img/commingSoon.jpg');"></div>
+                <div class="carousel-caption">
+                    <h3 class="text-success">Car For Tour</h3>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('./img/lonawala2.jpg');"></div>
+                <div class="carousel-caption">
+                    <h3 class="text-success">Lonawala</h3>
+                </div>
+            </div>  
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('./img/lavasa_image.jpg');"></div>
+                <div class="carousel-caption">
+                    <h3 class="text-success">Lavasa</h3>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the third background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('./img/commingSoon2.jpg');"></div>
+                <!--<div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div> -->
+                <div class="carousel-caption">
+                    <h3 class="text-success">car for tour</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+    </header>
+
+    <!-- Page Content -->
+
+	
+    <div class="container" id="about">
+	<hr>
+        <div class="row" >
+            <div class="col-lg-12">
+
+                <h2 class="text-center text-info">Book your tour here<code></code></h2>
+
+
+				<!-- insert date time  -->
+				<p>
+					Date: <input type="text" id="datepicker">
+				</p>
+
+				<h4 class="text-info">To book your tour call us or send email our care will call you back. Car For Tour will be unique platform for multipurpose tours it cab for tour, which will include intercity, intracity traveling.  All kind of vehicle will be available here. vehicle will be of 4 seaters to 49 seaters.</h4>
+            </div>
+        </div>
+
+        <hr>
+	
+	<div class="row" id="contact">
+		<h1 class="text-primary">Contact : <h1>
+		<!-- <div id="map" class="container col-lg-8" > </div>  --> 
+		<div class="col-lg-4 pull-right">
+			
+			<h4 class="glyphicon glyphicon-earphone text-info"> : +91 9702-903-903</h4>
+			<br>
+			<h4 class="glyphicon glyphicon-envelope text-info"> : carfortour@gmail.com</h4>
+			<br>
+			<br>
+
+						
+
+						<div ng-app="myApp" ng-controller="customersCtrl">
+						
+						<div class="alert alert-info" style="display: none;">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close" ng-model="alert"  style="display: none;" >&times;</a>Subcribe to CFT
+						</div>
+
+						<input class="form-control" type="text" ng-model="email" placeholder="Enter email id to subcribe CFT">
+							
+							<a class="btn btn-info" type = "button" role="button" ng-click='go()' >Subscribe to CFT!</a>
+
+						</div>
+
+						<div class="testCont" ng-controller="userAuthCtrl">
+						
+						</div>
+					</div>
+	
+	</div>
+        <hr>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+		
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Car For Tour 2015</p>
+                </div>
+
+
+            </div>
+            <!-- /.row -->
+            
+            
+        <!--     <div id="dialog" title="Basic dialog">
+					<p>This is the default dialog which is useful for displaying
+						information. The dialog window can be moved, resized and closed
+						with the 'x' icon.</p>
+				</div>
+  -->
+           
+            
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <!-- <script src="js/jquery.js"></script> -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+
+</body>
+
+</html>

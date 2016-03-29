@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<!-- jquery lib-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+<!-- angular js lib -->
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+
+  <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Car For Tour is platform for cab for tours and tourism and travaling. Car For Tour ie cab for tour will include intercity, intracity traveling.  All kind of vehicle will be available here. vehicle will be of 4 seaters to 49 seaters.">
+    <meta name="keywords" content="car for tour,cab for tour,cab,cabs,travel,tour,tourism,corporate cab">
+    <meta name="author" content="Car For Tour">
+    <meta name="authorUrl" content="http://carfortour.com">
+
+    <title>Login</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="./../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="./../css/full-slider.css" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="./../img/icon/cftIcon.jpg">
+ 
+    <link href="./../css/login.css" rel="stylesheet">
+
+    <script src="./../js/login.js"></script>
+    
+    
+<!-- sign with google -->
+
+<meta name="google-signin-client_id" content="456974862830-clslgpft1221o7iru921f51aal8a5dsk.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+ <script>
+ function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+
+ 	$("#profile-name-id").show();
+	$("#profile-image-icon-id").show();
+	$("#signout-btn-id").show();
+	$("#g-signin2-id").hide();
+
+
+	$("#profile-name-id").text(''+profile.getName());
+	$("#profile-image-icon-id").attr('src', ''+profile.getImageUrl());
+	
+
+}
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+
+	$("#profile-name-id").hide();
+	$("#profile-image-icon-id").hide();
+	$("#signout-btn-id").hide();
+	$("#g-signin2-id").show();
+
+
+	$("#profile-name-id").text('');
+	$("#profile-image-icon-id").attr('src', '');
+
+      console.log('User signed out.');
+    });
+
+
+
+  }
+
+ </script>
+ 
+  <script>
+$("document").ready(function(){
+	$("#profile-name-id").hide();
+	$("#profile-image-icon-id").hide();
+	$("#signout-btn-id").hide();
+	$("#btnPrcssIndicator").hide();
+	
+
+});
+ </script>
+ 
+ 
+
+ 
+ <script>
+ 
+//var domainName = 'http://carfortour.com';
+
+// var domainName = 'http://localhost:8080';
+
+ var domainName = '';
+
+ 
+var app = angular.module('adminApp', []);
+app.controller('adminCtrl', function($scope, $http) {
+	
+	console.log("hello ... ");
+
+    //$scope.login2 = function() {
+    	
+    	 $http.get('http://www.w3schools.com/angular/customers.php').success(
+					function(response) {
+
+						$scope.messsageCode = response.messsageCode;
+
+						console.log($scope.messsageCode);
+						
+						console.log(response);
+						console.log(response.data);
+						console.log(response.data.records);
+						$scope.users2 = response.data.records;
+						
+
+						if ($scope.messsageCode == 'SCS'){
+							    
+							    if(typeof(Storage) !== "undefined") {
+								   
+							    }else{
+							    	alert("Your browser do not support..");
+							    }
+
+						}
+					}); 
+    	
+		$http.get(domainName + '/rest/users').success(
+					function(response) {
+
+						$scope.messsageCode = response.messsageCode;
+
+						console.log($scope.messsageCode);
+						console.log(response);
+						console.log(response.reply);
+						console.log(JSON.parse(response.reply));
+						$scope.users = JSON.parse(response.reply);
+						
+
+						if ($scope.messsageCode == 'SCS'){
+							    
+							    if(typeof(Storage) !== "undefined") {
+								   
+							    }else{
+							    	alert("Your browser do not support..");
+							    }
+
+						}
+					});
+   // }
+});
+
+
+</script>
+
+<style>
+table, td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+</style>
+ 
+    
+    </head>
+    <body>
+ 
+ 
+<div class="container">
+
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+
+								<div ng-app="adminApp" ng-controller="adminCtrl">
+
+
+									<table>
+										<tr ng-repeat="x in users2">
+											<td >{{x}}</td>
+										</tr>
+									</table>
+
+									<table>
+										<tr ng-repeat="x in users">
+											<td ng-if="$odd" style="background-color: #f1f1f1">{{
+												x.name }}</td>
+											<td ng-if="$even">{{ x.name }}</td>
+											<td ng-if="$odd" style="background-color: #f1f1f1">{{
+												x.contactNumber }}</td>
+											<td ng-if="$even">{{ x.contactNumber }}</td>
+											<td ng-if="$odd" style="background-color: #f1f1f1">{{
+												x.email }}</td>
+											<td ng-if="$even">{{ x.email }}</td>
+										</tr>
+									</table>
+
+
+								</div>
+								
+								
+								
+								
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>
