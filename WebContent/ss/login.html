@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Car For Tour is platform for cab for tours and tourism and travaling. Car For Tour ie cab for tour will include intercity, intracity traveling.  All kind of vehicle will be available here. vehicle will be of 4 seaters to 49 seaters.">
+    <meta name="keywords" content="car for tour,cab for tour,cab,cabs,travel,tour,tourism,corporate cab">
+    <meta name="author" content="Car For Tour">
+    <meta name="authorUrl" content="http://carfortour.Com">
+
+    <title>Login</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="./../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="./../css/full-slider.css" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="./../img/icon/cftIcon.jpg">
+ 
+    <link href="./../css/login.css" rel="stylesheet">
+
+    <script src="./../js/login.js"></script>
+    
+    
+<!-- sign with google -->
+
+<meta name="google-signin-client_id" content="456974862830-clslgpft1221o7iru921f51aal8a5dsk.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+ <script>
+ function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+
+ 	$("#profile-name-id").show();
+	$("#profile-image-icon-id").show();
+	$("#signout-btn-id").show();
+	$("#g-signin2-id").hide();
+
+
+	$("#profile-name-id").text(''+profile.getName());
+	$("#profile-image-icon-id").attr('src', ''+profile.getImageUrl());
+	
+
+}
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+
+	$("#profile-name-id").hide();
+	$("#profile-image-icon-id").hide();
+	$("#signout-btn-id").hide();
+	$("#g-signin2-id").show();
+
+
+	$("#profile-name-id").text('');
+	$("#profile-image-icon-id").attr('src', '');
+
+      console.log('User signed out.');
+    });
+
+
+
+  }
+
+ </script>
+ 
+  <script>
+$("document").ready(function(){
+	$("#profile-name-id").hide();
+	$("#profile-image-icon-id").hide();
+	$("#signout-btn-id").hide();
+	$("#btnPrcssIndicator").hide();
+	
+
+});
+ </script>
+<!-- sign with google end-->
+    
+    
+    
+    </head>
+    <body>
+ 
+ 
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <!-- <marquee direction="left" loop="1"  behavior="slide"><a href="#"> <img style=" margin-top: -0px ;"  class="img-rounded"  width="35%"  height="25%" src="./img/logo/pp.jpg"></a></marquee> -->
+                <a href="#"> <img style=" margin-top: -0px ;"  class="img-rounded"  width="35%"  height="25%" src="./img/logo/pp.jpg"></a>
+                <!--  <h class="glyphicon glyphicon-earphone text-info"> : +91 9702903903</h> -->
+               
+                <!-- <a class="navbar-brand" href="#">CarForTour</a>  --> 
+            </div>
+
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+	   <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> -->
+                <ul class="nav navbar-nav navbar-right">
+                  <!--   <li>
+                        <a href="#about">About</a>
+                    </li> -->
+                    <li>
+                        <a href="#bookTour">Services</a>
+                    </li>
+                     <li>
+                        <a href="#bookTour">Book Tour</a>
+                    </li>
+                    <li>
+                        <a href="#contactUs">Contact</a>
+                    </li>
+                    <li>
+                        <a href="../ss/login.html">Login</a>
+                    </li>
+
+			<li>
+				<a href="#" id="profile-name-id" class="profile-name"></a>
+			</li>
+			<li>
+				<img src="" id="profile-image-icon-id" class="img-rounded" alt="" width="30" height="30">
+			</li>
+			<li>
+				<!-- <div id="g-signin2-id" class="g-signin2" data-onsuccess="onSignIn" ></div> -->
+				<a href="#" id="signout-btn-id" onclick="signOut();" >Sign out</a>
+			</li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+
+        </div>
+        <!-- /.container -->
+    </nav>
+
+<div class="container">
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+								<form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
+									<div class="form-group">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>

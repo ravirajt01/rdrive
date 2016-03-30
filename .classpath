@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 7.1 Runtime 1"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="E:/cftjars/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/aopalliance-.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/aopalliance-1.0-sources.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/asm.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/asm-attrs.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/cglib-2.1.3.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/gson-1.7.1.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/hibernate3.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/hsqldb.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/java-json.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/jersey-spring-1.12.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/mysql-connector-java-5.1.6.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/net.sf.ehcache.core-2.4.4.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/slf4j-api-1.6.6-sources.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/slf4j-log4j12.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring-hibernate3.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring-jpa-2.0.8.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/xerces-2.6.2.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring 3.0.1/org.springframework.aop-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring 3.0.1/org.springframework.asm-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring 3.0.1/org.springframework.aspects-3.0.1.release-a.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring 3.0.1/org.springframework.beans-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring 3.0.1/org.springframework.core-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring 3.0.1/org.springframework.expression-3.0.1.release-a.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring 3.0.1/org.springframework.jdbc-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring 3.0.1/org.springframework.orm-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring 3.0.1/org.springframework.transaction-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/spring 3.0.1/org.springframework.context-3.0.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/commons-collections.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/hibernate-ehcache-4.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/javassist-3.8.0.GA.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/hibernate-entitymanager.jar"/>
+	<classpathentry kind="lib" path="E:/cftjars/com.springsource.org.codehaus.jackson-1.4.2.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

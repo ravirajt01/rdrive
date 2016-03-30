@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<!-- jquery lib-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- angular js lib -->
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.3/js/bootstrap-timepicker.min.js"></script>
+ <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css" rel="stylesheet">
+ 
+
+
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<!-- <script>
+	$(function() {
+		//$("#dialog").dialog();
+		 $( "#datepickerFromDate" ).datepicker();
+		 $( "#datepickerToDate" ).datepicker();
+	});
+</script> -->
+
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Car For Tour is platform for cab for tours and tourism and travaling. Car For Tour ie cab for tour will include intercity, intracity traveling.  All kind of vehicle will be available here. vehicle will be of 4 seaters to 49 seaters.">
+    <meta name="keywords" content="car for tour,cab for tour,cab,cabs,travel,tour,tourism,corporate cab">
+    <meta name="author" content="Car For Tour">
+    <meta name="authorUrl" content="http://carfortour.com">
+
+    <title>Car For Tour</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+     <!--load font awesome-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+     <link href="css/social.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/half-slider.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/logo/pp.jpg">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!-- tracking code -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-67537614-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!--tracking code end -->
+
+<!--global var -->
+
+<!--global var end -->
+
+
+<!-- sign with google -->
+
+<meta name="google-signin-client_id" content="456974862830-clslgpft1221o7iru921f51aal8a5dsk.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+ <script>
+ function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+
+ 	$("#profile-name-id").show();
+	$("#profile-image-icon-id").show();
+	$("#signout-btn-id").show();
+	$("#g-signin2-id").hide();
+
+
+	$("#profile-name-id").text(''+profile.getName());
+	$("#profile-image-icon-id").attr('src', ''+profile.getImageUrl());
+	
+
+}
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+
+	$("#profile-name-id").hide();
+	$("#profile-image-icon-id").hide();
+	$("#signout-btn-id").hide();
+	$("#g-signin2-id").show();
+
+
+	$("#profile-name-id").text('');
+	$("#profile-image-icon-id").attr('src', '');
+
+      console.log('User signed out.');
+    });
+
+
+
+  }
+
+ </script>
+<!-- sign with google end-->
+
+
+<!--contact - google map -->
+ <style>
+      #map {
+        
+ 
+  height: 200px;
+/* width: 60%;
+  margin-bottom: 15px;
+  border: 2px solid #fff;
+
+ background-color: #CCC;
+*/
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map');
+
+	var myLatLngNewMum = {lat: 19.062021, lng:  73.007965};
+	var myLatLngDom = {lat: 19.205531, lng: 73.096222};
+	var mapCenter = {lat:  19.062021, lng:  73.007965};
+
+	/*var contentStringNewMum = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">Contact</h1>'+
+      '<div id="bodyContent">'+
+      '<p><b>+91 8452890995</b></p>'+
+      '</div>'+
+      '</div>';*/
+
+	var contentStringNewMum = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<div id="bodyContent">'+
+      '<p><b>Address: D-, Siddhivinayak CHS D 5, Sector 8, Sanpada, Navi Mumbai, Maharashtra 400705.</b></p>'+
+      '<p><b>Contact +91 9702 903 903</b></p>'+
+      '</div>'+
+      '</div>';
+
+	var contentStringDom = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<div id="bodyContent">'+
+      '<p><b>Contact +91 8452890995</b></p>'+
+      '</div>'+
+      '</div>';
+
+        var mapOptions = {
+          /*center: new google.maps.LatLng(19.033250, 73.024370),*/
+	  center:mapCenter,
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+
+	/* for marker on map */
+	 var markerNewMum = new google.maps.Marker({
+	    position: myLatLngNewMum,
+	    map: map,
+	    title: 'Car For Tour contact: +91 9702 903 903'
+	  });
+
+	 var markerLngDom = new google.maps.Marker({
+	    position: myLatLngDom,
+	    map: map,
+	    title: 'contact: +91 8452890995'
+	  });
+
+	//info window of marker
+	var infowindowNewMum = new google.maps.InfoWindow({
+		content: contentStringNewMum
+	});
+
+	var infowindowLngDom = new google.maps.InfoWindow({
+		content: contentStringDom
+	});
+	 markerNewMum.addListener('click', function() {
+		infowindowNewMum.open(map, markerNewMum);
+	 });
+	 markerLngDom.addListener('click', function() {
+		infowindowLngDom.open(map, markerLngDom);
+	 });
+	/* for marker on map end */
+
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+
+    </script>
+<!--contact - google map end -->
+
+
+<!-- scripting -->
+ <script>
+$("document").ready(function(){
+	$("#profile-name-id").hide();
+	$("#profile-image-icon-id").hide();
+	$("#signout-btn-id").hide();
+	$("#btnPrcssIndicator").hide();
+	
+	
+	$("#userProfileNameId").hide();
+	if(sessionStorage.currentUser!=null ){
+
+		
+		console.log('in document 1'+sessionStorage.currentUser);
+		
+		
+		var jj= JSON.parse(sessionStorage.currentUser);
+		console.log(jj);
+		console.log(jj.name);
+		
+		$("#userProfileNameId").show();
+		$("#userProfileNameId").text(''+jj.name);
+		$("#contactNumberId").val(''+jj.contactNumber);
+		$("#contactEmailId").val(''+jj.email);
+		
+		
+		console.log('in document 2'+sessionStorage.currentUser);
+	}else{
+		
+	}
+
+});
+
+
+$("#btnSubscribe").click(function(){
+	
+	console.log('hi...');
+	
+	  $(".alert").hide().show('medium');
+	});
+	
+	
+ </script>
+ 
+ <script type="text/javascript">
+    $("document").ready(function(){
+alert("Hello world");
+    }
+</script>
+<!--  -->
+
+
+
+<script>
+
+//var domainName = 'http://carfortour.com';
+
+//var domainName = 'http://localhost:8080';
+
+var domainName = '';
+
+var app = angular.module('myApp', ["ngStorage"]);
+
+
+app.controller('VehicleRowCtrl', function($scope, $http) {
+	
+	  $scope.vehicles = []; 
+
+		$http.get(domainName + '/rest/vehicles').success(
+				function(response) {
+
+					$scope.messsageCode = response.messsageCode;
+					
+					$scope.vehicles = JSON.parse(response.reply);
+					
+					if ($scope.messsageCode == 'SCS'){
+						    
+						    if(typeof(Storage) !== "undefined") {
+							   
+						    }else{
+						    	alert("Your browser do not support..");
+						    }
+					}
+				});
+});
+
+	app.controller('putRequestCtrl', function($scope, $http , $sessionStorage) {
+		
+		
+		 $scope.vehicles = []; 
+
+			$http.get(domainName + '/rest/vehicles').success(
+					function(response) {
+
+						$scope.messsageCode = response.messsageCode;
+						
+						$scope.vehicles = JSON.parse(response.reply);
+						vehicles = JSON.parse(response.reply);
+						
+						if ($scope.messsageCode == 'SCS'){
+							    
+							    if(typeof(Storage) !== "undefined") {
+								   
+							    }else{
+							    	alert("Your browser do not support..");
+							    }
+						}
+					});
+		
+		
+		/* if(sessionStorage.currentUser!=null ){
+			
+			console.log('in putRequestCtrl 1'+sessionStorage.currentUser);
+			$("#userProfileNameId").show();
+			$("#userProfileNameId").text(''+sessionStorage.currentUser);
+			console.log('in putRequestCtrl 2'+sessionStorage.currentUser);
+			
+		} */
+		
+		 //console.log('sessionStorage'+$sessionStorage.SessionMessage);
+		 
+		/* var jj= JSON.parse($sessionStorage["msg"]);
+		console.log(jj);
+		console.log(jj.name);
+		 */
+		//delete $sessionStorage;
+
+		$('select').on('change', function() {
+			$('#lblDetails').text(this.value);
+			  
+			  
+			})
+			
+			
+		
+		$scope.put_request = function() {
+			
+			// when auto set these filds - scope is not getting assigned ..
+			
+			if(sessionStorage.currentUser!=null ){
+				var jj= JSON.parse(sessionStorage.currentUser);
+				$scope.userId=jj.userId; }
+			
+			else{
+				
+				$scope.userId=null;
+			}
+			$scope.contactNumber = $("#contactNumberId").val();
+			$scope.contactEmail = $("#contactEmailId").val();
+			
+			
+			if($scope.fromDate == null || $('#fromTimeId').val().length ===0 || ($('#txtPickUpLocationId').val().length ===0 )||  ($('#txtDropoOffLocationId').val().length ===0 ) || $scope.contactNumber == null || $scope.contactEmail == null || $('#slctCarList option:selected').val().length ===0 ){
+				 $('#alrtFailOnBook').show();
+					return;
+
+				
+			} 
+			
+			
+			$scope.pickUpLocation = $('#txtPickUpLocationId').val();
+			$scope.dropoOffLocation = $('#txtDropoOffLocationId').val();
+			$scope.fromTime = $('#fromTimeId').val();
+
+			$('#btnPutRequestId').attr('disabled', true);
+			$('#btnPutRequestId').hide();
+			$('#btnPrcssIndicator').attr('disabled', true);
+			$('#btnPrcssIndicator').show();
+			
+
+			var data = {
+				userId : $scope.userId,
+				fromDate : $scope.fromDate,
+				fromTime : $scope.fromTime,
+				//toDate : $scope.toDate,
+				fromLocatiom : $scope.pickUpLocation,
+				toLocation : $scope.dropoOffLocation,
+				email : $scope.contactEmail,
+				contactNumber : $scope.contactNumber,
+				vehicleDetails : $('#slctCarList option:selected').text()+'-'+$('#slctCarList').val()
+			};
+
+			$http.post(domainName + '/rest/book_tour', data).success(
+					function(response) {
+
+						$scope.messsageCode = response.messsageCode;
+
+						console.log($scope.messsageCode);
+
+						if ($scope.messsageCode == 'SCS'){
+							console.log($scope.email + 'success');
+
+							$scope.pickUpLocation = null;
+							$scope.dropoOffLocation = null;
+							$scope.fromDate = null;
+							$scope.fromTime = null;
+							//$scope.toDate = null;
+							$scope.contactNumber = null;
+							$scope.contactEmail = null;
+							$('#slctCarList').val('');
+							
+							$('#alrtFailOnBook').hide();
+							 $('#alrtSuccessOnBook').show();
+							
+						}
+						else{
+							console.log($scope.email + 'fail');
+						}
+						// process indicator hide hr
+						
+						// process in hided hr temp
+						$('#btnPutRequestId').attr('disabled', false);
+						$('#btnPutRequestId').show();
+						$('#btnPrcssIndicator').hide();
+						// process ind end
+
+					});
+			
+
+			console.log($scope.email);
+
+			/* clear booking data
+		 	$('#pickUpLocationId').val('');
+			$('#dropoOffLocationId').val('');
+			$('#fromDateId').val('');
+			$('#toDateId').val('');
+			$('#contactEmailId').val('');
+			$('#contactNumberId').val(''); */
+			
+
+
+		}
+
+	});
+
+	app.controller('suscribeCtrl', function($scope, $http) {
+
+		$scope.go = function() {
+			console.log($scope.email);
+			$http.get(domainName + '/rest/suscribe?email=' + $scope.email)
+					.success(function(response) {
+
+						$scope.messsageCode = response.messsageCode;
+
+						console.log($scope.messsageCode);
+
+						if ($scope.messsageCode == 'SCS')
+							console.log($scope.email + 'success');
+						else
+							console.log($scope.email + 'fail');
+
+					});
+
+			console.log($scope.email);
+		}
+
+	});
+
+	$(document).ready(function() {
+		$('button').click(function() {
+			$('.alert').show()
+		})
+	});
+</script>
+
+ <script type="text/javascript">
+            $('#timepicker1').timepicker();
+            //$('#fromDateId').min("2016-01-07");
+            
+            
+            
+            $(document).ready(function() {
+
+            	var d = new Date();
+
+            	var date = d.getDate();
+            	var month = d.getMonth()+1;
+            	var year = d.getFullYear();
+
+            	d.setDate(date+30);
+
+            	var date2 = d.getDate();
+            	var month2 = d.getMonth()+1;
+            	var year2 = d.getFullYear();
+
+            	if(date<10) {date= 0+''+date};
+            	if(month<10) {month= 0+''+month};
+            	if(date2<10) {date2= 0+''+date2};
+            	if(month2<10) {month2= 0+''+month2};
+            	//document.getElementById("fromDateId").min = "2016-01-08";
+            	document.getElementById("fromDateId").min = year+'-'+ month+'-'+ date ;
+            	document.getElementById("fromDateId").max = year2+'-'+month2 +'-'+ date2 ;
+
+            	//document.getElementById("toDateId").min = year+'-'+ month+'-'+ date ;
+            	//document.getElementById("toDateId").max = year2+'-'+month2 +'-'+ date2 ;
+            	
+            
+            });
+ </script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <!-- <marquee direction="left" loop="1"  behavior="slide"><a href="#"> <img style=" margin-top: -0px ;"  class="img-rounded"  width="35%"  height="25%" src="./img/logo/pp.jpg"></a></marquee> -->
+                <a href="../"> <img style=" margin-top: -0px ;"  class="img-rounded"  width="35%"  height="25%" src="./img/logo/pp.jpg"></a>
+                <!--  <h class="glyphicon glyphicon-earphone text-info"> : +91 9702903903</h> -->
+               
+                <!-- <a class="navbar-brand" href="#">CarForTour</a>  --> 
+            </div>
+
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+	   <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> -->
+                <ul class="nav navbar-nav navbar-right">
+                  <!--   <li>
+                        <a href="#about">About</a>
+                    </li> -->
+                    <li>
+                        <a href="#bookTour">Services</a>
+                    </li>
+                     <li>
+                        <a href="#bookTour">Book Tour</a>
+                    </li>
+                    <li>
+                        <a href="#contactUs">Contact</a>
+                    </li>
+                    <li>
+                        <a href="../login.html">Login</a>
+                    </li>
+            <li>
+				<a href="#" id="userProfileNameId" class="userProfileName" >test</a>
+			</li>
+
+			<li>
+				<a href="#" id="profile-name-id" class="profile-name"></a>
+			</li>
+			<li>
+				<img src="" id="profile-image-icon-id" class="img-rounded" alt="" width="30" height="30">
+			</li>
+			<li>
+				<!-- <div id="g-signin2-id" class="g-signin2" data-onsuccess="onSignIn" ></div> -->
+				<a href="#" id="signout-btn-id" onclick="signOut();" >Sign out</a>
+			</li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Full Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('./img/DSC_3239.JPG');"></div>
+                <div class="carousel-caption">
+                    <h3 class="text-success">Sindudurga Fort</h3>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('./img/lonawala2.jpg');"></div>
+                <div class="carousel-caption">
+                    <h3 class="text-success">Lonawala</h3>
+                </div>
+            </div>  
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('./img/lavasa_image.jpg');"></div>
+                <div class="carousel-caption">
+                    <h3 class="text-success">Lavasa</h3>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the third background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('./img/DSC_3012.JPG');"></div>
+                <!--<div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div> -->
+                <div class="carousel-caption">
+                    <h3 class="text-success">Kunkeswar Beach-Malvan</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+    </header>
+
+    <!-- Page Content -->
+
+	
+    <div class="container" id="about">
+	<!-- <hr> -->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="row col-sm-5"></div>
+				<div class="row col-sm-7">
+					<h2 class="text-center text-info glyphicon glyphicon-circle-arrow-down"> Book Tour</h2>
+				</div>
+			<!-- 	<div class="row col-sm-4">
+					<h2><a class="glyphicon glyphicon-circle-arrow-down" href="#bookTour"></a></h2>
+				</div> -->
+			</div>
+		</div>
+
+<br>
+<div ng-app="myApp">
+		<div class="row" >
+			<div class="col-lg-12">
+
+				<!-- insert date time  -->
+				<!-- <p>Date: <input type="text" id="datepicker"></p>
+ -->
+
+				<div ng-controller="putRequestCtrl" style=" border-width: 1px;border-style: solid; border-radius: 10px; border-color: #ADD8E6;">
+				<br>
+					<div class="container" id="bookTour">
+
+						<div class="row">
+							<div class='col-sm-3'>
+
+
+								<div class="form-group">
+									<input class="form-control" type="text"
+										ng-model="pickUpLocation" id="txtPickUpLocationId"
+										placeholder="Pick-up Location/City" required>
+									<script type="text/javascript"
+										src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+									<script type="text/javascript">
+										google.maps.event
+												.addDomListener(
+														window,
+														'load',
+														function() {
+															
+
+															 var options = {
+															  //types: ['(cities)'],
+															  componentRestrictions: {country: "IN" }
+															 };
+
+															var places = new google.maps.places.Autocomplete(
+																	document
+																			.getElementById('txtPickUpLocationId'),options);
+															google.maps.event
+																	.addListener(
+																			places,
+																			'place_changed',
+																			function() {
+																				var place = places
+																						.getPlace();
+																				var address = place.formatted_address;
+																				
+																			});
+														});
+									</script>
+								</div>
+							</div>
+
+							<div class='col-sm-3'>
+								<div class="form-group">
+									<input class="form-control" type="text"
+										ng-model="dropoOffLocation" id="txtDropoOffLocationId"
+										placeholder="Drop-off Location/City" required>
+											<!-- <script type="text/javascript"
+										src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script> -->
+									<script type="text/javascript">
+										google.maps.event
+												.addDomListener(
+														window,
+														'load',
+														function() {
+															
+															 var options = {
+																	  //types: ['(cities)'],
+																	  componentRestrictions: {country: "IN"}
+																	 };
+															
+															var places = new google.maps.places.Autocomplete(
+																	document
+																			.getElementById('txtDropoOffLocationId'),options);
+															google.maps.event
+																	.addListener(
+																			places,
+																			'place_changed',
+																			function() {
+																				var place = places
+																						.getPlace();
+																				var address = place.formatted_address;
+																				$(
+																						'#txtDropoOffLocationId')
+																						.val(
+																								address);
+
+																			});
+														});
+									</script>
+								</div>
+							</div>
+
+							<div class='col-sm-3'>
+								<div class="form-group">
+								
+								<div >
+</div>
+								<select class="form-control" id="slctCarList" ng-model="selectedClient">
+    								<option value="">Select Prefered Car</option>
+   									 <option ng-repeat="vehicle in vehicles | filter:vehicle.isActive='true'" value="{{'Details for '+ vehicle.name + ':- seats-' +vehicle.seats+ ' , Basic- Rs. '+ vehicle.basicCharge + '/8 hrs/80km, Extra- Rs.'+vehicle.extraChargePerKm + '/km,Rs.'+vehicle.extraChargePerHour+'/hr'}}">{{vehicle.name}}</option>
+</select>
+									
+									</select> 
+								</div>
+							</div>
+
+							<div class='col-sm-3'>
+									<div class="form-group">
+										<label id="lblDetails"></label>
+									</div>
+								</div>
+
+
+							</div>
+
+
+
+						<div class="row">
+							<div class='col-sm-3'>
+								<div class="form-group">
+									<!-- <div class="alert alert-info">Pick-up Date</div> -->
+									<label for="fromDateId" >Pick up date:</label>
+									<div class='input-group date'>
+
+										<input type="date"  id="fromDateId"  fo class="form-control" ng-model="fromDate"
+											id="fromDateId" required /> <span class="input-group-addon">
+											<!--<span class="glyphicon glyphicon-calendar"> -->
+										</span> </span>
+										
+										
+										
+									</div>
+								</div>
+							</div>
+
+							<div class='col-sm-2'>
+								<div class="form-group">
+									<label for="fromDateId" >Pick up Time:</label>
+									<!-- <div class="input-group bootstrap-timepicker timepicker">
+										<input id="fromTimeId" type="text"  ng-model="fromTime"
+											class="form-control input-small"> <span
+											class="input-group-addon"><i
+											class="glyphicon glyphicon-time"></i></span>
+									</div> -->
+									
+									<!-- <script type="text/javascript">
+										$('#fromTimeId').timepicker();
+									</script> -->
+									
+									<div>
+										<input type="time" name="fromTime" id="fromTimeId" ng-model="fromTime" >
+									</div>
+									
+
+								</div>
+							</div>
+
+<!-- 
+							<div class='col-sm-3'>
+								<div class="form-group">
+									<div class="alert alert-info">Drop-off Date</div>
+									<label for="toDateId" >Drop off date:</label>
+									<div class='input-group date'>
+
+										<input type="date" class="form-control" ng-model="toDate"
+											id="toDateId" /> <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+							</div> -->
+						</div>
+
+
+
+
+							<div class="row">
+							<div class='col-sm-3'>
+								<div class="form-group">
+									<input class="form-control" type="text"
+										ng-model="contactNumber" id="contactNumberId" placeholder="Mobile Number" required>
+								</div>
+							</div>
+
+							<div class='col-sm-3'>
+								<div class="form-group">
+									<input class="form-control" type="text" ng-model="contactEmail" id="contactEmailId"
+										placeholder="Email" required>
+								</div>
+							</div>
+
+							<div class='col-sm-3'>
+								<div class="form-group">
+									<a class="btn btn-info" type="button" role="button" id="btnPutRequestId"
+										ng-click='put_request()'>Send Request to CFT</a>
+										
+										<a class="btn btn-info " type="button" role="button" id="btnPrcssIndicator" hidden="true">Processing..<i class="fa fa-refresh fa-spin"></i></a>
+										<!-- <h1 id="successSignId" class="glyphicon glyphicon-ok-sign text-success"></h1> -->
+								</div>
+							</div>
+							
+							
+							
+						</div>
+
+						<div class="row">
+							<div class='col-sm-12'>
+								<div class="form-group">
+								
+								<div class="alert alert-success" id="alrtSuccessOnBook" hidden="true" >
+										<a href="#" class="close glyphicon glyphicon-bell"  data-dismiss="alert"
+											aria-label="close">&times;</a> <strong>Success! -</strong>
+										Request Sent successfully
+									</div>
+								
+									<div class="alert alert-warning" hidden="true" id="alrtFailOnBook">
+										<a href="#" class="close glyphicon glyphicon-bell"  data-dismiss="alert"
+											aria-label="close">&times;</a> <strong>Fail! -</strong>
+										Manditory filds are missing
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+				<!-- <h4 class="text-info">To book your tour call us or send email
+					our care will call you back. Car For Tour will be unique platform
+					for multipurpose tours it cab for tour, which will include
+					intercity, intracity traveling. All kind of vehicle will be
+					available here. vehicle will be of 4 seaters to 49 seaters.</h4> -->
+			</div>
+		</div>
+		
+		
+
+        <hr>
+		
+			
+		
+			<div ng-controller="VehicleRowCtrl">
+			<h2>Vehicles:</h2>
+				<table class="table table-striped table-hover">
+					<tr style="font-weight: bold">
+						<td style="width: 25%">VEHICLE NAME</td>
+						<td style="width: 5%">SEAT</td>
+						<td style="width: 10%">(Basic)8 hrs/80km</td>
+						<td style="width: 10%">Extra Charge Per KM</td>
+						<td style="width: 10%">Extra Charge Per Hrs</td>
+						<td style="width: 10%">Outstation Ride Per km (Min 300 km/day)</td>
+						
+					</tr>
+					<tr ng-repeat="vehicle in vehicles" ng-if="vehicle.isActive">
+						<td>
+							<span
+							editable-text="vehicle.name" e-name="name" e-form="rowform"
+							onbeforesave="checkVehicleName($data, vehicle.vehicleId)" e-required> {{
+								vehicle.name || '-' }} </span>
+						</td>
+						<td>
+						<span editable-number="vehicle.seats" e-name="seats" e-form="rowform" e-min="1" e-max="100">{{vehicle.seats  || 'empty' }}</span>
+							
+						</td>
+						
+						<td>
+						<span editable-number="vehicle.basicCharge" e-name="basicCharge" e-form="rowform" e-min="1">&#8377;{{ vehicle.basicCharge  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.extraChargePerKm" e-name="extraChargePerKm" e-form="rowform" e-min="1" >&#8377;{{vehicle.extraChargePerKm  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.extraChargePerHour" e-name="extraChargePerHour" e-form="rowform" e-min="1" >&#8377;{{vehicle.extraChargePerHour  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.outStationRidePerKm" e-name="outStationRidePerKm" e-form="rowform" e-min="1">&#8377;{{vehicle.outStationRidePerKm  || 'empty' }}</span>
+							
+						</td>
+						
+					</tr>
+				</table>
+			</div>
+			<!-- ---- VehicleRowCtrl end ----- -->
+		
+		</div>
+		
+		
+
+		<hr>
+	<!-- avlable cars -->
+	<div class="row" id="contactUs">
+		<h1 class="text-primary">Contact : </h1>
+		<div id="map" class="container col-lg-8" > </div>  
+		<div class="col-lg-4 pull-right">
+			
+			<h4 class="glyphicon glyphicon-earphone text-info"> : +91 9702 903 903</h4>
+			<br>
+			<h4 class="glyphicon glyphicon-envelope text-info"> : carfortour@gmail.com</h4>
+			<br>
+			<br>
+
+						<div ng-app="myApp" ng-controller="suscribeCtrl">
+						
+						<div class="alert alert-info" style="display: none;">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close" ng-model="alert"  style="display: none;" >&times;</a>Subcribe to CFT
+						</div>
+
+						<input class="form-control" type="text" ng-model="email" placeholder="Enter email id to subcribe CFT">
+							<br>
+							<a class="btn btn-info" type = "button" role="button" ng-click='go()' >Subscribe to CFT!</a>
+
+						</div>
+
+						<div class="testCont" ng-controller="userAuthCtrl">
+						
+						</div>
+
+						<script>
+							controllers
+									.controller(
+											'userAuthCtrl',
+											[
+													'$scope',
+													'$http',
+													function($scope, $http) {
+														$http(
+																{
+																	method : 'POST',
+																	url : '/rest/subcribe',
+																	data : '?email=tt11111@yopmail.com',
+																	headers : {
+																		'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+																	}
+																})
+																.success(
+																		function(
+																				data,
+																				status,
+																				header,
+																				config) {
+																			console
+																					.log(header());
+																			console
+																					.log(config);
+
+																			$scope.dataU = data;
+																			$scope.statusU = status;
+																		})
+																.error(
+																		function(
+																				data,
+																				status,
+																				header,
+																				config) {
+																			console
+																					.log(header());
+																			console
+																					.log(config);
+																		})
+
+													} ]);
+						</script>
+
+
+
+					</div>
+	
+	</div>
+        <hr>
+        <!-- Footer -->
+        <footer>
+			<div class="row">
+
+				<div class="col-lg-12">
+					<div class="row col-sm-8">
+						<p>Copyright &copy; Car For Tour 2015</p>
+					</div>
+					<div class="social row col-sm-4">
+						<ul>
+							<li><a href="https://twitter.com/CarForTour" target="_blank"><i class="fa fa-lg fa-twitter fa-flip"></i></a></li>
+							<li><a href="https://www.instagram.com/carfortour_cft/" target="_blank"><i class="fa fa-lg fa-instagram fa-flip"></i></a></li>
+							<li><a href="https://plus.google.com/u/0/105503160898379202027" target="_blank"><i class="fa fa-lg fa-google-plus fa-flip"></i></a></li>
+							<li><a href="https://www.facebook.com/car4tour" target="_blank"><i class="fa fa-lg fa-facebook fa-flip"></i></a></li>
+							<li><a href="https://www.youtube.com/channel/UCf1HNvm2Si4BFYwDLL9GBVg" target="_blank"><i class="fa fa-lg fa-youtube fa-flip"></i></a></li>
+						</ul>
+					</div>
+
+
+
+				</div>
+
+
+
+
+			</div>
+			<!-- /.row -->
+		
+        </div>
+ 
+       
+
+		</footer>
+
+    </div>
+    
+    
+			<span id="top-link-block" class="hidden pull-right" style="position: relative;"> <a href="#top"
+				class="well well-sm"
+				onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+					<i class="fa fa-chevron-up"></i>
+			</a>
+			</span>
+			
+			<script>
+			if ( ($(window).height() + 100) < $(document).height() ) {
+			    $('#top-link-block').removeClass('hidden').affix({
+			        // how far to scroll down before link "slides" into view
+			        offset: {top:100}
+			    });
+			}
+			</script>
+			
+			
+			
+			
+			<!-- /top-link-block -->
+    
+    
+    <!-- /.container -->
+
+
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+
+</body>
+
+</html>
