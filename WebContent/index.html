@@ -362,6 +362,7 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 		$scope.put_request = function() {
 			
 			// when auto set these filds - scope is not getting assigned ..
+<<<<<<< HEAD
 			
 			if(sessionStorage.currentUser!=null ){
 				var jj= JSON.parse(sessionStorage.currentUser);
@@ -371,6 +372,8 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 				
 				$scope.userId=null;
 			}
+=======
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 			$scope.contactNumber = $("#contactNumberId").val();
 			$scope.contactEmail = $("#contactEmailId").val();
 			
@@ -394,7 +397,10 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 			
 
 			var data = {
+<<<<<<< HEAD
 				userId : $scope.userId,
+=======
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 				fromDate : $scope.fromDate,
 				fromTime : $scope.fromTime,
 				//toDate : $scope.toDate,

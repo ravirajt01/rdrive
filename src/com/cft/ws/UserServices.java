@@ -22,7 +22,10 @@ import com.cft.bean.UserBean;
 import com.cft.exception.UnActiveUser;
 import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
+<<<<<<< HEAD
 import com.cft.exception.UserNotExist;
+=======
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 import com.cft.pojo.BookTour;
 import com.cft.pojo.User;
 import com.javatpoint.Employee;
@@ -111,6 +114,7 @@ public class UserServices {
 
 	}
 	
+<<<<<<< HEAD
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)  
@@ -128,6 +132,10 @@ public class UserServices {
 
 
 
+=======
+	
+	
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)  
 	@Path("/users")  
@@ -141,6 +149,12 @@ public class UserServices {
 		return Reply.formatReply(user,ExceptionCode.SCS);
 
 	}
+<<<<<<< HEAD
 
 
 }
+=======
+	
+
+}   
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054

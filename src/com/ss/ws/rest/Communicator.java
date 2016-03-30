@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 package com.ss.ws.rest; 
 
+=======
+package com.ss.ws.rest;  
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -11,7 +15,10 @@ import org.jboss.resteasy.annotations.Body;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+<<<<<<< HEAD
 import com.cft.bean.BookTourBean;
+=======
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 import com.cft.pojo.BookTour;
 import com.javatpoint.Employee;
 import com.javatpoint.EmployeeDao;
@@ -59,6 +66,7 @@ public class Communicator {
 
 		System.out.println("method : putTourBookRequest" +"input : "+ Utils.objectToJsonStirng(bookTour) );
 
+<<<<<<< HEAD
 		BookTourBean booktourBean=(BookTourBean)InitialLoader.ctx.getBean("booktourBean");
 		booktourBean.addBookTour(bookTour);
 		//CommunicateBean communicable = new CommunicateBean();
@@ -68,12 +76,23 @@ public class Communicator {
 		/*
 		if(bookTour.getFromDate()!=null)
 		bookTour.setFromDate(bookTour.getFromDate().substring(0, 10));
+=======
+		CommunicateBean communicateBean=(CommunicateBean)InitialLoader.ctx.getBean("communicateBean");
+		
+		if(bookTour.getFromDate()!=null)
+		bookTour.setFromDate(bookTour.getFromDate().substring(0, 10));
+		
+		/*
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 		if(bookTour.getToDate()!=null)
 		bookTour.setToDate(bookTour.getToDate().substring(0,10));*/
 		
 		communicateBean.sendMail(MailType.TOUR_BOOK, bookTour);
 		communicateBean.sendMail(MailType.TOUR_BOOK_ADMIN, bookTour);
+<<<<<<< HEAD
 	   // ApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext.xml");  
+=======
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 
 				
 		return Reply.formatReply("",ExceptionCode.SCS);

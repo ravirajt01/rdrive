@@ -102,7 +102,13 @@ $("document").ready(function(){
  
 //var domainName = 'http://carfortour.com';
 
+<<<<<<< HEAD
  var domainName = 'http://localhost:8080';
+=======
+// var domainName = 'http://localhost:8080';
+ 
+ var domainName = '';
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 
  
 var app = angular.module('loginApp', ["ngStorage"]);
@@ -160,7 +166,10 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
 							    if(typeof(Storage) !== "undefined") {
 							    	sessionStorage.currentUser = response.reply;
 								    console.log(sessionStorage.currentUser);
+<<<<<<< HEAD
 								  
+=======
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 							    }else{
 							    	alert("Your browser do not support..");
 							    }
@@ -188,8 +197,11 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
 						}
 						
 						$('#loginSubmit').attr('disabled', false);
+<<<<<<< HEAD
 						
 						
+=======
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 							
 					});
     	
@@ -394,9 +406,12 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
 									<div class="form-group">
 										<input type="password" name="password" ng-model="txtLoginPassword" id="txtLoginPassword" tabindex="2" class="form-control" placeholder="Password">
 									</div>
+<<<<<<< HEAD
 								
 									
 									
+=======
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 									<!-- <div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
 										<label for="remember"> Remember Me</label>
@@ -413,7 +428,11 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
+<<<<<<< HEAD
 													<a href="../forgot_password.html" tabindex="5" class="forgot-password">Forgot Password?</a>
+=======
+													<a href="" tabindex="5" class="forgot-password">Forgot Password?</a>
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 												</div>
 											</div>
 										</div>

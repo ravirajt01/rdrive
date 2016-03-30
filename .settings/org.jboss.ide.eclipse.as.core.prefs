@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 org.jboss.ide.eclipse.as.core.singledeployable.deployableList=\n
+=======
+org.jboss.ide.eclipse.as.core.singledeployable.deployableList=
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054

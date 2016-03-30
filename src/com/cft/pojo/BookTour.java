@@ -2,6 +2,7 @@ package com.cft.pojo;
 
 import java.util.Date;
 
+<<<<<<< HEAD
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,11 +23,19 @@ public class BookTour {
 	Integer bookingId ;
 	Integer userId;
 	
+=======
+public class BookTour {
+	
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 	String email ;
 	String contactNumber ; 
 	
 	String fromDate ;
+<<<<<<< HEAD
 	//String toDate ;
+=======
+	String toDate ;
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 	
 	String fromTime ;
 	
@@ -34,6 +43,7 @@ public class BookTour {
 	String toLocation ;
 	
 	String vehicleDetails ;
+<<<<<<< HEAD
 	Date bookingDate;
 	
 	
@@ -58,6 +68,11 @@ public class BookTour {
 	public void setBookingDate(Date bookingDate) {
 		this.bookingDate = bookingDate;
 	}
+=======
+	
+	
+	
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 	public String getEmail() {
 		return email;
 	}
@@ -89,12 +104,20 @@ public class BookTour {
 	public void setFromDate(String fromDate) {
 		this.fromDate = fromDate;
 	}
+<<<<<<< HEAD
 /*	public String getToDate() {
+=======
+	public String getToDate() {
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 		return toDate;
 	}
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
+<<<<<<< HEAD
 	}*/
+=======
+	}
+>>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 	public String getVehicleDetails() {
 		return vehicleDetails;
 	}
