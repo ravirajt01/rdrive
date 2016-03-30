@@ -6,7 +6,6 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans   
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
   
-<<<<<<< HEAD
 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 
@@ -17,28 +16,12 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
       <property name="username" value="root"/>
       <property name="password" value="pass@123"/>
 
-=======
-<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
-<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />  
-<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />  
-<property name="username" value="system" />  
-<property name="password" value="oracle" />   -->
-<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-
-<property name="url" value="jdbc:mysql://localhost/testsDB" />
-<property name="username" value="root" />
-<property name="password" value="asdf12345" />
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 <!-- 
 <property name="url" value="jdbc:mysql://localhost/carforto_test" />
 <property name="username" value="carforto_test1" />
 <property name="password" value="carforto_test123" />
-<<<<<<< HEAD
 -->
 
-=======
- -->
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 </bean>  
 <!--   this will be user when usring jdbc template
 <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
@@ -91,11 +74,8 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<value>com.javatpoint.Employee</value>
 			<value>com.cft.pojo.User</value>
 			<value>com.cft.pojo.Staging</value>
-<<<<<<< HEAD
 			<value>com.cft.pojo.BookTour</value>
 			<value>com.cft.pojo.Vender</value>
-=======
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 			<value>com.cft.pojo.Vehicle</value>
 		</list>
 	</property>
@@ -121,14 +101,11 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="communicateBean" class="com.ss.bean.CommunicateBean">
 		<!-- <constructor-arg> <ref bean="employeeDao"/> </constructor-arg> -->
 	</bean>  
-<<<<<<< HEAD
 
 	
 	<bean id="booktourBean" class="com.cft.bean.BookTourBean">
 			<property name="template" ref="template"></property>
 	</bean>
-=======
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 	
 	
 	<bean id="stagingBean" class="com.cft.bean.StagingBean">
@@ -140,7 +117,6 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<property name="stagingBean" ref="stagingBean"></property>
 			<property name="communicateBean" ref="communicateBean"></property>
 			
-<<<<<<< HEAD
 	</bean> 
 	
 	<bean id="venderBean" class="com.cft.bean.VenderBean">
@@ -153,15 +129,6 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 <bean id="vehicleBean" class="com.cft.bean.VehicleBean">
 			<property name="template" ref="template"></property>
 	</bean> 
-=======
-	</bean>  
-	
-	<bean id="vehicleBean" class="com.cft.bean.VehicleBean">
-			<property name="template" ref="template"></property>
-			
-	</bean>  
-
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 
 
 

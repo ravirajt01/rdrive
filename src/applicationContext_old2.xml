@@ -10,7 +10,6 @@
  	 <tx:annotation-driven transaction-manager="jpaTxnManagerBean" proxy-target-class="true"/>
 	
 	 <bean id="dataSourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-<<<<<<< HEAD
 <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
       <property name="url" value="jdbc:mysql://localhost:3306/pcmdb"/>
       <property name="username" value="root"/>
@@ -19,12 +18,6 @@
 <property name="url" value="jdbc:mysql://localhost/testsDB" />
 <property name="username" value="root" />
 <property name="password" value="asdf12345" />-->
-=======
-<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-<property name="url" value="jdbc:mysql://localhost/testsDB" />
-<property name="username" value="root" />
-<property name="password" value="asdf1234" />
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 	</bean>
 	 	 
  	  <bean id="hbAdapterBean" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">

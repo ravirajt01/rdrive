@@ -13,10 +13,6 @@ import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
 import com.cft.pojo.Staging;
 import com.cft.pojo.User;
-<<<<<<< HEAD
-=======
-import com.cft.pojo.Vehicle;
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 import com.javatpoint.Employee;
 import com.ss.bean.CommunicateBean;
 import com.ss.bean.CommunicateBean.MailType;
@@ -28,10 +24,7 @@ public class UserBean {
 	HibernateTemplate template;  
 	
 	StagingBean stagingBean;
-<<<<<<< HEAD
 	User user;
-=======
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 	
 	CommunicateBean communicateBean;
 	
@@ -140,7 +133,6 @@ public class UserBean {
 		if(users.size()==0)
 			throw new UnAuthorisedUser("User does not exist")  ;
 		else{
-<<<<<<< HEAD
 				
 			loggedInUser = users.get(0);
 			
@@ -156,28 +148,12 @@ public class UserBean {
 	
 	
 
-=======
-
-			loggedInUser = users.get(0);
-
-			if(!loggedInUser.isRegistrationConfirmed()){
-				throw new UnActiveUser("User is not active Ate")  ;
-			}
-
-
-		}
-		return loggedInUser;
-		
-	}
-	
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 	public List<User> getAllUsers(){
 		
 		return this.getUsers();
 		
 	}
 	
-<<<<<<< HEAD
 	
 	
 public void forgotpass(User user) throws UnAuthorisedUser {
@@ -198,6 +174,4 @@ public void forgotpass(User user) throws UnAuthorisedUser {
 	
 	
 	
-=======
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 }

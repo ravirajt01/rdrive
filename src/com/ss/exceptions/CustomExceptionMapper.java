@@ -11,10 +11,7 @@ import org.jboss.resteasy.spi.NotFoundException;
 import com.cft.exception.UnActiveUser;
 import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
-<<<<<<< HEAD
 import com.cft.exception.UserNotExist;
-=======
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 import com.ss.utility.GenericVariables.ExceptionCode;
 import com.ss.utility.Reply;
 
@@ -47,16 +44,12 @@ public class CustomExceptionMapper implements ExceptionMapper<Throwable> {
 		}if(throwable.getClass().equals(UnActiveUser.class) || throwable.getClass().equals(UnActiveUser.class) ){
 			
 			exceptionCode = ExceptionCode.NAU ;
-<<<<<<< HEAD
 		}
           if(throwable.getClass().equals(UserNotExist.class) || throwable.getClass().equals(UserNotExist.class) ){
 			
 			exceptionCode = ExceptionCode.UNE ;
 		}
 		else{
-=======
-		}else{
->>>>>>> dab752e23f52a371f6634108c0ad4f6cfa666054
 
 			throwable.printStackTrace();
 		}
