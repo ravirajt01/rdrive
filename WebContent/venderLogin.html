@@ -24,7 +24,7 @@
     <meta name="author" content="Car For Tour">
     <meta name="authorUrl" content="http://carfortour.com">
 
-    <title>Login</title>
+    <title>Vender Login</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./../css/bootstrap.min.css" rel="stylesheet">
@@ -136,7 +136,7 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
     	$('#loginSubmit').attr('disabled', true);
     	
 
-		$http.post(domainName + '/rest/user/login', data).success(
+		$http.post(domainName + '/rest/vender/login', data).success(
 					function(response) {
 
 						$scope.messsageCode = response.messsageCode;
@@ -251,7 +251,7 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
 			password : $scope.txtPassword
 		};
 
-		$http.post(domainName + '/rest/user', data).success(
+		$http.post(domainName + '/rest/vender', data).success(
 					function(response) {
 
 						$scope.messsageCode = response.messsageCode;

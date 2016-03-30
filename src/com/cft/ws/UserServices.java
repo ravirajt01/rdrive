@@ -22,6 +22,7 @@ import com.cft.bean.UserBean;
 import com.cft.exception.UnActiveUser;
 import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
+import com.cft.exception.UserNotExist;
 import com.cft.pojo.BookTour;
 import com.cft.pojo.User;
 import com.javatpoint.Employee;
@@ -110,8 +111,23 @@ public class UserServices {
 
 	}
 	
-	
-	
+
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)  
+	@Path("/user/forgotpass")  
+	public String forgotpass( User user  ) throws UnAuthorisedUser { 
+
+		System.out.println("method : forgotpass" +"input : "+ Utils.objectToJsonStirng(user) );
+
+		UserBean userBean=(UserBean)InitialLoader.ctx.getBean("userBean");
+		userBean.forgotpass(user);
+
+		return Reply.formatReply("",ExceptionCode.SCS);
+
+	} 
+
+
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)  
 	@Path("/users")  
@@ -125,6 +141,6 @@ public class UserServices {
 		return Reply.formatReply(user,ExceptionCode.SCS);
 
 	}
-	
 
-}   
+
+}

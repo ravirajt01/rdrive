@@ -13,7 +13,6 @@ import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
 import com.cft.pojo.Staging;
 import com.cft.pojo.User;
-import com.cft.pojo.Vehicle;
 import com.javatpoint.Employee;
 import com.ss.bean.CommunicateBean;
 import com.ss.bean.CommunicateBean.MailType;
@@ -25,6 +24,7 @@ public class UserBean {
 	HibernateTemplate template;  
 	
 	StagingBean stagingBean;
+	User user;
 	
 	CommunicateBean communicateBean;
 	
@@ -133,23 +133,45 @@ public class UserBean {
 		if(users.size()==0)
 			throw new UnAuthorisedUser("User does not exist")  ;
 		else{
-
+				
 			loggedInUser = users.get(0);
-
+			
 			if(!loggedInUser.isRegistrationConfirmed()){
-				throw new UnActiveUser("User is not active Ate")  ;
+				throw new UnActiveUser("User is not active yet")  ;
 			}
-
-
+				
 		}
+		
 		return loggedInUser;
 		
-	}
+	}  
 	
+	
+
 	public List<User> getAllUsers(){
 		
 		return this.getUsers();
 		
 	}
+	
+	
+	
+public void forgotpass(User user) throws UnAuthorisedUser {
+	User reguser =null;
+		List<User> users = template.find("from User where email=?",user.getEmail());
+		
+		if(users.size()==0)
+			throw new UnAuthorisedUser("User does not exist")  ;
+		else{
+			reguser = users.get(0);
+			communicateBean.sendMail(MailType.FORGOT_PASS ,reguser );
+			
+		}
+		//return reguser;
+		
+	}  
+	
+	
+	
 	
 }

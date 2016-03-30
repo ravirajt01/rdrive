@@ -221,8 +221,35 @@ app.controller('EditableRowCtrl', function($scope, $filter, $http) {
 	    $scope.users.push($scope.inserted);
 	  };
 	});
+
+app.controller('bookingCtrl', function($scope, $filter, $http){
+	 $scope.bookings = []; 
 	
+	$http.get(domainName + '/rest/admin/bookings').success(
+			function(response) {
+
+				$scope.messsageCode = response.messsageCode;
+				console.log($scope.messsageCode);
+				console.log(response);
+				console.log(response.reply);
+				console.log(JSON.parse(response.reply));
+				$scope.bookings = JSON.parse(response.reply);
+
+				console.log($scope.messsageCode);
+
+					if ($scope.messsageCode == 'SCS'){
+						
+						if(typeof(Storage) !== "undefined") {
+							   
+					    }else{
+					    	alert("Your browser do not support..");
+					    }
+					}					
+			});
+
 	
+});
+
 
 app.controller('VehicleRowCtrl', function($scope, $filter, $http) {
 	
@@ -519,6 +546,116 @@ function switchController ($scope) {
 
 
 			<!-- --------- -->
+
+
+
+
+
+
+
+      <div ng-controller="bookingCtrl">
+			<h2>Bookings:</h2>
+			<!-- <input type="button" name="getBookings-button" id="getBookingsButton" value="Get all bookings" ng-click="getBookings()" />-->
+			<br/>
+			
+				<table class="table table-bordered table-hover table-condensed">
+					<tr style="font-weight: bold">
+						<td style="width: 15%">Email</td>
+						<td style="width: 10%">Contact</td>
+						<td style="width: 10%">From Date</td>
+						<td style="width: 10%">To Date</td>
+						<td style="width: 10%">From Time</td>
+						<td style="width: 10%">From Location</td>
+					 <td style="width: 10%">To Location</td>
+						<td style="width: 10%">Vehicle details</td>
+						<td style="width: 15%">Booking Date</td> 
+					</tr>
+					<tr ng-repeat="b in bookings">
+						<td>
+							<!-- editable username (text with validation) --> 
+							<span editable-text="b.email" e-name="email" e-form="rowform1"
+							 e-required>
+							{{b.email || '-' }} </span>
+						</td>
+						
+						<td>
+							 <span
+							editable-text="b.contactNumber" e-name="contactNumber" e-form="rowform1"
+							> {{ b.contactNumber || '-' }}  </span>
+						</td>
+						<td>
+						 <span editable-text="b.fromData" e-name="fromData" e-form="rowform1"
+							> {{b.fromData || '-' }}  </span>
+						</td>
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.toDate" e-name="toDate" e-form="rowform1"
+							> {{b.toDate || '-' }}  </span>
+						</td>
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.fromTime" e-name="fromTime" e-form="rowform1"
+							> {{b.fromTime || '-' }}  </span>
+						</td>
+						
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.fromLocation" e-name="fromLocation" e-form="rowform1"
+							> {{ b.fromLocation || '-' }}  </span>
+						</td>
+						
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.toLocation" e-name="toLocation" e-form="rowform1"
+							> {{ b.toLocation || '-' }}  </span>
+						</td>
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.vehicleDetails" e-name="vehicleDetails" e-form="rowform1"
+							> {{ b.vehicleDetails || '-' }}  </span>
+						</td>
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.bookingDate" e-name="bookingDate" e-form="rowform1"
+							> {{ b.bookingDate || '-' }}  </span>
+						</td>
+						<!-- <td>
+							editable status (select-local) <span
+							editable-select="user.status" e-name="status" e-form="rowform"
+							e-ng-options="s.value as s.text for s in statuses"> {{
+								showStatus(user) }} </span>
+						</td>
+						<td>
+							editable group (select-remote) <span
+							editable-select="user.group" e-name="group" onshow="loadGroups()"
+							e-form="rowform" e-ng-options="g.id as g.text for g in groups">
+								{{ showGroup(user) }} </span>
+						</td> 
+						<td style="white-space: nowrap">
+							
+							<form editable-form name="rowform"
+								onbeforesave="saveUser($data, user.id)"
+								ng-show="rowform.$visible" class="form-buttons form-inline"
+								shown="inserted == user">
+								<button type="submit" ng-disabled="rowform.$waiting"
+									class="btn btn-primary">save</button>
+								<button type="button" ng-disabled="rowform.$waiting"
+									ng-click="rowform.$cancel()" class="btn btn-default">
+									cancel</button>
+							</form>
+							<div class="buttons" ng-show="!rowform.$visible">
+								<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+								<button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+							</div>
+						</td>
+						-->
+					</tr>
+				</table>  
+
+				<!-- <button class="btn btn-default" ng-click="addUser()">Add
+					row</button> -->
+			</div>
+
 
 
 		</div>

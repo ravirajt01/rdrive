@@ -1,4 +1,5 @@
-package com.ss.ws.rest;  
+package com.ss.ws.rest; 
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -10,6 +11,7 @@ import org.jboss.resteasy.annotations.Body;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.cft.bean.BookTourBean;
 import com.cft.pojo.BookTour;
 import com.javatpoint.Employee;
 import com.javatpoint.EmployeeDao;
@@ -57,17 +59,21 @@ public class Communicator {
 
 		System.out.println("method : putTourBookRequest" +"input : "+ Utils.objectToJsonStirng(bookTour) );
 
+		BookTourBean booktourBean=(BookTourBean)InitialLoader.ctx.getBean("booktourBean");
+		booktourBean.addBookTour(bookTour);
+		//CommunicateBean communicable = new CommunicateBean();
+		
 		CommunicateBean communicateBean=(CommunicateBean)InitialLoader.ctx.getBean("communicateBean");
 		
+		/*
 		if(bookTour.getFromDate()!=null)
 		bookTour.setFromDate(bookTour.getFromDate().substring(0, 10));
-		
-		/*
 		if(bookTour.getToDate()!=null)
 		bookTour.setToDate(bookTour.getToDate().substring(0,10));*/
 		
 		communicateBean.sendMail(MailType.TOUR_BOOK, bookTour);
 		communicateBean.sendMail(MailType.TOUR_BOOK_ADMIN, bookTour);
+	   // ApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext.xml");  
 
 				
 		return Reply.formatReply("",ExceptionCode.SCS);

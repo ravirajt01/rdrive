@@ -7,5 +7,5 @@ public class GenericVariables {
 
 	public static Gson gson = new GsonBuilder().create();
 	
-	public enum ExceptionCode{SCS,RNF,ISE, MNA, UAE, UNAU, NAU };
+	public enum ExceptionCode{SCS,RNF,ISE, MNA, UAE, UNAU, NAU, UNE };
 }

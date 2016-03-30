@@ -368,8 +368,8 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 				$scope.userId=jj.userId; }
 			
 			else{
-				
-				$scope.userId=null;
+				var Id=0;
+				$scope.userId=Id;
 			}
 			$scope.contactNumber = $("#contactNumberId").val();
 			$scope.contactEmail = $("#contactEmailId").val();
