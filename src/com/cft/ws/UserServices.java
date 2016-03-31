@@ -100,7 +100,7 @@ public class UserServices {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)  
 	@Path("/user/login")  
-	public String loginUser( User user  ) throws UnAuthorisedUser, UnActiveUser { 
+	public String loginUser(User user) throws UnAuthorisedUser, UnActiveUser { 
 
 		System.out.println("method : loginUser" +"input : "+ Utils.objectToJsonStirng(user) );
 
@@ -115,7 +115,7 @@ public class UserServices {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)  
 	@Path("/user/forgotpass")  
-	public String forgotpass( User user  ) throws UnAuthorisedUser { 
+	public String forgotpass(User user) throws UnAuthorisedUser { 
 
 		System.out.println("method : forgotpass" +"input : "+ Utils.objectToJsonStirng(user) );
 
@@ -131,7 +131,7 @@ public class UserServices {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)  
 	@Path("/users")  
-	public String getAllUsers(  ) throws UnAuthorisedUser, UnActiveUser { 
+	public String getAllUsers() throws UnAuthorisedUser, UnActiveUser { 
 
 		System.out.println("method : getAllUsers" );
 
