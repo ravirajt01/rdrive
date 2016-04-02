@@ -30,7 +30,7 @@ public class BookTour {
 	
 	String fromTime ;
 	
-	String fromLocatiom;
+	String fromLocation;
 	String toLocation ;
 	
 	String vehicleDetails ;
@@ -72,10 +72,10 @@ public class BookTour {
 	}
 
 	public String getFromLocatiom() {
-		return fromLocatiom;
+		return fromLocation;
 	}
 	public void setFromLocatiom(String fromLocatiom) {
-		this.fromLocatiom = fromLocatiom;
+		this.fromLocation = fromLocatiom;
 	}
 	public String getToLocation() {
 		return toLocation;

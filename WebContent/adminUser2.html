@@ -560,15 +560,15 @@ function switchController ($scope) {
 			
 				<table class="table table-bordered table-hover table-condensed">
 					<tr style="font-weight: bold">
-						<td style="width: 15%">Email</td>
+						<td style="width: 20%">Email</td>
 						<td style="width: 10%">Contact</td>
 						<td style="width: 10%">From Date</td>
-						<td style="width: 10%">To Date</td>
+						<!-- <td style="width: 10%">To Date</td> -->
 						<td style="width: 10%">From Time</td>
 						<td style="width: 10%">From Location</td>
 					 <td style="width: 10%">To Location</td>
-						<td style="width: 10%">Vehicle details</td>
-						<td style="width: 15%">Booking Date</td> 
+						<td style="width: 20%">Vehicle details</td>
+						<td style="width: 10%">Booking Date</td> 
 					</tr>
 					<tr ng-repeat="b in bookings">
 						<td>
@@ -584,18 +584,18 @@ function switchController ($scope) {
 							> {{ b.contactNumber || '-' }}  </span>
 						</td>
 						<td>
-						 <span editable-text="b.fromData" e-name="fromData" e-form="rowform1"
-							> {{b.fromData || '-' }}  </span>
+						 <span editable-text="b.fromDate" e-name="fromDate" e-form="rowform1"
+							> {{b.fromDate || '-' }}  </span>
 						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
+						<!--  <td>
+							<!-- editable status (select-local) -- <span
 							editable-text="b.toDate" e-name="toDate" e-form="rowform1"
 							> {{b.toDate || '-' }}  </span>
-						</td>
+						</td> -->
 						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.fromTime" e-name="fromTime" e-form="rowform1"
-							> {{b.fromTime || '-' }}  </span>
+							<!-- editable status (select-local) --> 
+							<span editable-text="b.fromTime" e-name="fromTime" e-form="rowform1">
+							 {{b.fromTime || '-' }}  </span>
 						</td>
 						
 						<td>

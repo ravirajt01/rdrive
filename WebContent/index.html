@@ -371,16 +371,43 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 				
 				$scope.userId=null;
 			}
-			$scope.contactNumber = $("#contactNumberId").val();
-			$scope.contactEmail = $("#contactEmailId").val();
-			
+			//$scope.contactNumber = $("#contactNumberId").val();
+			//$scope.contactEmail = $("#contactEmailId").val();
 			
 			if($scope.fromDate == null || $('#fromTimeId').val().length ===0 || ($('#txtPickUpLocationId').val().length ===0 )||  ($('#txtDropoOffLocationId').val().length ===0 ) || $scope.contactNumber == null || $scope.contactEmail == null || $('#slctCarList option:selected').val().length ===0 ){
 				 $('#alrtFailOnBook').show();
-					return;
-
-				
-			} 
+				 $("#lblfail").text("Manditory filds are missing.");
+					return;	
+			}
+			
+			
+			var val = $("#contactNumberId").val();
+			if (/^[1-9]{1}[0-9]{9}$/.test(val)) {
+			    // value is ok, use it
+				$scope.contactNumber = $("#contactNumberId").val();
+			} else {
+				 $('#alrtFailOnBook').show();
+				 $("#lblfail").text("Invalid contactNumber.");
+			    //alert("Invalid contactNumber.")
+			    $("#contactNumberId").focus()
+			    return false
+			}
+			
+			
+			var val1 =$("#contactEmailId").val();
+			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(val1)) {
+			    // value is ok, use it
+				$scope.contactEmail = $("#contactEmailId").val();
+			} else {
+				 $('#alrtFailOnBook').show();
+				 $("#lblfail").text("Invalid EmailId.");
+			   // alert("Invalid EmailId.")
+			    $("#contactEmailId").focus()
+			    return false
+			}
+			
+			
+			
 			
 			
 			$scope.pickUpLocation = $('#txtPickUpLocationId').val();
@@ -877,7 +904,7 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 									<div class="alert alert-warning" hidden="true" id="alrtFailOnBook">
 										<a href="#" class="close glyphicon glyphicon-bell"  data-dismiss="alert"
 											aria-label="close">&times;</a> <strong>Fail! -</strong>
-										Manditory filds are missing
+										<label id="lblfail" text=""></label>
 									</div>
 
 								</div>

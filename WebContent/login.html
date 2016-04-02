@@ -120,6 +120,13 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
     		alert("Please enter valid email id");
     		return;
     	}
+    	
+    	if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#txtLoginEmail").val())){
+    	}
+    	else{
+    		alert("Please enter valid email id");
+    		return;
+    	}
     	if($scope.txtLoginPassword == null ||  $('#txtLoginPassword').val().length ===0){
     		alert("Please enter password");
     		return;
@@ -200,6 +207,8 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
     }
     
     $scope.register = function() {
+    	
+    	
 
     	if($scope.txtName == null || $('#txtName').val().length ===0 ){
     		alert("Please enter name");
@@ -210,12 +219,25 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
     		alert("Please enter valid email id");
     		return;
     	}
+    	
+    	if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#txtEmail").val())){
+    	}
+    	else{
+    		alert("Please enter valid email id");
+    		return;
+    	}
 
     	if($scope.txtContact == null || $('#txtContact').val().length ===0){
     		alert("Please enter contact number");
     		return;
     	}
     	
+    	if(/^[1-9]{1}[0-9]{9}$/.test($("#txtContact").val())){
+    	}
+    	else{
+    		alert("Please enter valid contact number");
+    		return;
+    	}
     	
     	if($scope.txtPassword == null || $('#txtPassword').val().length ===0 ){
     		alert("Please enter password");
