@@ -61,19 +61,18 @@ public class Communicator {
 
 		BookTourBean booktourBean=(BookTourBean)InitialLoader.ctx.getBean("booktourBean");
 		booktourBean.addBookTour(bookTour);
-		//CommunicateBean communicable = new CommunicateBean();
 		
 		CommunicateBean communicateBean=(CommunicateBean)InitialLoader.ctx.getBean("communicateBean");
 		
-		/*
+		
 		if(bookTour.getFromDate()!=null)
 		bookTour.setFromDate(bookTour.getFromDate().substring(0, 10));
+		/*
 		if(bookTour.getToDate()!=null)
 		bookTour.setToDate(bookTour.getToDate().substring(0,10));*/
 		
-		communicateBean.sendMail(MailType.TOUR_BOOK, bookTour);
-		communicateBean.sendMail(MailType.TOUR_BOOK_ADMIN, bookTour);
-	   // ApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext.xml");  
+		//communicateBean.sendMail(MailType.TOUR_BOOK, bookTour);
+		//communicateBean.sendMail(MailType.TOUR_BOOK_ADMIN, bookTour);
 
 				
 		return Reply.formatReply("",ExceptionCode.SCS);
