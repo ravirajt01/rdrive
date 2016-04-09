@@ -20,14 +20,18 @@ import org.jboss.resteasy.annotations.Body;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.cft.bean.CityBean;
 import com.cft.bean.BookTourBean;
 import com.cft.bean.UserBean;
+import com.cft.bean.CityBean;
 import com.cft.exception.UnActiveUser;
 import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
 import com.cft.exception.UserNotExist;
+import com.cft.pojo.City;
 import com.cft.pojo.BookTour;
 import com.cft.pojo.User;
+import com.cft.pojo.City;
 import com.javatpoint.Employee;
 import com.javatpoint.EmployeeDao;
 import com.javatpoint.InitialLoader;
@@ -65,5 +69,44 @@ public class AdminServices {
 
 	}
 
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)  
+	@Path("/admin/cities")  
+	public String getcities(){ 
+		
+		System.out.println("method : getcities");
+		CityBean cityBean=(CityBean)InitialLoader.ctx.getBean("cityBean");
+		
+		
+		List<City> city =cityBean.getcities();
+
+		return Reply.formatReply(city,ExceptionCode.SCS);
+
+	}
+
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)  
+	@Path("/admin/city")  
+	public String addUpdateCities(City city ) throws UnAuthorisedUser, UnActiveUser { 
+
+		System.out.println("method : addUpdateCitys" +  Utils.objectToJsonStirng(city));
+
+		CityBean cityBean = (CityBean)InitialLoader.ctx.getBean("cityBean");
+
+		if(city.getCityId()==null){
+			Integer cityId= cityBean.addCity(city);
+			city.setCityId(cityId);
+		}else{
+			cityBean.updateCity(city);
+		}
+
+		return Reply.formatReply(city,ExceptionCode.SCS);
+		
+		
+
+	}
+	
 }
 

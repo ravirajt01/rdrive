@@ -3909,6 +3909,18 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: #eee;
   border-color: #337ab7;
 }
+
+
+.navbar #bookingul>.divider {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    display: block;
+    height: 49px;
+    float: left;
+    width: 2px;
+}
+
 .nav .nav-divider {
   height: 1px;
   margin: 9px 0;
@@ -4066,6 +4078,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+
+
 .navbar {
   position: relative;
   min-height: 50px;
@@ -4082,6 +4097,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left;
   }
 }
+
 .navbar-collapse {
   padding-right: 15px;
   padding-left: 15px;
@@ -4397,7 +4413,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default {
   background-color: #f8f8f8;
-  border-color: #e7e7e7;
+ /* border-color: #e7e7e7;*/
 }
 .navbar-default .navbar-brand {
   color: #777;

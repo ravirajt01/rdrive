@@ -26,18 +26,32 @@ public class BookTour {
 	String contactNumber ; 
 	
 	String fromDate ;
-	//String toDate ;
+	String toDate ;
 	
 	String fromTime ;
 	
-	String fromLocatiom;
+	String fromLocation;
 	String toLocation ;
 	
 	String vehicleDetails ;
 	Date bookingDate;
+	String bookingType;
+	String tripType;
 	
 	
 	
+	public String getBookingType() {
+		return bookingType;
+	}
+	public void setBookingType(String bookingType) {
+		this.bookingType = bookingType;
+	}
+	public String getTripType() {
+		return tripType;
+	}
+	public void setTripType(String tripType) {
+		this.tripType = tripType;
+	}
 	public Integer getBookingId() {
 		return bookingId;
 	}
@@ -71,11 +85,12 @@ public class BookTour {
 		this.contactNumber = contactNumber;
 	}
 
-	public String getFromLocatiom() {
-		return fromLocatiom;
+	
+	public String getFromLocation() {
+		return fromLocation;
 	}
-	public void setFromLocatiom(String fromLocatiom) {
-		this.fromLocatiom = fromLocatiom;
+	public void setFromLocation(String fromLocation) {
+		this.fromLocation = fromLocation;
 	}
 	public String getToLocation() {
 		return toLocation;
@@ -89,12 +104,12 @@ public class BookTour {
 	public void setFromDate(String fromDate) {
 		this.fromDate = fromDate;
 	}
-/*	public String getToDate() {
+	public String getToDate() {
 		return toDate;
 	}
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
-	}*/
+	}
 	public String getVehicleDetails() {
 		return vehicleDetails;
 	}

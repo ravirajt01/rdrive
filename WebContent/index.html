@@ -48,12 +48,13 @@
     <title>Car For Tour</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css?#{startup.time}" rel="stylesheet">
      <!--load font awesome-->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
      <link href="css/social.css" rel="stylesheet">
 
     <!-- Custom CSS -->
+  <!--   <link href="css/booking.css" rel="stylesheet"> -->
     <link href="css/half-slider.css" rel="stylesheet">
     <link rel="shortcut icon" href="./img/logo/pp.jpg">
 
@@ -307,7 +308,31 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 });
 
 	app.controller('putRequestCtrl', function($scope, $http , $sessionStorage) {
-		
+		$scope.outstation=true;
+		$scope.fromLocation="";
+		$scope.bookingType="";
+		$scope.tripType="";
+		$scope.cities = []; 
+			
+			$http.get(domainName + '/rest/admin/cities').success(
+					function(response) {
+
+						$scope.messsageCode = response.messsageCode;
+						console.log(JSON.parse(response.reply));
+						$scope.cities = JSON.parse(response.reply);
+
+						console.log($scope.messsageCode);
+
+							if ($scope.messsageCode == 'SCS'){
+								
+								if(typeof(Storage) !== "undefined") {
+									   
+							    }else{
+							    	alert("Your browser do not support..");
+							    }
+							}					
+					});
+
 		
 		 $scope.vehicles = []; 
 
@@ -354,7 +379,33 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 			})
 			
 			
-		
+		$scope.bookingType=function(id){
+			
+			
+			if (id=="1") {
+				 $('#bookingul a.active').removeClass('active');
+					$('#outstationId').addClass('active');
+				$scope.outstation=true;
+				$scope.local=false;
+				$scope.airport=false;}
+			
+			else if (id=="2") {
+				 $('#bookingul a.active').removeClass('active');
+				$('#localId').addClass('active');
+				//$('#airportId').removeclass('active');
+				$scope.outstation=false;
+				$scope.local=true;
+				$scope.airport=false;
+				
+			} else if (id=="3") {
+				 $('#bookingul a.active').removeClass('active');
+					$('#airportId').addClass('active');
+				$scope.outstation=false;
+				$scope.local=false;
+				$scope.airport=true;
+				}
+			
+		}
 		$scope.put_request = function() {
 			
 			// when auto set these filds - scope is not getting assigned ..
@@ -367,19 +418,78 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 				
 				$scope.userId=null;
 			}
-			$scope.contactNumber = $("#contactNumberId").val();
-			$scope.contactEmail = $("#contactEmailId").val();
+			
+			if($('#outstationId').hasClass('active')){
+				//alert("outstation active");
+			if(	$("input[name='Triptype1']:checked").val().length===0||($('#slctsourceCityList option:selected').val().length ===0) || ($('#txtDestCityId').val().length ===0 )  )
+			{	 $('#alrtFailOnBook').show();
+			 $("#lblfail").text("Manditory filds are missing.");}
+			else 
+				{
+				$scope.bookingType="outStatation";
+				$scope.tripType=$("input[name='Triptype1']:checked").val();
+				$scope.fromLocation=$('#slctsourceCityList option:selected').val();
+				$scope.destCity=$('#txtDestCityId').val();
+				}
 			
 			
-			if($scope.fromDate == null || $('#fromTimeId').val().length ===0 || ($('#txtPickUpLocationId').val().length ===0 )||  ($('#txtDropoOffLocationId').val().length ===0 ) || $scope.contactNumber == null || $scope.contactEmail == null || $('#slctCarList option:selected').val().length ===0 ){
-				 $('#alrtFailOnBook').show();
-					return;
-
+			}else if($('#localId').hasClass('active')){
+				if($("input[name='Triptype2']:checked").val().length===0 || ($('#slctforCityList option:selected').val().length ===0) ||  ($('#txtDropoOffLocationId').val().length ===0 )){
+					 $('#alrtFailOnBook').show();
+					 $("#lblfail").text("Manditory filds are missing.");
+				}else{
+					
+					$scope.bookingType="local";
+					$scope.tripType=$("input[name='Triptype2']:checked").val();
+					$scope.fromLocation=$('#slctforCityList option:selected').val();
+					
+					}
 				
-			} 
+				
+			}
+			{alert("outstation not active");}
 			
 			
-			$scope.pickUpLocation = $('#txtPickUpLocationId').val();
+			if($scope.fromDate == null || $('#fromTimeId').val().length ===0  || ($("#contactNumberId").val().length ===0) || ($("#contactEmailId").val().length=== 0) || $('#slctCarList option:selected').val().length ===0 )
+			{
+				 $('#alrtFailOnBook').show();
+				 $("#lblfail").text("Manditory filds are missing.");
+					return;	
+					
+			}
+			
+			
+			var val = $("#contactNumberId").val();
+			if (/^[1-9]{1}[0-9]{9}$/.test(val)) {
+			    // value is ok, use it
+				$scope.contactNumber = $("#contactNumberId").val();
+			} else {
+				 $('#alrtFailOnBook').show();
+				 $("#lblfail").text("Invalid contactNumber.");
+			    //alert("Invalid contactNumber.")
+			    $("#contactNumberId").focus()
+			    return false
+			}
+			
+			
+			var val1 =$("#contactEmailId").val();
+			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(val1)) {
+			    // value is ok, use it
+				$scope.contactEmail = $("#contactEmailId").val();
+			} else {
+				 $('#alrtFailOnBook').show();
+				 $("#lblfail").text("Invalid EmailId.");
+			   // alert("Invalid EmailId.")
+			    $("#contactEmailId").focus()
+			    return false
+			}
+			
+			
+			
+			
+			
+			//$scope.pickUpLocation = $('#txtPickUpLocationId').val();
+			
 			$scope.dropoOffLocation = $('#txtDropoOffLocationId').val();
 			$scope.fromTime = $('#fromTimeId').val();
 
@@ -393,9 +503,13 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 				userId : $scope.userId,
 				fromDate : $scope.fromDate,
 				fromTime : $scope.fromTime,
-				//toDate : $scope.toDate,
-				fromLocatiom : $scope.pickUpLocation,
-				toLocation : $scope.dropoOffLocation,
+				toDate : $scope.toDate,
+				fromLocation : $scope.fromLocation,
+				toLocation : $scope.destCity,
+				//sourceCity : $scope.sourceCity,
+				//destCity : $scope.destCity,
+				bookingType : $scope.bookingType,
+				tripType : $scope.tripType,
 				email : $scope.contactEmail,
 				contactNumber : $scope.contactNumber,
 				vehicleDetails : $('#slctCarList option:selected').text()+'-'+$('#slctCarList').val()
@@ -411,7 +525,7 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 						if ($scope.messsageCode == 'SCS'){
 							console.log($scope.email + 'success');
 
-							$scope.pickUpLocation = null;
+							//$scope.pickUpLocation = null;
 							$scope.dropoOffLocation = null;
 							$scope.fromDate = null;
 							$scope.fromTime = null;
@@ -419,7 +533,7 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 							$scope.contactNumber = null;
 							$scope.contactEmail = null;
 							$('#slctCarList').val('');
-							
+							$('#slctCityList').val('');
 							$('#alrtFailOnBook').hide();
 							 $('#alrtSuccessOnBook').show();
 							
@@ -477,11 +591,12 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 
 	});
 
-	$(document).ready(function() {
-		$('button').click(function() {
-			$('.alert').show()
-		})
-	});
+/*	$(document).ready(function() {
+		if($('#oustationId').hasClass('active')==true){
+			
+			alert("oustation active");
+		}
+	});*/
 </script>
 
  <script type="text/javascript">
@@ -654,7 +769,7 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 		</div>
 
 <br>
-<div ng-app="myApp">
+<div  ng-app="myApp">
 		<div class="row" >
 			<div class="col-lg-12">
 
@@ -662,15 +777,108 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 				<!-- <p>Date: <input type="text" id="datepicker"></p>
  -->
 
-				<div ng-controller="putRequestCtrl" style=" border-width: 1px;border-style: solid; border-radius: 10px; border-color: #ADD8E6;">
-				<br>
+				<div ng-controller="putRequestCtrl" style=" border-width: 4px;border-style: solid; border-radius: 10px; border-color:#31708f;">
+		
+				  <nav class="navbar navbar-default" role="navigation"> 
+			
+				
+                                <ul class="nav navbar-nav navbar-left" id="bookingul" >
+                                <li class="divider"></li> 
+                        <li><a class="active glyphicon glyphicon-briefcase" href type="button" role="button"
+                        id="outstationId" ng-click='bookingType(1)'> OUTSTATION</a></li>
+                      
+                                                 <li class="divider"></li>    
+
+                                   <li> <a class="glyphicon glyphicon-map-marker" href  type="button" role="button"
+                        id="localId" ng-click='bookingType(2)'> LOCAL</a></li>
+                                   
+                                            <li class="divider"></li>  
+
+                                          <li> <a class="glyphicon glyphicon-plane " href type="button" role="button"
+                        id="airportId" ng-click='bookingType(3)'> AIRPORT</a></li>
+                                                    
+
+                                                                                    </ul>
+                                                                                    
+                           
+				</nav>
+			
 					<div class="container" id="bookTour">
+					<div class="row">
+							
+<div class="form-group">					
+<label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1">Round Trip</label>
+<label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1">One way</label>
+<label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1">Multicity</label>
 
+<label  ng-show="local" class="radio-inline"><input type="radio" name="Triptype2" >Full day</label>
+<label  ng-show="local" class="radio-inline"><input type="radio" name="Triptype2" >Half day</label>
+
+<label ng-show="airport" class="radio-inline"><input type="radio" name="Triptype3">Round Trip</label>
+<label ng-show="airport" class="radio-inline"><input type="radio" name="Triptype3">Pickup from Airport  </label>
+<label ng-show="airport" class="radio-inline"><input type="radio" name="Triptype3">Drop to Airport</label>
+</div>
+<br/>
+</div>
 						<div class="row">
-							<div class='col-sm-3'>
+									<div class='col-sm-3' ng-show="local">
+<div class="form-group">
+	<select class="form-control" id="slctforCityList" ng-model="selectforCity">
+    								<option value="">forCity</option>
+   									 <option ng-repeat="city in cities | filter:city.isActive='true'" value="{{city.cityId}}">{{city.cityName}}</option>
+</select> </div></div>	
+							<div class='col-sm-3' ng-show="outstation">
+<div  class="form-group">
+	<select class="form-control" id="slctsourceCityList" ng-model="selectsourceCity">
+    								<option value="">SourceCity</option>
+   									 <option ng-repeat="city in cities | filter:city.isActive='true'" value="{{city.cityId}}">{{city.cityName}}</option>
+</select> </div></div>	
 
 
-								<div class="form-group">
+<div ng-show="outstation" class='col-sm-3'>
+			<div class="form-group">
+									<input class="form-control" type="text"
+										ng-model="destCity" id="txtDestCityId"
+										placeholder="Destination City" required>
+											<!-- <script type="text/javascript"
+										src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script> -->
+									<script type="text/javascript">
+										google.maps.event
+												.addDomListener(
+														window,
+														'load',
+														function() {
+															
+															 var options = {
+																	  //types: ['(cities)'],
+																	  componentRestrictions: {country: "IN"}
+																	 };
+															
+															var places = new google.maps.places.Autocomplete(
+																	document
+																			.getElementById('txtDestCityId'),options);
+															google.maps.event
+																	.addListener(
+																			places,
+																			'place_changed',
+																			function() {
+																				var place = places
+																						.getPlace();
+																				var address = place.formatted_address;
+																				$(
+																						'#txtDestCityId')
+																						.val(
+																								address);
+
+																			});
+														});
+									</script>
+								</div>					
+								</div>
+								</div>
+				<!--  				
+								<div class="row">
+							<div class='col-sm-3'ng-show="local"> <div class="form-group">
 									<input class="form-control" type="text"
 										ng-model="pickUpLocation" id="txtPickUpLocationId"
 										placeholder="Pick-up Location/City" required>
@@ -704,16 +912,16 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 																			});
 														});
 									</script>
-								</div>
+								</div> 
 							</div>
 
-							<div class='col-sm-3'>
+							<div class='col-sm-3' ng-show="local">
 								<div class="form-group">
 									<input class="form-control" type="text"
 										ng-model="dropoOffLocation" id="txtDropoOffLocationId"
 										placeholder="Drop-off Location/City" required>
 											<!-- <script type="text/javascript"
-										src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script> -->
+										src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script> ->
 									<script type="text/javascript">
 										google.maps.event
 												.addDomListener(
@@ -748,30 +956,12 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 								</div>
 							</div>
 
-							<div class='col-sm-3'>
-								<div class="form-group">
-								
-								<div >
-</div>
-								<select class="form-control" id="slctCarList" ng-model="selectedClient">
-    								<option value="">Select Prefered Car</option>
-   									 <option ng-repeat="vehicle in vehicles | filter:vehicle.isActive='true'" value="{{'Details for '+ vehicle.name + ':- seats-' +vehicle.seats+ ' , Basic- Rs. '+ vehicle.basicCharge + '/8 hrs/80km, Extra- Rs.'+vehicle.extraChargePerKm + '/km,Rs.'+vehicle.extraChargePerHour+'/hr'}}">{{vehicle.name}}</option>
-</select>
-									
-									</select> 
-								</div>
-							</div>
-
-							<div class='col-sm-3'>
-									<div class="form-group">
-										<label id="lblDetails"></label>
-									</div>
-								</div>
+						
 
 
 							</div>
 
-
+-->
 
 						<div class="row">
 							<div class='col-sm-3'>
@@ -780,10 +970,10 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 									<label for="fromDateId" >Pick up date:</label>
 									<div class='input-group date'>
 
-										<input type="date"  id="fromDateId"  fo class="form-control" ng-model="fromDate"
+										<input type="date"  id="fromDateId" class="form-control" ng-model="fromDate"
 											id="fromDateId" required /> <span class="input-group-addon">
-											<!--<span class="glyphicon glyphicon-calendar"> -->
-										</span> </span>
+											<!--<span class="glyphicon glyphicon-calendar"> </span> -->
+										</span> 
 										
 										
 										
@@ -806,17 +996,17 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 									</script> -->
 									
 									<div>
-										<input type="time" name="fromTime" id="fromTimeId" ng-model="fromTime" >
+										<input type="time" name="fromTime" id="fromTimeId" class="form-control"  ng-model="fromTime" >
 									</div>
 									
 
 								</div>
 							</div>
 
-<!-- 
-							<div class='col-sm-3'>
+
+							<div class='col-sm-3' ng-show="outstation">
 								<div class="form-group">
-									<div class="alert alert-info">Drop-off Date</div>
+									<!--  <div class="alert alert-info">Drop-off Date</div>-->
 									<label for="toDateId" >Drop off date:</label>
 									<div class='input-group date'>
 
@@ -825,11 +1015,30 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 										</span>
 									</div>
 								</div>
-							</div> -->
+							</div> 
 						</div>
 
+<div class = 'row'>
+<div class='col-sm-3'>
+								<div class="form-group">
+								
+								<div >
+</div>
+								<select class="form-control" id="slctCarList" ng-model="selectedClient">
+    								<option value="">Select Prefered Car</option>
+   									 <option ng-repeat="vehicle in vehicles | filter:vehicle.isActive='true'" value="{{'Details for '+ vehicle.name + ':- seats-' +vehicle.seats+ ' , Basic- Rs. '+ vehicle.basicCharge + '/8 hrs/80km, Extra- Rs.'+vehicle.extraChargePerKm + '/km,Rs.'+vehicle.extraChargePerHour+'/hr'}}">{{vehicle.name}}</option>
+</select>
+									
+									
+								</div>
+							</div>
 
-
+							<div class='col-xs-7'>
+									<div class="form-group">
+										<label id="lblDetails"></label>
+									</div>
+								</div>
+								</div>
 
 							<div class="row">
 							<div class='col-sm-3'>
@@ -873,7 +1082,7 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 									<div class="alert alert-warning" hidden="true" id="alrtFailOnBook">
 										<a href="#" class="close glyphicon glyphicon-bell"  data-dismiss="alert"
 											aria-label="close">&times;</a> <strong>Fail! -</strong>
-										Manditory filds are missing
+										<label id="lblfail" text=""></label>
 									</div>
 
 								</div>

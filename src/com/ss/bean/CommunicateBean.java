@@ -25,8 +25,8 @@ public class CommunicateBean /*implements Communicable */{
 	private static String fromEmail = "carfortour@gmail.com" ;
 	private static String fromPW = "CarForTour2015" ;
 	
-	//private static String domainName = "http://localhost:8080";
-    private static String domainName = "http://carfortour.com";
+	private static String domainName = "http://localhost:8080";
+    //private static String domainName = "http://carfortour.com";
 	private static String userVerifyRegLink = "/rest/user/verify?tk=";
 	private static String venderVerifyRegLink = "/rest/vender/verify?tk=";
 	
@@ -211,7 +211,7 @@ public class CommunicateBean /*implements Communicable */{
 
 			body = body.replace("#email", bookTour.getEmail());
 			body = body.replace("#contactNumber", bookTour.getContactNumber());
-			body = body.replace("#pickupLocation", bookTour.getFromLocatiom());
+			body = body.replace("#pickupLocation", bookTour.getFromLocation());
 			body = body.replace("#dropOffLocation", bookTour.getToLocation());
 			body = body.replace("#pickupDate", bookTour.getFromDate()+ " " + bookTour.getFromTime());
 			//body = body.replace("#dropOffDate", bookTour.getToDate());
@@ -229,7 +229,7 @@ public class CommunicateBean /*implements Communicable */{
 
 			body = body.replace("#email", bookTour.getEmail());
 			body = body.replace("#contactNumber", bookTour.getContactNumber());
-			body = body.replace("#pickupLocation", bookTour.getFromLocatiom());
+			body = body.replace("#pickupLocation", bookTour.getFromLocation());
 			body = body.replace("#dropOffLocation", bookTour.getToLocation());
 			body = body.replace("#pickupDate", bookTour.getFromDate()+ " " + bookTour.getFromTime());
 			//body = body.replace("#dropOffDate", bookTour.getToDate());

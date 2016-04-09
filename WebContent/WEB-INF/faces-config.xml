@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<managed-bean>
+    <description>Startup date</description>
+    <managed-bean-name>startup</managed-bean-name>
+    <managed-bean-class>java.util.Date</managed-bean-class>
+    <managed-bean-scope>application</managed-bean-scope>
+</managed-bean>
