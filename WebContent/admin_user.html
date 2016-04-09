@@ -615,24 +615,77 @@ function switchController ($scope) {
 							editable-text="b.bookingDate" e-name="bookingDate" e-form="rowform1"
 							> {{ b.bookingDate || '-' }}  </span>
 						</td>
-						<!-- <td>
-							editable status (select-local) <span
-							editable-select="user.status" e-name="status" e-form="rowform"
-							e-ng-options="s.value as s.text for s in statuses"> {{
-								showStatus(user) }} </span>
+						
+					</tr>
+				</table>  
+
+			</div>
+
+
+<!-- -- -->
+
+
+			<div ng-controller="templatesCtrl">
+			<h2>Templates:</h2>
+				<table class="table table-bordered table-hover table-condensed">
+					<tr style="font-weight: bold">
+						<td style="width: 25%">VEHICLE NAME</td>
+						<td style="width: 5%">WHEELS</td>
+						<td style="width: 5%">SEAT</td>
+						
+						
+						<td style="width: 5%">Activate</td>
+						<td style="width: 10%">Edit</td> 
+					</tr>
+					<tr ng-repeat="vehicle in vehicles">
+						<td>
+							<span
+							editable-text="vehicle.name" e-name="name" e-form="rowform"
+							onbeforesave="checkVehicleName($data, vehicle.vehicleId)" e-required> {{
+								vehicle.name || '-' }} </span>
+						</td>
+						
+						<td>
+							<span editable-number="vehicle.wheels" e-name="wheels" e-form="rowform" e-min="2" e-max="60">{{ vehicle.wheels || 'empty' }}</span>
 						</td>
 						<td>
-							editable group (select-remote) <span
-							editable-select="user.group" e-name="group" onshow="loadGroups()"
-							e-form="rowform" e-ng-options="g.id as g.text for g in groups">
-								{{ showGroup(user) }} </span>
-						</td> 
+						<span editable-number="vehicle.seats" e-name="seats" e-form="rowform" e-min="1" e-max="100">{{vehicle.seats  || 'empty' }}</span>
+							
+						</td>
+						
+						<td>
+						<span editable-number="vehicle.basicCharge" e-name="basicCharge" e-form="rowform" e-min="1">{{vehicle.basicCharge  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.extraChargePerKm" e-name="extraChargePerKm" e-form="rowform" e-min="1" >{{vehicle.extraChargePerKm  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.extraChargePerHour" e-name="extraChargePerHour" e-form="rowform" e-min="1" >{{vehicle.extraChargePerHour  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.outStationRidePerKm" e-name="outStationRidePerKm" e-form="rowform" e-min="1">{{vehicle.outStationRidePerKm  || 'empty' }}</span>
+							
+						</td>
+						
+						<td>
+						<!-- <md-switch ng-model="vehicle.isActive" e-name="isActive"  e-form="rowform" aria-label="vehicle.vehicleId" ng-change="onChange(vehicle.vehicleId,vehicle.isActive)" >
+						{{ true  }} </md-switch> -->
+						
+						  <a href="#" editable-checkbox="vehicle.isActive" e-title=""  e-name="isActive"  e-form="rowform"  >
+    {{ vehicle.isActive? 'Active': 'Deactive'}}
+  </a>
+						
+							</td>
+						
 						<td style="white-space: nowrap">
 							
 							<form editable-form name="rowform"
-								onbeforesave="saveUser($data, user.id)"
+								onbeforesave="saveVehicle($data, vehicle.vehicleId,$index)"
 								ng-show="rowform.$visible" class="form-buttons form-inline"
-								shown="inserted == user">
+								shown="inserted == vehicle">
 								<button type="submit" ng-disabled="rowform.$waiting"
 									class="btn btn-primary">save</button>
 								<button type="button" ng-disabled="rowform.$waiting"
@@ -641,18 +694,20 @@ function switchController ($scope) {
 							</form>
 							<div class="buttons" ng-show="!rowform.$visible">
 								<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-								<button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+								<button class="btn btn-danger" ng-click="removeVehicle($index)">del</button>
 							</div>
 						</td>
-						-->
+						
 					</tr>
-				</table>  
+				</table>
 
-				<!-- <button class="btn btn-default" ng-click="addUser()">Add
-					row</button> -->
+				 <button class="btn btn-default" ng-click="addVehicle()">Add
+					Vehicle</button> 
 			</div>
 
 
+
+<!-- -- -->
 
 		</div>
 

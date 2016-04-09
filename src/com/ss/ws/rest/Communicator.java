@@ -71,8 +71,8 @@ public class Communicator {
 		if(bookTour.getToDate()!=null)
 		bookTour.setToDate(bookTour.getToDate().substring(0,10));*/
 		
-		//communicateBean.sendMail(MailType.TOUR_BOOK, bookTour);
-		//communicateBean.sendMail(MailType.TOUR_BOOK_ADMIN, bookTour);
+		communicateBean.sendMail(MailType.TOUR_BOOK, bookTour);
+		communicateBean.sendMail(MailType.TOUR_BOOK_ADMIN, bookTour);
 
 				
 		return Reply.formatReply("",ExceptionCode.SCS);
