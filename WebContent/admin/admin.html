@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+ <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+	 <!--  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="../css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+
+ <script>
+
+ var domainName = '';
+
+ 
+var app = angular.module('app', ["xeditable","ngMaterial"]);
+
+
+app.run(function(editableOptions) {
+	  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+	});
+
+
+
+
+
+
+app.controller('TextSimpleCtrl', function($scope, $http) {
+	
+	console.log("hello ... ");
+	
+	$scope.user = {
+		    name: 'awesome user'
+		  };  
+	
+
+	  $scope.updateUser = function(data) {
+	    alert(data);
+	  };
+	
+	
+});
+
+app.controller('SelectLocalCtrl', function($scope, $filter) {
+	  $scope.user = {
+	    status: 2
+	  }; 
+
+	  $scope.statuses = [
+	    {value: 1, text: 'status1'},
+	    {value: 2, text: 'status2'},
+	    {value: 3, text: 'status3'},
+	    {value: 4, text: 'status4'}
+	  ]; 
+
+	  $scope.showStatus = function() {
+	    var selected = $filter('filter')($scope.statuses, {value: $scope.user.status});
+	    
+	    var result = ($scope.user.status && selected.length) ? selected[0].text : 'Not set';
+	   // alert(result);
+	    return result ;
+	  };
+	  
+	});
+	
+	
+app.controller('EditableRowCtrl', function($scope, $filter, $http) {
+	
+	
+	  $scope.users = [
+	   /*  {id: 1, name: 'awesome user1', status: 2, group: 4, groupName: 'admin'},
+	    {id: 2, name: 'awesome user2', status: undefined, group: 3, groupName: 'vip'},
+	    {id: 3, name: 'awesome user3', status: 2, group: null} */
+	    
+	  ]; 
+
+		$http.get(domainName + '/rest/users').success(
+				function(response) {
+
+					$scope.messsageCode = response.messsageCode;
+
+					console.log($scope.messsageCode);
+					console.log(response);
+					console.log(response.reply);
+					console.log(JSON.parse(response.reply));
+					$scope.users = JSON.parse(response.reply);
+					
+
+					if ($scope.messsageCode == 'SCS'){
+						    
+						    if(typeof(Storage) !== "undefined") {
+							   
+						    }else{
+						    	alert("Your browser do not support..");
+						    }
+
+					}
+				});
+	  
+	  $scope.statuses = [
+	    {value: 1, text: 'status1'},
+	    {value: 2, text: 'status2'},
+	    {value: 3, text: 'status3'},
+	    {value: 4, text: 'status4'}
+	  ]; 
+
+	  $scope.groups = [
+	                   {id: 1, text: 'user'},
+	                   {id: 2, text: 'customer'},
+	                   {id: 3, text: 'vip'},
+	                   {id: 4, text: 'admin'}
+	                   ];
+	 /*  $scope.loadGroups = function() {
+	    return $scope.groups.length ? null : $http.get('/groups').success(function(data) {
+	      $scope.groups = data;
+	    });
+	  }; */
+
+	  $scope.showGroup = function(user) {
+	    if(user.group && $scope.groups.length) {
+	      var selected = $filter('filter')($scope.groups, {id: user.group});
+	      return selected.length ? selected[0].text : 'Not set';
+	    } else {
+	      return user.groupName || 'Not set';
+	    }
+	  };
+
+	  $scope.showStatus = function(user) {
+	    var selected = [];
+	    if(user.status) {
+	      selected = $filter('filter')($scope.statuses, {value: user.status});
+	    }
+	    return selected.length ? selected[0].text : 'Not set';
+	  };
+
+	  $scope.checkName = function(data, id) {
+	    if (id === 2 && data !== 'awesome') {
+	      return "Username 2 should be `awesome`";
+	    }
+	  };
+
+	  $scope.saveUser = function(data, id) {
+	    //$scope.user not updated yet
+	    angular.extend(data, {id: id});
+	    alert(data.name + " "+data.status+ " "+data.group);
+	   // return $http.post('/saveUser', data);
+	  };
+
+	  // remove user
+	  $scope.removeUser = function(index) {
+	    $scope.users.splice(index, 1);
+	  };
+
+	  // add user
+	  $scope.addUser = function() {
+	    $scope.inserted = {
+	      id: $scope.users.length+1,
+	      name: '',
+	      status: null,
+	      group: null 
+	    };
+	    $scope.users.push($scope.inserted);
+	  };
+	});
+
+app.controller('bookingCtrl', function($scope, $filter, $http){
+	 $scope.bookings = []; 
+	
+	$http.get(domainName + '/rest/admin/bookings').success(
+			function(response) {
+
+				$scope.messsageCode = response.messsageCode;
+				console.log($scope.messsageCode);
+				console.log(response);
+				console.log(response.reply);
+				console.log(JSON.parse(response.reply));
+				$scope.bookings = JSON.parse(response.reply);
+
+				console.log($scope.messsageCode);
+
+					if ($scope.messsageCode == 'SCS'){
+						
+						if(typeof(Storage) !== "undefined") {
+							   
+					    }else{
+					    	alert("Your browser do not support..");
+					    }
+					}					
+			});
+
+	
+});
+
+
+app.controller('VehicleRowCtrl', function($scope, $filter, $http) {
+	
+	  $scope.vehicles = []; 
+
+		$http.get(domainName + '/rest/vehicles').success(
+				function(response) {
+
+					$scope.messsageCode = response.messsageCode;
+					console.log(JSON.parse(response.reply));
+					$scope.vehicles = JSON.parse(response.reply);
+					
+					if ($scope.messsageCode == 'SCS'){
+						    
+						    if(typeof(Storage) !== "undefined") {
+							   
+						    }else{
+						    	alert("Your browser do not support..");
+						    }
+
+					}
+				});
+	  
+	  $scope.checkVehicleName = function(data, id) {
+		 
+	     if ( data == null||data.length === 0 ) {
+	      return "Add Vechicle name";
+	    } 
+	  };
+	
+	/*   $scope.onChange = function(state,vid) {
+		  alert(state+" " +vid);
+		  
+		  if(state)
+		    $scope.activeMessage = "Active";
+		  else
+			  $scope.activeMessage = "DeActive";
+			  
+		 }; */
+
+	  $scope.saveVehicle = function(vehicle, vehicleId,vehicleRowId) {
+	    //$scope.vehicle not updated yet
+	    
+	    // alert("isActive : "+vehicle.isActive);
+	    //alert("vehicleId : "+$scope.vehicles[vehicleRowId].vehicleId );
+	    angular.extend(vehicle, {vehicleId: vehicleId});
+	   
+	    $http.post('/rest/vehicle', vehicle).success(
+				function(response) {
+					
+					if ($scope.messsageCode == 'SCS'){
+						
+						updatedVehicle = JSON.parse(response.reply);
+						console.log(updatedVehicle);
+							    angular.extend($scope.vehicles[vehicleRowId], {vehicleId: updatedVehicle.vehicleId});
+					}
+					
+				});
+	   
+	  };
+
+	  // remove vehicle
+	  $scope.removeVehicle = function(index) {
+	    $scope.vehicles.splice(index, 1);
+	  };
+
+	  // add vehicle
+	  $scope.addVehicle = function() {
+	    $scope.inserted = {
+	    		
+	      name: '',
+	      wheels : 4 ,
+	      seats : 4 
+	    };
+	    $scope.vehicles.push($scope.inserted);
+	  };
+	});
+	
+
+app.controller('switchController', switchController);
+
+function switchController ($scope) {
+ $scope.data = {
+    switch1: true,
+	switch2: false,
+	switch3: false,
+	switch4: true,
+    switch5: true,
+    switch6: false
+ };
+ $scope.message = 'false';
+ $scope.onChange = function(state) {
+    $scope.message = state;
+ };
+}	  
+	
+
+
+</script>
+
+
+</head>
+
+
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Read All Messages</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-messages -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-tasks">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 1</strong>
+                                        <span class="pull-right text-muted">40% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 2</strong>
+                                        <span class="pull-right text-muted">20% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 3</strong>
+                                        <span class="pull-right text-muted">60% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 4</strong>
+                                        <span class="pull-right text-muted">80% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Tasks</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="panels-wells.html">Panels and Wells</a>
+                                </li>
+                                <li>
+                                    <a href="buttons.html">Buttons</a>
+                                </li>
+                                <li>
+                                    <a href="notifications.html">Notifications</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html">Typography</a>
+                                </li>
+                                <li>
+                                    <a href="icons.html"> Icons</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grid</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="blank.html">Blank Page</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login Page</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+      
+ 
+<div class="container">
+		<div ng-app="app">
+			<!-- <div ng-controller="TextSimpleCtrl">
+				<a href="#" editable-text="user.name" onbeforesave="updateUser($data)">{{ user.name || "empty" }}</a>
+
+			</div>
+			<div ng-controller="SelectLocalCtrl">
+				<a href="#" editable-select="user.status"
+					e-ng-options="s.value as s.text for s in statuses"> {{
+					showStatus() }} </a>
+			</div>
+ -->
+			<!-- ----- -->
+			<div ng-controller="EditableRowCtrl">
+			<h2>Users:</h2>
+				<table class="table table-bordered table-hover table-condensed">
+					<tr style="font-weight: bold">
+						<td style="width: 10%">Name</td>
+						<td style="width: 20%">Email</td>
+						<td style="width: 20%">Contact</td>
+						<td style="width: 10%">PW</td>
+						<td style="width: 20%">Registered On</td>
+						<td style="width: 20%">Registration Confirm on</td>
+						<!-- <td style="width: 20%">Status</td>
+						<td style="width: 20%">Group</td>
+						<td style="width: 25%">Edit</td> -->
+					</tr>
+					<tr ng-repeat="user in users">
+						<td>
+							<!-- editable username (text with validation) --> <span
+							editable-text="user.name" e-name="name" e-form="rowform1"
+							onbeforesave="checkName($data, user.id)" e-required> {{
+								user.name || '-' }} </span>
+						</td>
+						
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="user.email" e-name="email" e-form="rowform1"
+							> {{ user.email || '-' }}  </span>
+						</td>
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="user.contactNumber" e-name="contactNumber" e-form="rowform1"
+							> {{ user.contactNumber || '-' }}  </span>
+						</td>
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="user.password" e-name="password" e-form="rowform1"
+							> {{ user.password || '-' }}  </span>
+						</td>
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="user.registrationDate" e-name="registrationDate" e-form="rowform1"
+							> {{ user.registrationDate || '-' }}  </span>
+						</td>
+						
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="user.registrationConfirmDate" e-name="registrationConfirmDate" e-form="rowform1"
+							> {{ user.registrationConfirmDate || '-' }}  </span>
+						</td>
+						
+						<!-- <td>
+							editable status (select-local) <span
+							editable-select="user.status" e-name="status" e-form="rowform"
+							e-ng-options="s.value as s.text for s in statuses"> {{
+								showStatus(user) }} </span>
+						</td>
+						<td>
+							editable group (select-remote) <span
+							editable-select="user.group" e-name="group" onshow="loadGroups()"
+							e-form="rowform" e-ng-options="g.id as g.text for g in groups">
+								{{ showGroup(user) }} </span>
+						</td> 
+						<td style="white-space: nowrap">
+							
+							<form editable-form name="rowform"
+								onbeforesave="saveUser($data, user.id)"
+								ng-show="rowform.$visible" class="form-buttons form-inline"
+								shown="inserted == user">
+								<button type="submit" ng-disabled="rowform.$waiting"
+									class="btn btn-primary">save</button>
+								<button type="button" ng-disabled="rowform.$waiting"
+									ng-click="rowform.$cancel()" class="btn btn-default">
+									cancel</button>
+							</form>
+							<div class="buttons" ng-show="!rowform.$visible">
+								<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+								<button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+							</div>
+						</td>
+						-->
+					</tr>
+				</table>
+
+				<!-- <button class="btn btn-default" ng-click="addUser()">Add
+					row</button> -->
+			</div>
+
+
+			<!-- --------- -->
+
+
+
+			<div ng-controller="VehicleRowCtrl">
+			<h2>Vehicles:</h2>
+				<table class="table table-bordered table-hover table-condensed">
+					<tr style="font-weight: bold">
+						<td style="width: 25%">VEHICLE NAME</td>
+						<td style="width: 5%">WHEELS</td>
+						<td style="width: 5%">SEAT</td>
+						<td style="width: 10%">(Basic)8 hrs/80km</td>
+						<td style="width: 10%">Extra Charge Per KM</td>
+						<td style="width: 10%">Extra Charge Per Hrs</td>
+						<td style="width: 10%">Outstation Ride Per km (Min 300 km/day)</td>
+						
+						
+						<td style="width: 5%">Activate</td>
+						<td style="width: 10%">Edit</td> 
+					</tr>
+					<tr ng-repeat="vehicle in vehicles">
+						<td>
+							<span
+							editable-text="vehicle.name" e-name="name" e-form="rowform"
+							onbeforesave="checkVehicleName($data, vehicle.vehicleId)" e-required> {{
+								vehicle.name || '-' }} </span>
+						</td>
+						
+						<td>
+							<span editable-number="vehicle.wheels" e-name="wheels" e-form="rowform" e-min="2" e-max="60">{{ vehicle.wheels || 'empty' }}</span>
+						</td>
+						<td>
+						<span editable-number="vehicle.seats" e-name="seats" e-form="rowform" e-min="1" e-max="100">{{vehicle.seats  || 'empty' }}</span>
+							
+						</td>
+						
+						<td>
+						<span editable-number="vehicle.basicCharge" e-name="basicCharge" e-form="rowform" e-min="1">{{vehicle.basicCharge  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.extraChargePerKm" e-name="extraChargePerKm" e-form="rowform" e-min="1" >{{vehicle.extraChargePerKm  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.extraChargePerHour" e-name="extraChargePerHour" e-form="rowform" e-min="1" >{{vehicle.extraChargePerHour  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.outStationRidePerKm" e-name="outStationRidePerKm" e-form="rowform" e-min="1">{{vehicle.outStationRidePerKm  || 'empty' }}</span>
+							
+						</td>
+						
+						<td>
+						<!-- <md-switch ng-model="vehicle.isActive" e-name="isActive"  e-form="rowform" aria-label="vehicle.vehicleId" ng-change="onChange(vehicle.vehicleId,vehicle.isActive)" >
+						{{ true  }} </md-switch> -->
+						
+						  <a href="#" editable-checkbox="vehicle.isActive" e-title=""  e-name="isActive"  e-form="rowform"  >
+    {{ vehicle.isActive? 'Active': 'Deactive'}}
+  </a>
+						
+							</td>
+						
+						<td style="white-space: nowrap">
+							
+							<form editable-form name="rowform"
+								onbeforesave="saveVehicle($data, vehicle.vehicleId,$index)"
+								ng-show="rowform.$visible" class="form-buttons form-inline"
+								shown="inserted == vehicle">
+								<button type="submit" ng-disabled="rowform.$waiting"
+									class="btn btn-primary">save</button>
+								<button type="button" ng-disabled="rowform.$waiting"
+									ng-click="rowform.$cancel()" class="btn btn-default">
+									cancel</button>
+							</form>
+							<div class="buttons" ng-show="!rowform.$visible">
+								<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+								<button class="btn btn-danger" ng-click="removeVehicle($index)">del</button>
+							</div>
+						</td>
+						
+					</tr>
+				</table>
+
+				 <button class="btn btn-default" ng-click="addVehicle()">Add
+					Vehicle</button> 
+			</div>
+
+
+			<!-- --------- -->
+
+
+
+
+
+
+
+      <div ng-controller="bookingCtrl">
+			<h2>Bookings:</h2>
+			<!-- <input type="button" name="getBookings-button" id="getBookingsButton" value="Get all bookings" ng-click="getBookings()" />-->
+			<br/>
+			
+				<table class="table table-bordered table-hover table-condensed">
+					<tr style="font-weight: bold">
+						<td style="width: 15%">Email</td>
+						<td style="width: 10%">Contact</td>
+						<td style="width: 10%">From Date</td>
+						<td style="width: 10%">To Date</td>
+						<td style="width: 10%">From Time</td>
+						<td style="width: 10%">From Location</td>
+					 <td style="width: 10%">To Location</td>
+						<td style="width: 10%">Vehicle details</td>
+						<td style="width: 15%">Booking Date</td> 
+					</tr>
+					<tr ng-repeat="b in bookings">
+						<td>
+							<!-- editable username (text with validation) --> 
+							<span editable-text="b.email" e-name="email" e-form="rowform1"
+							 e-required>
+							{{b.email || '-' }} </span>
+						</td>
+						
+						<td>
+							 <span
+							editable-text="b.contactNumber" e-name="contactNumber" e-form="rowform1"
+							> {{ b.contactNumber || '-' }}  </span>
+						</td>
+						<td>
+						 <span editable-text="b.fromData" e-name="fromData" e-form="rowform1"
+							> {{b.fromData || '-' }}  </span>
+						</td>
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.toDate" e-name="toDate" e-form="rowform1"
+							> {{b.toDate || '-' }}  </span>
+						</td>
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.fromTime" e-name="fromTime" e-form="rowform1"
+							> {{b.fromTime || '-' }}  </span>
+						</td>
+						
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.fromLocation" e-name="fromLocation" e-form="rowform1"
+							> {{ b.fromLocation || '-' }}  </span>
+						</td>
+						
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.toLocation" e-name="toLocation" e-form="rowform1"
+							> {{ b.toLocation || '-' }}  </span>
+						</td>
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.vehicleDetails" e-name="vehicleDetails" e-form="rowform1"
+							> {{ b.vehicleDetails || '-' }}  </span>
+						</td>
+						<td>
+							<!-- editable status (select-local) --> <span
+							editable-text="b.bookingDate" e-name="bookingDate" e-form="rowform1"
+							> {{ b.bookingDate || '-' }}  </span>
+						</td>
+						
+					</tr>
+				</table>  
+
+			</div>
+
+
+<!-- -- -->
+
+
+			<div ng-controller="templatesCtrl">
+			<h2>Templates:</h2>
+				<table class="table table-bordered table-hover table-condensed">
+					<tr style="font-weight: bold">
+						<td style="width: 25%">VEHICLE NAME</td>
+						<td style="width: 5%">WHEELS</td>
+						<td style="width: 5%">SEAT</td>
+						
+						
+						<td style="width: 5%">Activate</td>
+						<td style="width: 10%">Edit</td> 
+					</tr>
+					<tr ng-repeat="vehicle in vehicles">
+						<td>
+							<span
+							editable-text="vehicle.name" e-name="name" e-form="rowform"
+							onbeforesave="checkVehicleName($data, vehicle.vehicleId)" e-required> {{
+								vehicle.name || '-' }} </span>
+						</td>
+						
+						<td>
+							<span editable-number="vehicle.wheels" e-name="wheels" e-form="rowform" e-min="2" e-max="60">{{ vehicle.wheels || 'empty' }}</span>
+						</td>
+						<td>
+						<span editable-number="vehicle.seats" e-name="seats" e-form="rowform" e-min="1" e-max="100">{{vehicle.seats  || 'empty' }}</span>
+							
+						</td>
+						
+						<td>
+						<span editable-number="vehicle.basicCharge" e-name="basicCharge" e-form="rowform" e-min="1">{{vehicle.basicCharge  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.extraChargePerKm" e-name="extraChargePerKm" e-form="rowform" e-min="1" >{{vehicle.extraChargePerKm  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.extraChargePerHour" e-name="extraChargePerHour" e-form="rowform" e-min="1" >{{vehicle.extraChargePerHour  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.outStationRidePerKm" e-name="outStationRidePerKm" e-form="rowform" e-min="1">{{vehicle.outStationRidePerKm  || 'empty' }}</span>
+							
+						</td>
+						
+						<td>
+						<!-- <md-switch ng-model="vehicle.isActive" e-name="isActive"  e-form="rowform" aria-label="vehicle.vehicleId" ng-change="onChange(vehicle.vehicleId,vehicle.isActive)" >
+						{{ true  }} </md-switch> -->
+						
+						  <a href="#" editable-checkbox="vehicle.isActive" e-title=""  e-name="isActive"  e-form="rowform"  >
+    {{ vehicle.isActive? 'Active': 'Deactive'}}
+  </a>
+						
+							</td>
+						
+						<td style="white-space: nowrap">
+							
+							<form editable-form name="rowform"
+								onbeforesave="saveVehicle($data, vehicle.vehicleId,$index)"
+								ng-show="rowform.$visible" class="form-buttons form-inline"
+								shown="inserted == vehicle">
+								<button type="submit" ng-disabled="rowform.$waiting"
+									class="btn btn-primary">save</button>
+								<button type="button" ng-disabled="rowform.$waiting"
+									ng-click="rowform.$cancel()" class="btn btn-default">
+									cancel</button>
+							</form>
+							<div class="buttons" ng-show="!rowform.$visible">
+								<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+								<button class="btn btn-danger" ng-click="removeVehicle($index)">del</button>
+							</div>
+						</td>
+						
+					</tr>
+				</table>
+
+				 <button class="btn btn-default" ng-click="addVehicle()">Add
+					Vehicle</button> 
+			</div>
+
+
+
+<!-- -- -->
+
+		</div>
+
+
+		</div>
+      
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Flot Charts JavaScript -->
+    <script src="../bower_components/flot/excanvas.min.js"></script>
+    <script src="../bower_components/flot/jquery.flot.js"></script>
+    <script src="../bower_components/flot/jquery.flot.pie.js"></script>
+    <script src="../bower_components/flot/jquery.flot.resize.js"></script>
+    <script src="../bower_components/flot/jquery.flot.time.js"></script>
+    <script src="../bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="../js/flot-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>
