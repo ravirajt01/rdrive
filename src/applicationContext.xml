@@ -84,6 +84,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<value>com.cft.pojo.BookTour</value>
 			<value>com.cft.pojo.Vender</value>
 			<value>com.cft.pojo.Vehicle</value>
+			<value>com.cft.pojo.Template</value>
 			<value>com.cft.pojo.City</value>
 		</list>
 	</property>
@@ -108,6 +109,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 	<bean id="communicateBean" class="com.ss.bean.CommunicateBean">
 		<!-- <constructor-arg> <ref bean="employeeDao"/> </constructor-arg> -->
+		<property name="configurationMgmtBean" ref="configurationMgmtBean"></property>
 	</bean>  
 
 	
@@ -133,14 +135,24 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<property name="communicateBean" ref="communicateBean"></property>
 			
 	</bean>  
+	
 	 
-<bean id="vehicleBean" class="com.cft.bean.VehicleBean">
+	<bean id="vehicleBean" class="com.cft.bean.VehicleBean">
 			<property name="template" ref="template"></property>
 	</bean> 
 	
+<<<<<<< HEAD
+	<bean id="configurationMgmtBean" class="com.cft.bean.ConfigurationMgmtBean">
+			<property name="template" ref="template"></property>
+			
+	</bean>  
+	
+
+=======
 	<bean id="cityBean" class="com.cft.bean.CityBean">
 			<property name="template" ref="template"></property>
 	</bean>  
+>>>>>>> 52a009d288a203061a93f3680ed28ce0114985e1
 
 
 

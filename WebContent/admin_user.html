@@ -707,6 +707,72 @@ function switchController ($scope) {
 					</tr>
 				</table>  
 
+<<<<<<< HEAD
+			</div>
+
+
+<!-- -- -->
+
+
+			<div ng-controller="templatesCtrl">
+			<h2>Templates:</h2>
+				<table class="table table-bordered table-hover table-condensed">
+					<tr style="font-weight: bold">
+						<td style="width: 25%">VEHICLE NAME</td>
+						<td style="width: 5%">WHEELS</td>
+						<td style="width: 5%">SEAT</td>
+						
+						<td style="width: 5%">Activate</td>
+						<td style="width: 10%">Edit</td> 
+					</tr>
+					<tr ng-repeat="vehicle in vehicles">
+						<td>
+							<span
+							editable-text="vehicle.name" e-name="name" e-form="rowform"
+							onbeforesave="checkVehicleName($data, vehicle.vehicleId)" e-required> {{
+								vehicle.name || '-' }} </span>
+						</td>
+						
+						<td>
+							<span editable-number="vehicle.wheels" e-name="wheels" e-form="rowform" e-min="2" e-max="60">{{ vehicle.wheels || 'empty' }}</span>
+						</td>
+						<td>
+						<span editable-number="vehicle.seats" e-name="seats" e-form="rowform" e-min="1" e-max="100">{{vehicle.seats  || 'empty' }}</span>
+							
+						</td>
+						
+						<td>
+						<span editable-number="vehicle.basicCharge" e-name="basicCharge" e-form="rowform" e-min="1">{{vehicle.basicCharge  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.extraChargePerKm" e-name="extraChargePerKm" e-form="rowform" e-min="1" >{{vehicle.extraChargePerKm  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.extraChargePerHour" e-name="extraChargePerHour" e-form="rowform" e-min="1" >{{vehicle.extraChargePerHour  || 'empty' }}</span>
+							
+						</td>
+						<td>
+						<span editable-number="vehicle.outStationRidePerKm" e-name="outStationRidePerKm" e-form="rowform" e-min="1">{{vehicle.outStationRidePerKm  || 'empty' }}</span>
+							
+						</td>
+						
+						<td>
+						<!-- <md-switch ng-model="vehicle.isActive" e-name="isActive"  e-form="rowform" aria-label="vehicle.vehicleId" ng-change="onChange(vehicle.vehicleId,vehicle.isActive)" >
+						{{ true  }} </md-switch> -->
+						
+						  <a href="#" editable-checkbox="vehicle.isActive" e-title=""  e-name="isActive"  e-form="rowform"  >
+    {{ vehicle.isActive? 'Active': 'Deactive'}}
+    	onbeforesave="saveVehicle($data, vehicle.vehicleId,$index)"
+								ng-show="rowform.$visible" class="form-buttons form-inline"
+								shown="inserted == vehicle">
+								
+																<button class="btn btn-danger" ng-click="removeVehicle($index)">del</button>
+																
+																<button class="btn btn-default" ng-click="addVehicle()">Add
+					Vehicle</button> 
+								
 				
 			</div>
 
@@ -720,11 +786,6 @@ function switchController ($scope) {
 				<table class="table table-bordered table-hover table-condensed">
 					<tr style="font-weight: bold">
 						<td style="width: 25%">CITY NAME</td>
-						
-						
-						<td style="width: 5%">Activate</td>
-						<td style="width: 10%">Edit</td> 
-					</tr>
 					<tr ng-repeat="city in cities">
 						<td>
 							<span
@@ -747,6 +808,7 @@ function switchController ($scope) {
 						<td style="white-space: nowrap">
 							
 							<form editable-form name="rowform"
+							
 								onbeforesave="saveCity($data, city.cityId,$index)"
 								ng-show="rowform.$visible" class="form-buttons form-inline"
 								shown="inserted == city">
@@ -770,6 +832,8 @@ function switchController ($scope) {
 			</div>
 
 <!-- city ends -->
+
+<!-- -- -->
 
 		</div>
 
