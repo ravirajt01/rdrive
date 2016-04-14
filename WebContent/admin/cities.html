@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>CFT Admin 2</title>
     
     
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
@@ -45,7 +45,7 @@
     <meta name="author" content="Car For Tour">
     <meta name="authorUrl" content="http://carfortour.com">
 
-    <title>Login</title>
+    <title>Cities</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -87,8 +87,9 @@
 
  <script>
 
-var domainName = '';
+ var domainName = '';
 
+ 
 var app = angular.module('app', ["xeditable","ngMaterial"]);
 
 
@@ -97,18 +98,16 @@ app.run(function(editableOptions) {
 	});
 
 
-app.controller('bookingCtrl', function($scope, $filter, $http){
-	 $scope.bookings = []; 
+
+app.controller('CityRowCtrl', function($scope, $filter, $http){
+	 $scope.cities = []; 
 	
-	$http.get(domainName + '/rest/admin/bookings').success(
+	$http.get(domainName + '/rest/admin/cities').success(
 			function(response) {
 
 				$scope.messsageCode = response.messsageCode;
-				console.log($scope.messsageCode);
-				console.log(response);
-				console.log(response.reply);
 				console.log(JSON.parse(response.reply));
-				$scope.bookings = JSON.parse(response.reply);
+				$scope.cities = JSON.parse(response.reply);
 
 				console.log($scope.messsageCode);
 
@@ -123,9 +122,59 @@ app.controller('bookingCtrl', function($scope, $filter, $http){
 			});
 
 	
-});
+			  $scope.checkCityName = function(data, id) {
+					 
+				     if ( data == null||data.length === 0 ) {
+				      return "Add City name";
+				    } 
+				  };
+				
+				/*   $scope.onChange = function(state,vid) {
+					  alert(state+" " +vid);
+					  
+					  if(state)
+					    $scope.activeMessage = "Active";
+					  else
+						  $scope.activeMessage = "DeActive";
+						  
+					 }; */
 
-	
+				  $scope.saveCity = function(city, cityId,cityRowId) {
+				    //$scope.vehicle not updated yet
+				    
+				    // alert("isActive : "+vehicle.isActive);
+				    //alert("vehicleId : "+$scope.vehicles[vehicleRowId].vehicleId );
+				    angular.extend(city, {cityId: cityId});
+				   
+				    $http.post('/rest/admin/city', city).success(
+							function(response) {
+								
+								if ($scope.messsageCode == 'SCS'){
+									
+									updatedCity = JSON.parse(response.reply);
+									console.log(updatedCity);
+										    angular.extend($scope.cities[cityRowId], {cityId: updatedCity.cityId});
+								}
+								
+							});
+				   
+				  };
+		
+		  // remove city
+		  $scope.removeCity = function(index) {
+		    $scope.cities.splice(index, 1);
+		  };
+
+		  // add city
+		  $scope.addcity = function() {
+		    $scope.inserted = {
+		    		
+		      cityName: ''
+		      
+		    };
+		    $scope.cities.push($scope.inserted);
+		  };
+});
 
 </script>
 
@@ -413,105 +462,71 @@ app.controller('bookingCtrl', function($scope, $filter, $http){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Bookings</h1>
-                        
-                        <div ng-app="app">
-			<!-- ----- -->
+                        <h1 class="page-header">Cities</h1>
+
+						<div ng-app="app">
 
 
-      <div ng-controller="bookingCtrl">
-			<!-- <input type="button" name="getBookings-button" id="getBookingsButton" value="Get all bookings" ng-click="getBookings()" />-->
-			<br/>
-			
+							<div ng-controller="CityRowCtrl">
+			<h2>Cities:</h2>
 				<table class="table table-bordered table-hover table-condensed">
 					<tr style="font-weight: bold">
-						<td style="width: 10%">Email</td>
-						<td style="width: 10%">Contact</td>
-						<td style="width: 5%">Booking Type</td>
-						<td style="width: 5%">Trip Type</td>
-						<td style="width: 10%">From Date</td>
-						<td style="width: 10%">To Date</td>
-						<td style="width: 10%">From Time</td>
-						<td style="width: 10%">From Location</td>
-					 <td style="width: 10%">To Location</td>
-						<td style="width: 20%">Vehicle details</td>
-						<td style="width: 10%">Booking Date</td> 
+						<td style="width: 25%">CITY NAME</td>
+						
+						
+						<td style="width: 5%">Activate</td>
+						<td style="width: 10%">Edit</td> 
 					</tr>
-					<tr ng-repeat="b in bookings">
+					<tr ng-repeat="city in cities">
 						<td>
-							<!-- editable username (text with validation) --> 
-							<span editable-text="b.email" e-name="email" e-form="rowform1"
-							 e-required>
-							{{b.email || '-' }} </span>
+							<span
+							editable-text="city.cityName" e-name="cityName" e-form="rowform"
+							onbeforesave="checkCityName($data, city.cityId)" e-required> {{
+								city.cityName || '-' }} </span>
 						</td>
 						
-						<td>
-							 <span
-							editable-text="b.contactNumber" e-name="contactNumber" e-form="rowform1"
-							> {{ b.contactNumber || '-' }}  </span>
-						</td>
-						<td>
-							 <span
-							editable-text="b.bookingType" e-name="bookingType" e-form="rowform1"
-							> {{ b.bookingType || '-' }}  </span>
-						</td>
-						<td>
-							 <span
-							editable-text="b.tripType" e-name="tripType" e-form="rowform1"
-							> {{ b.tripType || '-' }}  </span>
-						</td>
-						<td>
-						 <span editable-text="b.fromData" e-name="fromData" e-form="rowform1"
-							> {{b.fromData || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.toDate" e-name="toDate" e-form="rowform1"
-							> {{b.toDate || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.fromTime" e-name="fromTime" e-form="rowform1"
-							> {{b.fromTime || '-' }}  </span>
-						</td>
 						
 						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.fromLocation" e-name="fromLocation" e-form="rowform1"
-							> {{ b.fromLocation || '-' }}  </span>
-						</td>
+						<!-- <md-switch ng-model="vehicle.isActive" e-name="isActive"  e-form="rowform" aria-label="vehicle.vehicleId" ng-change="onChange(vehicle.vehicleId,vehicle.isActive)" >
+						{{ true  }} </md-switch> -->
 						
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.toLocation" e-name="toLocation" e-form="rowform1"
-							> {{ b.toLocation || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.vehicleDetails" e-name="vehicleDetails" e-form="rowform1"
-							> {{ b.vehicleDetails || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.bookingDate" e-name="bookingDate" e-form="rowform1"
-							> {{ b.bookingDate || '-' }}  </span>
+						  <a href="#" editable-checkbox="city.isActive" e-title=""  e-name="isActive"  e-form="rowform"  >
+    {{ city.isActive? 'Active': 'Deactive'}}
+  </a>
+						
+							</td>
+						
+						<td style="white-space: nowrap">
+							
+							<form editable-form name="rowform"
+								onbeforesave="saveCity($data, city.cityId,$index)"
+								ng-show="rowform.$visible" class="form-buttons form-inline"
+								shown="inserted == city">
+								<button type="submit" ng-disabled="rowform.$waiting"
+									class="btn btn-primary">save</button>
+								<button type="button" ng-disabled="rowform.$waiting"
+									ng-click="rowform.$cancel()" class="btn btn-default">
+									cancel</button>
+							</form>
+							<div class="buttons" ng-show="!rowform.$visible">
+								<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+								<button class="btn btn-danger" ng-click="removeCity($index)">del</button>
+							</div>
 						</td>
 						
 					</tr>
-				</table>  
+				</table>
 
+				 <button class="btn btn-default" ng-click="addcity()">Add
+					City</button> 
 			</div>
 
 
-<!-- -- -->
+
+						</div>
 
 
-<!-- -- -->
-
-		</div>
-                        
-                        
-                    </div>
+					</div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
