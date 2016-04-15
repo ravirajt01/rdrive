@@ -840,8 +840,13 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 					<div class="row">
 	<div class='col-xs-12'>						
 <div class="form-group">					
+<<<<<<< HEAD
 <label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1" value="Round Trip">Round Trip</label>
 <label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1" value="One way">One way</label>
+=======
+<label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1">Round Trip</label>
+<label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1">One way</label>
+>>>>>>> 82a99f2226b9c20f88d0e6524715d88708959680
 <!--  <label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1">Multicity</label> -->
 
 <label  ng-show="local" class="radio-inline"><input type="radio" name="Triptype2" value="Full day" >Full day</label>
@@ -860,13 +865,14 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 <div class="form-group">
 	<select class="form-control" id="slctforCityList" ng-model="selectforCity">
     								<option value="">I want a car In</option>
-   									 <option ng-repeat="city in cities | filter:city.isActive='true'" value="{{city.cityId}}">{{city.cityName}}</option>
+   									 <option ng-repeat="city in cities | filter:city.isActive='true'" value="">{{city.cityName}}</option>
 </select> </div></div>	
 							<div class='col-sm-3' ng-show="outstation">
 <div  class="form-group">
 	<select class="form-control" id="slctsourceCityList" ng-model="selectsourceCity">
     								<option value="">I want a car from</option>
-   									 <option ng-repeat="city in cities | filter:city.isActive='true'" value="{{city.cityName}}">{{city.cityName}}</option>
+
+   									 <option ng-repeat="city in cities | filter:city.isActive='true'" value="">{{city.cityName}}</option>
 </select> </div></div>	
 
 
