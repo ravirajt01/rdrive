@@ -32,9 +32,9 @@ public class ConfigurationMgmtBean {
 
 	
 	
-	public Integer addVehicle(Vehicle vehicle){  
-		Integer vehicleId= (Integer) template.save(vehicle);
-		return vehicleId;  
+	public Integer addTemplate(Template templates){  
+		Integer templatesId= (Integer) template.save(templates);
+		return templatesId;  
 	}
 	
 	public void updateTemplate(Template templates){  
