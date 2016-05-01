@@ -73,8 +73,8 @@ public class Communicator {
 		
 		booktourBean.addBookTour(bookTour);
 		
-		communicateBean.sendMail(MailType.TOUR_BOOK, bookTour);
-		communicateBean.sendMail(MailType.TOUR_BOOK_ADMIN, bookTour);
+		//communicateBean.sendMail(MailType.TOUR_BOOK, bookTour);
+		//communicateBean.sendMail(MailType.TOUR_BOOK_ADMIN, bookTour);
 
 				
 		return Reply.formatReply("",ExceptionCode.SCS);
