@@ -54,7 +54,7 @@
      <link href="css/social.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-  <!--   <link href="css/booking.css" rel="stylesheet"> -->
+  
     <link href="css/half-slider.css" rel="stylesheet">
     <link rel="shortcut icon" href="./img/logo/pp.jpg">
 
@@ -372,7 +372,7 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 		 */
 		//delete $sessionStorage;
 
-		$('select').on('change', function() {
+		$('#slctCarList').on('change', function() {
 			$('#lblDetails').text(this.value);
 			  
 			  
@@ -398,11 +398,17 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 				$scope.airport=false;
 				
 			} else if (id=="3") {
-				 $('#bookingul a.active').removeClass('active');
+				/* $('#bookingul a.active').removeClass('active');
 					$('#airportId').addClass('active');
 				$scope.outstation=false;
 				$scope.local=false;
-				$scope.airport=true;
+				$scope.airport=true;*/
+				alert("Airport Service Not Yet Started!...");
+				$('#bookingul a.active').removeClass('active');
+				$('#outstationId').addClass('active');
+			$scope.outstation=true;
+			$scope.local=false;
+			$scope.airport=false;
 				}
 			
 		}
@@ -420,23 +426,26 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 			}
 			
 			if($('#outstationId').hasClass('active')){
-				//alert("outstation active");
-			if(	$("input[name='Triptype1']:checked").val().length===0||($('#slctsourceCityList option:selected').val().length ===0) || ($('#txtDestCityId').val().length ===0 )  )
-			{	 $('#alrtFailOnBook').show();
-			 $("#lblfail").text("Manditory filds are missing.");}
+				//alert("outstation active");($('input[type=radio]:checked').length <= 0
+			if(	($("input[name='Triptype1']:checked").lenght<=0) || ($('#slctsourceCityList option:selected').val().length ===0) || ($('#txtDestCityId').val().length ===0 )){
+				
+				$('#alrtFailOnBook').show();
+			 $("#lblfail").text("Manditory filds are missing.");
+				return;
+			 }
 			else 
 				{
 				$scope.bookingType="outStatation";
 				$scope.tripType=$("input[name='Triptype1']:checked").val();
 				$scope.fromLocation=$('#slctsourceCityList option:selected').val();
-				$scope.destCity=$('#txtDestCityId').val();
+				//$scope.destCity=$('#txtDestCityId').val();
 				}
-			
-			
-			}else if($('#localId').hasClass('active')){
-				if($("input[name='Triptype2']:checked").val().length===0 || ($('#slctforCityList option:selected').val().length ===0) ||  ($('#txtDropoOffLocationId').val().length ===0 )){
+			}
+			else if($('#localId').hasClass('active')){
+				if($("input[name='Triptype2']:checked").val().length===0 || ($('#slctforCityList option:selected').Text().length ===0)){
 					 $('#alrtFailOnBook').show();
 					 $("#lblfail").text("Manditory filds are missing.");
+					 return false;	
 				}else{
 					
 					$scope.bookingType="local";
@@ -447,10 +456,10 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 				
 				
 			}
-			//{alert("outstation not active");}
 			
 			
-			if($scope.fromDate == null || $('#fromTimeId').val().length ===0  || ($("#contactNumberId").val().length ===0) || ($("#contactEmailId").val().length=== 0) || $('#slctCarList option:selected').val().length ===0 )
+			
+			if($scope.fromDate == null || $scope.toDate == null || $('#fromTimeId').val().length ===0  || ($("#contactNumberId").val().length ===0) || ($("#contactEmailId").val().length=== 0) || $('#slctCarList option:selected').val().length ===0 )
 			{
 				 $('#alrtFailOnBook').show();
 				 $("#lblfail").text("Manditory filds are missing.");
@@ -459,16 +468,40 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 			}
 			
 			
+	/*		if (/^\d{2}\/\d{2}\/\d{4}$/.test($("#fromDateId").val()) || /^\d{2}\/\d{2}\/\d{4}$/.test($("#toDateId").val())  ) {
+			    // value is ok, use it
+				//$scope.contactNumber = $("#contactNumberId").val();
+			} else {
+				 $('#alrtFailOnBook').show();
+				 $("#lblfail").text("Invalid Date. Please ensure it is in dd/mm/yyyy format and submit again.");
+			    //alert("Invalid contactNumber.")
+			    $("#contactNumberId").focus()
+			    return false
+			}
+			
+			if (/(?:[0-1]?[0-9]|[2][1-4]):[0-5]?[0-9]\s?(?:AM|PM)?/.test($("#fromTimeId").val()) ) {
+			    // value is ok, use it
+				//$scope.contactNumber = $("#contactNumberId").val();
+			} else {
+				 $('#alrtFailOnBook').show();
+				 $("#lblfail").text("Invalid Time. Please ensure it is in --:-- AM/PM format and submit again.");
+			    //alert("Invalid contactNumber.")
+			    $("#contactNumberId").focus()
+			    return false
+			}
+			
+			*/
+			
 			var val = $("#contactNumberId").val();
-			if (/^[1-9]{1}[0-9]{9}$/.test(val)) {
+			if (/^[7-9]{1}[0-9]{9}$/.test(val)) {
 			    // value is ok, use it
 				$scope.contactNumber = $("#contactNumberId").val();
 			} else {
 				 $('#alrtFailOnBook').show();
 				 $("#lblfail").text("Invalid contactNumber.");
-			    //alert("Invalid contactNumber.")
+			   // alert("Invalid contactNumber.")
 			    $("#contactNumberId").focus()
-			    return false
+			    return false;
 			}
 			
 			
@@ -481,17 +514,41 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 				 $("#lblfail").text("Invalid EmailId.");
 			   // alert("Invalid EmailId.")
 			    $("#contactEmailId").focus()
-			    return false
+			    return false;
 			}
 			
+			$scope.fromTime = $('#fromTimeId').val();
+			var startDate = new Date($scope.fromDate);
+			var endDate = new Date($scope.toDate);
+
+			if (startDate > endDate){
+				$('#alrtFailOnBook').show();
+				 $("#lblfail").text("booking dates are incorrect: Till date is before of on Date");
+					return;	
+			}
 			
-			
-			
+			var d = new Date();
+			//var bool = (d.toDateString() === startDate.toDateString());
+		if(d.toDateString() === startDate.toDateString())
+			{alert("same date");}
+			//var time = d.toTimeString("hh:mm");
+			//time.setHours(d.getHours()+2);
+			var d1=new Date($scope.fromTime);
+			if (d1 > d )
+				{
+				alert("less time");
+				
+				}
+			//alert(bool);
+			//alert(d2 time);
+			//if(bool =='true')
+			//{alert("'booking will be accepted atleast 2 hrs before'+'d2'");}
+				
 			
 			//$scope.pickUpLocation = $('#txtPickUpLocationId').val();
 			
 			$scope.dropoOffLocation = $('#txtDropoOffLocationId').val();
-			$scope.fromTime = $('#fromTimeId').val();
+			
 
 			$('#btnPutRequestId').attr('disabled', true);
 			$('#btnPutRequestId').hide();
@@ -526,14 +583,14 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 							console.log($scope.email + 'success');
 
 							//$scope.pickUpLocation = null;
-							$scope.dropoOffLocation = null;
+							$scope.destCity = null;
 							$scope.fromDate = null;
 							$scope.fromTime = null;
-							//$scope.toDate = null;
+							$scope.toDate = null;
 							$scope.contactNumber = null;
 							$scope.contactEmail = null;
 							$('#slctCarList').val('');
-							$('#slctCityList').val('');
+							$('#slctSourceCityList').val('');
 							$('#alrtFailOnBook').hide();
 							 $('#alrtSuccessOnBook').show();
 							
@@ -627,8 +684,8 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
             	document.getElementById("fromDateId").min = year+'-'+ month+'-'+ date ;
             	document.getElementById("fromDateId").max = year2+'-'+month2 +'-'+ date2 ;
 
-            	//document.getElementById("toDateId").min = year+'-'+ month+'-'+ date ;
-            	//document.getElementById("toDateId").max = year2+'-'+month2 +'-'+ date2 ;
+            	document.getElementById("toDateId").min = year+'-'+ month+'-'+ date ;
+            	document.getElementById("toDateId").max = year2+'-'+month2 +'-'+ date2 ;
             	
             
             });
@@ -705,6 +762,8 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
         </ol>
 
         <!-- Wrapper for Slides -->
@@ -805,32 +864,36 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 			
 					<div class="container" id="bookTour">
 					<div class="row">
-							
+	<div class='col-xs-12'>						
 <div class="form-group">					
-<label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1">Round Trip</label>
-<label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1">One way</label>
-<label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1">Multicity</label>
 
-<label  ng-show="local" class="radio-inline"><input type="radio" name="Triptype2" >Full day</label>
-<label  ng-show="local" class="radio-inline"><input type="radio" name="Triptype2" >Half day</label>
+<label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1" value="Round Trip">Round Trip</label>
+<label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1" value="One way">One way</label>
 
-<label ng-show="airport" class="radio-inline"><input type="radio" name="Triptype3">Round Trip</label>
+<!--  <label ng-show="outstation" class="radio-inline"><input type="radio" name="Triptype1">Multicity</label> -->
+
+<label  ng-show="local" class="radio-inline"><input type="radio" name="Triptype2" value="Full day" >Full day</label>
+<label  ng-show="local" class="radio-inline"><input type="radio" name="Triptype2" value="Half day">Half day</label>
+
+<!-- <label ng-show="airport" class="radio-inline"><input type="radio" name="Triptype3">Round Trip</label>
 <label ng-show="airport" class="radio-inline"><input type="radio" name="Triptype3">Pickup from Airport  </label>
-<label ng-show="airport" class="radio-inline"><input type="radio" name="Triptype3">Drop to Airport</label>
-</div>
+<label ng-show="airport" class="radio-inline"><input type="radio" name="Triptype3">Drop to Airport</label> -->
+</div></div>
 <br/>
 </div>
+			
+				
 						<div class="row">
 									<div class='col-sm-3' ng-show="local">
 <div class="form-group">
 	<select class="form-control" id="slctforCityList" ng-model="selectforCity">
-    								<option value="">forCity</option>
+    								<option>I want a car In</option>
    									 <option ng-repeat="city in cities | filter:city.isActive='true'" value="{{city.cityId}}">{{city.cityName}}</option>
 </select> </div></div>	
 							<div class='col-sm-3' ng-show="outstation">
 <div  class="form-group">
 	<select class="form-control" id="slctsourceCityList" ng-model="selectsourceCity">
-    								<option value="">SourceCity</option>
+    								<option value="">I want a car from</option>
    									 <option ng-repeat="city in cities | filter:city.isActive='true'" value="{{city.cityId}}">{{city.cityName}}</option>
 </select> </div></div>	
 
@@ -839,9 +902,9 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 			<div class="form-group">
 									<input class="form-control" type="text"
 										ng-model="destCity" id="txtDestCityId"
-										placeholder="Destination City" required>
-											<!-- <script type="text/javascript"
-										src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script> -->
+										placeholder="To" required>
+											<script type="text/javascript"
+										src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script> 
 									<script type="text/javascript">
 										google.maps.event
 												.addDomListener(
@@ -967,12 +1030,12 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 							<div class='col-sm-3'>
 								<div class="form-group">
 									<!-- <div class="alert alert-info">Pick-up Date</div> -->
-									<label for="fromDateId" >Pick up date:</label>
+									<label for="fromDateId" >On </label>
 									<div class='input-group date'>
 
 										<input type="date"  id="fromDateId" class="form-control" ng-model="fromDate"
 											id="fromDateId" required /> <span class="input-group-addon">
-											<!--<span class="glyphicon glyphicon-calendar"> </span> -->
+											<span class="glyphicon glyphicon-calendar"> </span>
 										</span> 
 										
 										
@@ -983,7 +1046,7 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 
 							<div class='col-sm-2'>
 								<div class="form-group">
-									<label for="fromDateId" >Pick up Time:</label>
+									<label for=fromTimeId >At </label>
 									<!-- <div class="input-group bootstrap-timepicker timepicker">
 										<input id="fromTimeId" type="text"  ng-model="fromTime"
 											class="form-control input-small"> <span
@@ -1007,11 +1070,11 @@ app.controller('VehicleRowCtrl', function($scope, $http) {
 							<div class='col-sm-3' ng-show="outstation">
 								<div class="form-group">
 									<!--  <div class="alert alert-info">Drop-off Date</div>-->
-									<label for="toDateId" >Drop off date:</label>
+									<label for="toDateId" >Till </label>
 									<div class='input-group date'>
 
 										<input type="date" class="form-control" ng-model="toDate"
-											id="toDateId" /> <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span>
+											id="toDateId" required/> <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span>
 										</span>
 									</div>
 								</div>

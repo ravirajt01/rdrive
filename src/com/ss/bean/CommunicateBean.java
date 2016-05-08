@@ -26,7 +26,7 @@ public class CommunicateBean /*implements Communicable */{
 	private static String fromPW = "CarForTour2015" ;
 	
 	private static String domainName = "http://localhost:8080";
-    //private static String domainName = "http://carfortour.com";
+	// private static String domainName = "http://carfortour.com";
 	private static String userVerifyRegLink = "/rest/user/verify?tk=";
 	private static String venderVerifyRegLink = "/rest/vender/verify?tk=";
 	

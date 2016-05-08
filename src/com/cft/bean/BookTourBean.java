@@ -8,6 +8,7 @@ import org.hsqldb.Session;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.cft.pojo.BookTour;
+import com.cft.pojo.Staging;
 import com.cft.pojo.User;
 
 public class BookTourBean {
@@ -39,7 +40,10 @@ HibernateTemplate template;
 	}
 	public List<BookTour> getbookings(){  
 		List<BookTour> list=new ArrayList<BookTour>();  
-		list=template.loadAll(BookTour.class);  
+		
+		list=template.loadAll(BookTour.class);
+		//List<Staging> recordForToken =template.find("from Staging where otp=?",emailToken);
+		
 		return list;  
 	}
 	
