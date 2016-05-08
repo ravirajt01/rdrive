@@ -85,6 +85,14 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+ <!-- CSS for row filter on column header-->
+       <link href="../css/filter-row.css" rel="stylesheet">
+    
+    
+ <!-- JS for row filter on column header-->
+  <script src="../js/filter-row.js"></script>
+    
  <script>
 
  var domainName = '';
@@ -469,9 +477,48 @@ app.controller('VehicleRowCtrl', function($scope, $filter, $http) {
 
 
 							<div ng-controller="VehicleRowCtrl">
-								
-								<table class="table table-bordered table-hover table-condensed">
-									<tr style="font-weight: bold">
+
+								<div class="panel panel-primary filterable">
+									<div class="panel-heading">
+										<h3 class="panel-title">Vehicles</h3>
+										<div class="pull-right">
+											<button class="btn btn-default btn-xs btn-filter">
+												<span class="glyphicon glyphicon-filter"></span> Filter
+											</button>
+										</div>
+									</div>
+
+									<!-- <table class="table table-bordered table-hover table-condensed"> -->
+									<table class="table table-hover">
+
+										<thead>
+											<tr class="filters">
+												<!-- <th><input type="text" class="form-control"
+													placeholder="#" disabled></th> -->
+												<th style="width: 20%"><input type="text" class="form-control"
+													placeholder="VEHICLE NAME"  disabled></th>
+												<th style="width: 8%"><input type="text" class="form-control"
+													placeholder="WHEELS" disabled></th>
+												<th style="width: 8%"><input type="text" class="form-control"
+													placeholder="SEATS" disabled></th>
+												<th ><input type="text" class="form-control"
+													placeholder="(Basic)8 hrs/80km" disabled></th>
+												<th ><input type="text" class="form-control"
+													placeholder="Extra Charge Per KM" disabled></th>
+												<th ><input type="text" class="form-control"
+													placeholder="Extra Charge Per Hrs" disabled></th>
+												<th ><input type="text" class="form-control"
+													placeholder="Outstation Ride Per km (Min 300
+											km/day)"
+													disabled></th>
+												<th><input type="text" class="form-control"
+													placeholder="Active" disabled></th>
+												<td >Edit</td>
+
+											</tr>
+										</thead>
+
+										<!--  	<tr style="font-weight: bold">
 										<td style="width: 25%">VEHICLE NAME</td>
 										<td style="width: 5%">WHEELS</td>
 										<td style="width: 8%">SEATS</td>
@@ -484,66 +531,69 @@ app.controller('VehicleRowCtrl', function($scope, $filter, $http) {
 
 										<td style="width: 5%">Activate</td>
 										<td style="width: 10%">Edit</td>
-									</tr>
-									<tr ng-repeat="vehicle in vehicles">
-										<td><span editable-text="vehicle.name" e-name="name"
-											e-form="rowform"
-											onbeforesave="checkVehicleName($data, vehicle.vehicleId)"
-											e-required> {{ vehicle.name || '-' }} </span></td>
+									</tr>  -->
+										<tr ng-repeat="vehicle in vehicles">
+											<td><span editable-text="vehicle.name" e-name="name"
+												e-form="rowform"
+												onbeforesave="checkVehicleName($data, vehicle.vehicleId)"
+												e-required> {{ vehicle.name || '-' }} </span></td>
 
-										<td><span editable-number="vehicle.wheels"
-											e-name="wheels" e-form="rowform" e-min="2" e-max="60">{{
-												vehicle.wheels || 'empty' }}</span></td>
-										<td><span editable-number="vehicle.seats" e-name="seats"
-											e-form="rowform" e-min="1" e-max="100">{{vehicle.seats
-												|| 'empty' }}</span></td>
+											<td><span editable-number="vehicle.wheels"
+												e-name="wheels" e-form="rowform" e-min="2" e-max="60">{{
+													vehicle.wheels || 'empty' }}</span></td>
+											<td><span editable-number="vehicle.seats" e-name="seats"
+												e-form="rowform" e-min="1" e-max="100">{{vehicle.seats
+													|| 'empty' }}</span></td>
 
-										<td><span editable-number="vehicle.basicCharge"
-											e-name="basicCharge" e-form="rowform" e-min="1">{{vehicle.basicCharge
-												|| 'empty' }}</span></td>
-										<td><span editable-number="vehicle.extraChargePerKm"
-											e-name="extraChargePerKm" e-form="rowform" e-min="1">{{vehicle.extraChargePerKm
-												|| 'empty' }}</span></td>
-										<td><span editable-number="vehicle.extraChargePerHour"
-											e-name="extraChargePerHour" e-form="rowform" e-min="1">{{vehicle.extraChargePerHour
-												|| 'empty' }}</span></td>
-										<td><span editable-number="vehicle.outStationRidePerKm"
-											e-name="outStationRidePerKm" e-form="rowform" e-min="1">{{vehicle.outStationRidePerKm
-												|| 'empty' }}</span></td>
+											<td><span editable-number="vehicle.basicCharge"
+												e-name="basicCharge" e-form="rowform" e-min="1">{{vehicle.basicCharge
+													|| 'empty' }}</span></td>
+											<td><span editable-number="vehicle.extraChargePerKm"
+												e-name="extraChargePerKm" e-form="rowform" e-min="1">{{vehicle.extraChargePerKm
+													|| 'empty' }}</span></td>
+											<td><span editable-number="vehicle.extraChargePerHour"
+												e-name="extraChargePerHour" e-form="rowform" e-min="1">{{vehicle.extraChargePerHour
+													|| 'empty' }}</span></td>
+											<td><span editable-number="vehicle.outStationRidePerKm"
+												e-name="outStationRidePerKm" e-form="rowform" e-min="1">{{vehicle.outStationRidePerKm
+													|| 'empty' }}</span></td>
 
-										<td>
-											<!-- <md-switch ng-model="vehicle.isActive" e-name="isActive"  e-form="rowform" aria-label="vehicle.vehicleId" ng-change="onChange(vehicle.vehicleId,vehicle.isActive)" >
-						{{ true  }} </md-switch> --> <a href="#"
-											editable-checkbox="vehicle.isActive" e-title=""
-											e-name="isActive" e-form="rowform"> {{
-												vehicle.isActive? 'Active': 'Deactive'}} </a>
+											<td>
+												 <a href="#"
+												editable-checkbox="vehicle.isActive" e-title=""
+												e-name="isActive" e-form="rowform"> {{ vehicle.isActive?
+													'YES': 'NO'}} </a>
 
-										</td>
+											</td>
 
-										<td style="white-space: nowrap">
+											<td style="white-space: nowrap">
 
-											<form editable-form name="rowform"
-												onbeforesave="saveVehicle($data, vehicle.vehicleId,$index)"
-												ng-show="rowform.$visible" class="form-buttons form-inline"
-												shown="inserted == vehicle">
-												<button type="submit" ng-disabled="rowform.$waiting"
-													class="btn btn-primary">save</button>
-												<button type="button" ng-disabled="rowform.$waiting"
-													ng-click="rowform.$cancel()" class="btn btn-default">
-													cancel</button>
-											</form>
-											<div class="buttons" ng-show="!rowform.$visible">
-												<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-												<button class="btn btn-danger"
-													ng-click="removeVehicle($index)">del</button>
-											</div>
-										</td>
+												<form editable-form name="rowform"
+													onbeforesave="saveVehicle($data, vehicle.vehicleId,$index)"
+													ng-show="rowform.$visible" class="form-buttons form-inline"
+													shown="inserted == vehicle">
+													<button type="submit" ng-disabled="rowform.$waiting"
+														class="btn btn-primary">save</button>
+													<button type="button" ng-disabled="rowform.$waiting"
+														ng-click="rowform.$cancel()" class="btn btn-default">
+														cancel</button>
+												</form>
+												<div class="buttons" ng-show="!rowform.$visible">
+													<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+													<button class="btn btn-danger"
+														ng-click="removeVehicle($index)">del</button>
+												</div>
+											</td>
 
-									</tr>
-								</table>
+										</tr>
+									</table>
+									<br>
+	
+									<button class="btn btn-default" ng-click="addVehicle()">Add
+										Vehicle</button>
 
-								<button class="btn btn-default" ng-click="addVehicle()">Add
-									Vehicle</button>
+								</div>
+
 							</div>
 
 

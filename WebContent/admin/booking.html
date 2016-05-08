@@ -83,50 +83,51 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	    <![endif]-->
+	
+	
+	<!-- CSS for row filter on column header-->
+	<link href="../css/filter-row.css" rel="stylesheet">
+	
+	
+	<!-- JS for row filter on column header-->
+	<script src="../js/filter-row.js"></script>
+	
+<script>
+	var domainName = '';
 
- <script>
+	var app = angular.module('app', [ "xeditable", "ngMaterial" ]);
 
-var domainName = '';
-
-var app = angular.module('app', ["xeditable","ngMaterial"]);
-
-
-app.run(function(editableOptions) {
-	  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+	app.run(function(editableOptions) {
+		editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 	});
 
+	app.controller('bookingCtrl', function($scope, $filter, $http) {
+		$scope.bookings = [];
 
-app.controller('bookingCtrl', function($scope, $filter, $http){
-	 $scope.bookings = []; 
-	
-	$http.get(domainName + '/rest/admin/bookings').success(
-			function(response) {
+		$http.get(domainName + '/rest/admin/bookings').success(
+				function(response) {
 
-				$scope.messsageCode = response.messsageCode;
-				console.log($scope.messsageCode);
-				console.log(response);
-				console.log(response.reply);
-				console.log(JSON.parse(response.reply));
-				$scope.bookings = JSON.parse(response.reply);
+					$scope.messsageCode = response.messsageCode;
+					console.log($scope.messsageCode);
+					console.log(response);
+					console.log(response.reply);
+					console.log(JSON.parse(response.reply));
+					$scope.bookings = JSON.parse(response.reply);
 
-				console.log($scope.messsageCode);
+					console.log($scope.messsageCode);
 
-					if ($scope.messsageCode == 'SCS'){
-						
-						if(typeof(Storage) !== "undefined") {
-							   
-					    }else{
-					    	alert("Your browser do not support..");
-					    }
-					}					
-			});
+					if ($scope.messsageCode == 'SCS') {
 
-	
-});
+						if (typeof (Storage) !== "undefined") {
 
-	
+						} else {
+							alert("Your browser do not support..");
+						}
+					}
+				});
 
+	});
 </script>
 
 
@@ -414,92 +415,131 @@ app.controller('bookingCtrl', function($scope, $filter, $http){
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Bookings</h1>
-                        
-                        <div ng-app="app">
-			<!-- ----- -->
+
+						<div ng-app="app">
+							<!-- ----- -->
 
 
-      <div ng-controller="bookingCtrl">
-			<!-- <input type="button" name="getBookings-button" id="getBookingsButton" value="Get all bookings" ng-click="getBookings()" />-->
-			<br/>
-			
-				<table class="table table-bordered table-hover table-condensed">
-					<tr style="font-weight: bold">
-						<td style="width: 15%">Email</td>
-						<td style="width: 10%">Contact</td>
-						<td style="width: 10%">From Date</td>
-						<td style="width: 10%">To Date</td>
-						<td style="width: 10%">From Time</td>
-						<td style="width: 10%">From Location</td>
-					 <td style="width: 10%">To Location</td>
-						<td style="width: 10%">Vehicle details</td>
-						<td style="width: 15%">Booking Date</td> 
-					</tr>
-					<tr ng-repeat="b in bookings">
-						<td>
-							<!-- editable username (text with validation) --> 
-							<span editable-text="b.email" e-name="email" e-form="rowform1"
-							 e-required>
-							{{b.email || '-' }} </span>
-						</td>
-						
-						<td>
-							 <span
-							editable-text="b.contactNumber" e-name="contactNumber" e-form="rowform1"
-							> {{ b.contactNumber || '-' }}  </span>
-						</td>
-						<td>
-						 <span editable-text="b.fromData" e-name="fromData" e-form="rowform1"
-							> {{b.fromData || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.toDate" e-name="toDate" e-form="rowform1"
-							> {{b.toDate || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.fromTime" e-name="fromTime" e-form="rowform1"
-							> {{b.fromTime || '-' }}  </span>
-						</td>
-						
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.fromLocation" e-name="fromLocation" e-form="rowform1"
-							> {{ b.fromLocation || '-' }}  </span>
-						</td>
-						
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.toLocation" e-name="toLocation" e-form="rowform1"
-							> {{ b.toLocation || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.vehicleDetails" e-name="vehicleDetails" e-form="rowform1"
-							> {{ b.vehicleDetails || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.bookingDate" e-name="bookingDate" e-form="rowform1"
-							> {{ b.bookingDate || '-' }}  </span>
-						</td>
-						
-					</tr>
-				</table>  
+							<div ng-controller="bookingCtrl">
+								<!-- <input type="button" name="getBookings-button" id="getBookingsButton" value="Get all bookings" ng-click="getBookings()" />-->
+								<br />
 
-			</div>
+								<div class="panel panel-primary filterable">
+									<div class="panel-heading">
+										<h3 class="panel-title">Bookings</h3>
+										<div class="pull-right">
+											<button class="btn btn-default btn-xs btn-filter">
+												<span class="glyphicon glyphicon-filter"></span> Filter
+											</button>
+										</div>
+									</div>
+
+									<!-- <table class="table table-bordered table-hover table-condensed"> -->
+									<table class="table table-hover">
+
+										<thead>
+											<tr class="filters">
+												<!-- <th><input type="text" class="form-control"
+													placeholder="#" disabled></th> -->
+												<th style="width: 20%"><input type="text"
+													class="form-control" placeholder="Email" disabled></th>
+												<th style="width: 8%"><input type="text"
+													class="form-control" placeholder="Contact" disabled></th>
+												<th style="width: 8%"><input type="text"
+													class="form-control" placeholder="From Date" disabled></th>
+												<th><input type="text" class="form-control"
+													placeholder="To Date" disabled></th>
+												<th><input type="text" class="form-control"
+													placeholder="From Time" disabled></th>
+												<th><input type="text" class="form-control"
+													placeholder="From Location" disabled></th>
+												<th><input type="text" class="form-control"
+													placeholder="To Location" disabled></th>
+												<th><input type="text" class="form-control"
+													placeholder="Vehicle details"
+													disabled></th>
+												<th><input type="text" class="form-control"
+													placeholder="Booking Date" disabled></th>
+											</tr>
+										</thead>
+
+										<!-- <tr style="font-weight: bold">
+											<td style="width: 15%">Email</td>
+											<td style="width: 10%">Contact</td>
+											<td style="width: 10%">From Date</td>
+											<td style="width: 10%">To Date</td>
+											<td style="width: 10%">From Time</td>
+											<td style="width: 10%">From Location</td>
+											<td style="width: 10%">To Location</td>
+											<td style="width: 10%">Vehicle details</td>
+											<td style="width: 15%">Booking Date</td>
+										</tr> -->
+										<tr ng-repeat="b in bookings">
+											<td>
+												<!-- editable username (text with validation) --> <span
+												editable-text="b.email" e-name="email" e-form="rowform1"
+												e-required> {{b.email || '-' }} </span>
+											</td>
+
+											<td><span editable-text="b.contactNumber"
+												e-name="contactNumber" e-form="rowform1"> {{
+													b.contactNumber || '-' }} </span></td>
+											<td><span editable-text="b.fromData" e-name="fromData"
+												e-form="rowform1"> {{b.fromData || '-' }} </span></td>
+											<td>
+												<!-- editable status (select-local) --> <span
+												editable-text="b.toDate" e-name="toDate" e-form="rowform1">
+													{{b.toDate || '-' }} </span>
+											</td>
+											<td>
+												<!-- editable status (select-local) --> <span
+												editable-text="b.fromTime" e-name="fromTime"
+												e-form="rowform1"> {{b.fromTime || '-' }} </span>
+											</td>
+
+											<td>
+												<!-- editable status (select-local) --> <span
+												editable-text="b.fromLocation" e-name="fromLocation"
+												e-form="rowform1"> {{ b.fromLocation || '-'
+													}} </span>
+											</td>
+
+											<td>
+												<!-- editable status (select-local) --> <span
+												editable-text="b.toLocation" e-name="toLocation"
+												e-form="rowform1"> {{ b.toLocation || '-' }}
+											</span>
+											</td>
+											<td>
+												<!-- editable status (select-local) --> <span
+												editable-text="b.vehicleDetails" e-name="vehicleDetails"
+												e-form="rowform1"> {{ b.vehicleDetails || '-'
+													}} </span>
+											</td>
+											<td>
+												<!-- editable status (select-local) --> <span
+												editable-text="b.bookingDate" e-name="bookingDate"
+												e-form="rowform1"> {{ b.bookingDate || '-' }}
+											</span>
+											</td>
+
+										</tr>
+									</table>
+
+								</div>
+
+							</div>
 
 
-<!-- -- -->
+							<!-- -- -->
 
 
-<!-- -- -->
+							<!-- -- -->
 
-		</div>
-                        
-                        
-                    </div>
+						</div>
+
+
+					</div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->

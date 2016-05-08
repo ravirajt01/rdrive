@@ -84,6 +84,14 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    
+     <!-- CSS for row filter on column header-->
+       	<link href="../css/filter-row.css" rel="stylesheet">
+    
+    
+	 <!-- JS for row filter on column header-->
+  		<script src="../js/filter-row.js"></script>
 
  <script>
 
@@ -94,7 +102,7 @@ app.run(function(editableOptions) {
 	  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 	});
 	
-app.controller('EditableRowCtrl', function($scope, $filter, $http) {
+app.controller('UserRowCtrl', function($scope, $filter, $http) {
 	
 	
 	  $scope.users = [
@@ -483,56 +491,94 @@ app.controller('EditableRowCtrl', function($scope, $filter, $http) {
                         <h1 class="page-header">Users</h1>
 
 						<div ng-app="app">
-						
-							<div ng-controller="EditableRowCtrl">
-				<table class="table table-bordered table-hover table-condensed">
-					<tr style="font-weight: bold">
+
+							<div ng-controller="UserRowCtrl">
+
+								<div class="panel panel-primary filterable">
+									<div class="panel-heading">
+										<h3 class="panel-title">Users</h3>
+										<div class="pull-right">
+											<button class="btn btn-default btn-xs btn-filter">
+												<span class="glyphicon glyphicon-filter"></span> Filter
+											</button>
+										</div>
+									</div>
+
+
+
+									<!-- <table class="table table-bordered table-hover table-condensed"> -->
+									<table class="table table-hover">
+
+										<thead>
+											<tr class="filters">
+												<th style="width: 15%"><input type="text"
+													class="form-control" placeholder="Name" disabled></th>
+												<th style="width: 20%"><input type="text"
+													class="form-control" placeholder="Email" disabled></th>
+												<th style="width: 10%"><input type="text"
+													class="form-control" placeholder="Contact" disabled></th>
+												<th style="width: 10%"><input type="text"
+													class="form-control" placeholder="PW" disabled></th>
+												<th style="width: 20%"><input type="text" class="form-control"
+													placeholder="Registered On" disabled></th>
+												<th style="width: 20%"><input type="text" class="form-control"
+													placeholder="Registration Confirm on" disabled></th>
+											</tr>
+										</thead>
+
+
+
+										<!-- 	<tr style="font-weight: bold">
 						<td style="width: 10%">Name</td>
 						<td style="width: 20%">Email</td>
 						<td style="width: 20%">Contact</td>
 						<td style="width: 10%">PW</td>
 						<td style="width: 20%">Registered On</td>
 						<td style="width: 20%">Registration Confirm on</td>
-						<!-- <td style="width: 20%">Status</td>
+						<td style="width: 20%">Status</td>
 						<td style="width: 20%">Group</td>
-						<td style="width: 25%">Edit</td> -->
-					</tr>
-					<tr ng-repeat="user in users">
-						<td>
-							<!-- editable username (text with validation) --> <span
-							editable-text="user.name" e-name="name" e-form="rowform1"
-							onbeforesave="checkName($data, user.id)" e-required> {{
-								user.name || '-' }} </span>
-						</td>
-						
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="user.email" e-name="email" e-form="rowform1"
-							> {{ user.email || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="user.contactNumber" e-name="contactNumber" e-form="rowform1"
-							> {{ user.contactNumber || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="user.password" e-name="password" e-form="rowform1"
-							> {{ user.password || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="user.registrationDate" e-name="registrationDate" e-form="rowform1"
-							> {{ user.registrationDate || '-' }}  </span>
-						</td>
-						
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="user.registrationConfirmDate" e-name="registrationConfirmDate" e-form="rowform1"
-							> {{ user.registrationConfirmDate || '-' }}  </span>
-						</td>
-						
-						<!-- <td>
+						<td style="width: 25%">Edit</td>
+					</tr> -->
+										<tr ng-repeat="user in users">
+											<td>
+												<!-- editable username (text with validation) --> <span
+												editable-text="user.name" e-name="name" e-form="rowform1"
+												onbeforesave="checkName($data, user.id)" e-required>
+													{{ user.name || '-' }} </span>
+											</td>
+
+											<td>
+												<!-- editable status (select-local) --> <span
+												editable-text="user.email" e-name="email" e-form="rowform1">
+													{{ user.email || '-' }} </span>
+											</td>
+											<td>
+												<!-- editable status (select-local) --> <span
+												editable-text="user.contactNumber" e-name="contactNumber"
+												e-form="rowform1"> {{ user.contactNumber ||
+													'-' }} </span>
+											</td>
+											<td>
+												<!-- editable status (select-local) --> <span
+												editable-text="user.password" e-name="password"
+												e-form="rowform1"> {{ user.password || '-' }}
+											</span>
+											</td>
+											<td>
+												<!-- editable status (select-local) --> <span
+												editable-text="user.registrationDate"
+												e-name="registrationDate" e-form="rowform1">
+													{{ user.registrationDate || '-' }} </span>
+											</td>
+
+											<td>
+												<!-- editable status (select-local) --> <span
+												editable-text="user.registrationConfirmDate"
+												e-name="registrationConfirmDate" e-form="rowform1">
+													{{ user.registrationConfirmDate || '-' }} </span>
+											</td>
+
+											<!-- <td>
 							editable status (select-local) <span
 							editable-select="user.status" e-name="status" e-form="rowform"
 							e-ng-options="s.value as s.text for s in statuses"> {{
@@ -562,12 +608,14 @@ app.controller('EditableRowCtrl', function($scope, $filter, $http) {
 							</div>
 						</td>
 						-->
-					</tr>
-				</table>
+										</tr>
+									</table>
 
-				<!-- <button class="btn btn-default" ng-click="addUser()">Add
+								</div>
+
+								<!-- <button class="btn btn-default" ng-click="addUser()">Add
 					row</button> -->
-			</div>
+							</div>
 
 						</div>
 
