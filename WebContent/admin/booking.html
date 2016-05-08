@@ -442,10 +442,14 @@
 											<tr class="filters">
 												<!-- <th><input type="text" class="form-control"
 													placeholder="#" disabled></th> -->
-												<th style="width: 20%"><input type="text"
+												<th style="width: 5%"><input type="text"
 													class="form-control" placeholder="Email" disabled></th>
-												<th style="width: 8%"><input type="text"
+												<th style="width: 5%"><input type="text"
 													class="form-control" placeholder="Contact" disabled></th>
+												<th style="width: 5%"><input type="text"
+													class="form-control" placeholder="Booking Type" disabled></th>
+												<th style="width: 5%"><input type="text"
+													class="form-control" placeholder="Trip Type" disabled></th>
 												<th style="width: 8%"><input type="text"
 													class="form-control" placeholder="From Date" disabled></th>
 												<th><input type="text" class="form-control"
@@ -461,6 +465,7 @@
 													disabled></th>
 												<th><input type="text" class="form-control"
 													placeholder="Booking Date" disabled></th>
+													
 											</tr>
 										</thead>
 
@@ -482,9 +487,15 @@
 												e-required> {{b.email || '-' }} </span>
 											</td>
 
-											<td><span editable-text="b.contactNumber"
-												e-name="contactNumber" e-form="rowform1"> {{
-													b.contactNumber || '-' }} </span></td>
+											<td><span editable-text="b.contactNumber" e-name="contactNumber" 
+											e-form="rowform1"> {{ b.contactNumber || '-' }} </span></td>
+													
+											<td> <span editable-text="b.bookingType" e-name="bookingType" 
+											e-form="rowform1" > {{ b.bookingType || '-' }}  </span> </td>
+											
+											<td> <span editable-text="b.tripType" e-name="tripType" 
+											e-form="rowform1" > {{ b.tripType || '-' }}  </span> </td>
+													
 											<td><span editable-text="b.fromData" e-name="fromData"
 												e-form="rowform1"> {{b.fromData || '-' }} </span></td>
 											<td>
@@ -539,116 +550,8 @@
 
 						</div>
 
-
-					</div>
-=======
-                        
-                        <div ng-app="app">
-			<!-- ----- -->
-
-
-     
-      <div ng-controller="bookingCtrl">
-			<h2>Bookings:</h2>
-			<!-- <input type="button" name="getBookings-button" id="getBookingsButton" value="Get all bookings" ng-click="getBookings()" />-->
-			<br/>
-			
-				<table class="table table-bordered table-hover table-condensed">
-					<tr style="font-weight: bold">
-						<td style="width: 10%">Email</td>
-						<td style="width: 10%">Contact</td>
-						<td style="width: 5%">Booking Type</td>
-						<td style="width: 5%">Trip Type</td>
-						<td style="width: 10%">From Date</td>
-						<td style="width: 10%">To Date</td>
-						<td style="width: 10%">From Time</td>
-						<td style="width: 10%">From Location</td>
-					 <td style="width: 10%">To Location</td>
-
-						<td style="width: 10%">Vehicle details</td>
-
-
-						<td style="width: 10%">Booking Date</td> 
-					</tr>
-					<tr ng-repeat="b in bookings">
-						<td>
-							<!-- editable username (text with validation) --> 
-							<span editable-text="b.email" e-name="email" e-form="rowform1"
-							 e-required>
-							{{b.email || '-' }} </span>
-						</td>
-						
-						<td>
-							 <span
-							editable-text="b.contactNumber" e-name="contactNumber" e-form="rowform1"
-							> {{ b.contactNumber || '-' }}  </span>
-						</td>
-						
-						<td>
-							 <span
-							editable-text="b.bookingType" e-name="bookingType" e-form="rowform1"
-							> {{ b.bookingType || '-' }}  </span>
-						</td>
-						
-						<td>
-							 <span
-							editable-text="b.tripType" e-name="tripType" e-form="rowform1"
-							> {{ b.tripType || '-' }}  </span>
-						</td>
-						
-						<td>
-						 <span editable-text="b.fromDate" e-name="fromDate" e-form="rowform1"
-							> {{b.fromDate || '-' }}  </span>
-						</td>
-						 <td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.toDate" e-name="toDate" e-form="rowform1"
-							> {{b.toDate || '-' }}  </span>
-						</td> 
-						<td>
-							<!-- editable status (select-local) --> 
-							<span editable-text="b.fromTime" e-name="fromTime" e-form="rowform1">
-							 {{b.fromTime || '-' }}  </span>
-						</td>
-						
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.fromLocation" e-name="fromLocation" e-form="rowform1"
-							> {{ b.fromLocation || '-' }}  </span>
-						</td>
-						
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.toLocation" e-name="toLocation" e-form="rowform1"
-							> {{ b.toLocation || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.vehicleDetails" e-name="vehicleDetails" e-form="rowform1"
-							> {{ b.vehicleDetails || '-' }}  </span>
-						</td>
-						<td>
-							<!-- editable status (select-local) --> <span
-							editable-text="b.bookingDate" e-name="bookingDate" e-form="rowform1"
-							> {{ b.bookingDate || '-' }}  </span>
-						</td>
-						
-					</tr>
-				</table>  
-
-			</div>
-
-
-<!-- -- -->
-
-
-<!-- -- -->
-
-		</div>
-                        
                         
                     </div>
->>>>>>> b1e12940467eac039c3e3b66568090870771936a
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
