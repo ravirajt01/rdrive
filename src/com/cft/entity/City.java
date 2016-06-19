@@ -1,4 +1,4 @@
-package com.cft.pojo;
+package com.cft.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

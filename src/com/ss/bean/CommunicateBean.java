@@ -13,11 +13,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.cft.bean.ConfigurationMgmtBean;
-import com.cft.pojo.BookTour;
+import com.cft.entity.BookTour;
+import com.cft.entity.Template;
+import com.cft.entity.User;
+import com.cft.entity.Vender;
 import com.cft.pojo.MailDetails;
-import com.cft.pojo.Template;
-import com.cft.pojo.User;
-import com.cft.pojo.Vender;
 
 public class CommunicateBean /*implements Communicable */{
 

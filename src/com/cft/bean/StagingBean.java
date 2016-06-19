@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import com.cft.pojo.Staging;
-import com.cft.pojo.User;
+import com.cft.entity.Staging;
+import com.cft.entity.User;
 import com.javatpoint.Employee;
 import com.ss.utility.Utils;
 

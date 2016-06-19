@@ -20,13 +20,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.cft.bean.UserBean;
 import com.cft.bean.VenderBean;
+import com.cft.entity.BookTour;
+import com.cft.entity.User;
+import com.cft.entity.Vender;
 import com.cft.exception.UnActiveUser;
 import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
 import com.cft.exception.UserNotExist;
-import com.cft.pojo.BookTour;
-import com.cft.pojo.User;
-import com.cft.pojo.Vender;
 import com.javatpoint.Employee;
 import com.javatpoint.EmployeeDao;
 import com.javatpoint.InitialLoader;

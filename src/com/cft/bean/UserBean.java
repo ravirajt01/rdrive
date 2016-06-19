@@ -7,12 +7,13 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.cft.entity.Staging;
+import com.cft.entity.User;
 import com.cft.exception.UnActiveUser;
 import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
-import com.cft.pojo.Staging;
-import com.cft.pojo.User;
 import com.javatpoint.Employee;
 import com.ss.bean.CommunicateBean;
 import com.ss.bean.CommunicateBean.MailType;
@@ -124,26 +125,24 @@ public class UserBean {
 		
 		return 1;
 	}
-
 	public User loginUser(User user) throws UnAuthorisedUser, UnActiveUser {
-		
+
 		User loggedInUser =null;
-		List<User> users = template.find("from User where email=? and password =?",user.getEmail(),user.getPassword());
-		
+		List<User> users = template.find(" from User u  where u.email=? and u.password =?",user.getEmail(),user.getPassword());
+
+
 		if(users.size()==0)
 			throw new UnAuthorisedUser("User does not exist")  ;
 		else{
-				
+
 			loggedInUser = users.get(0);
-			
+
 			if(!loggedInUser.isRegistrationConfirmed()){
 				throw new UnActiveUser("User is not active yet")  ;
 			}
-				
+
 		}
-		
 		return loggedInUser;
-		
 	}  
 	
 	

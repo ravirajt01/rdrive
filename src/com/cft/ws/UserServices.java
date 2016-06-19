@@ -19,12 +19,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.cft.bean.UserBean;
+import com.cft.entity.BookTour;
+import com.cft.entity.User;
 import com.cft.exception.UnActiveUser;
 import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
 import com.cft.exception.UserNotExist;
-import com.cft.pojo.BookTour;
-import com.cft.pojo.User;
+import com.google.gson.Gson;
 import com.javatpoint.Employee;
 import com.javatpoint.EmployeeDao;
 import com.javatpoint.InitialLoader;
@@ -39,6 +40,9 @@ import com.ss.utility.Reply;
 import com.ss.utility.Utils;
 import com.studytrails.tutorials.springhibernatejpa.Person;
 import com.studytrails.tutorials.springhibernatejpa.PersonDao;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Path("/")  
 
 public class UserServices {  
@@ -106,7 +110,8 @@ public class UserServices {
 
 		UserBean userBean=(UserBean)InitialLoader.ctx.getBean("userBean");
 		user= userBean.loginUser(user);
-
+		
+		
 		return Reply.formatReply(user,ExceptionCode.SCS);
 
 	}

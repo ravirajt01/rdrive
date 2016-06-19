@@ -11,16 +11,16 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 
 <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-<!--  
+  
  <property name="url" value="jdbc:mysql://localhost:3306/testsDB"/>
       <property name="username" value="root"/>
       <property name="password" value="asdf12345"/> 
    
-        -->
+    
  
-   <property name="url" value="jdbc:mysql://localhost:3306/pcmdb"/>
+<!--    <property name="url" value="jdbc:mysql://localhost:3306/pcmdb"/>
       <property name="username" value="root"/>
-      <property name="password" value="pass@123"/>
+      <property name="password" value="pass@123"/> -->
       
 <!-- 
 
@@ -80,13 +80,19 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<property name="annotatedClasses">
 		<list>
 			<value>com.javatpoint.Employee</value>
-			<value>com.cft.pojo.User</value>
-			<value>com.cft.pojo.Staging</value>
-			<value>com.cft.pojo.BookTour</value>
-			<value>com.cft.pojo.Vender</value>
-			<value>com.cft.pojo.Vehicle</value>
-			<value>com.cft.pojo.Template</value>
-			<value>com.cft.pojo.City</value>
+			<value>com.cft.entity.User</value>
+			<value>com.cft.entity.UserRole</value>
+			<value>com.cft.entity.Staging</value>
+			<value>com.cft.entity.BookTour</value>
+			<value>com.cft.entity.Vender</value>
+			<value>com.cft.entity.Vehicle</value>
+			<value>com.cft.entity.Template</value>
+			<value>com.cft.entity.City</value>
+			<value>com.cft.entity.Make</value>
+			<value>com.cft.entity.Model</value>
+			<value>com.cft.entity.SubModel</value>
+			<value>com.cft.entity.Colour</value>
+			<value>com.cft.entity.VehiclePhoto</value>
 		</list>
 	</property>
 		 

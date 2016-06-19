@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<!-- jquery lib-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+<!-- angular js lib -->
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+
+  <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Car For Tour is platform for cab for tours and tourism and travaling. Car For Tour ie cab for tour will include intercity, intracity traveling.  All kind of vehicle will be available here. vehicle will be of 4 seaters to 49 seaters.">
+    <meta name="keywords" content="car for tour,cab for tour,cab,cabs,travel,tour,tourism,corporate cab">
+    <meta name="author" content="Car For Tour">
+    <meta name="authorUrl" content="http://carfortour.com">
+
+    <title>Vender Profile</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="./../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="./../css/full-slider.css" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="./../img/icon/cftIcon.jpg">
+ 
+    <link href="./../css/login.css" rel="stylesheet">
+
+    <script src="./../js/login.js"></script>
+    <script src="https://afarkas.github.io/webshim/js-webshim/minified/polyfiller.js"></script>
+    
+  <script src="./../js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	
+	(function () {
+	    webshim.setOptions('forms', {
+	        lazyCustomMessages: true,
+	        iVal: {
+	            //add config to find right wrapper
+	            fieldWrapper: '.form-group',
+
+	            //add bootstrap specific classes
+	            errorMessageClass: 'help-block',
+	            successWrapperClass: 'has-success',
+	            errorWrapperClass: 'has-error',
+	            
+	            //general iVal cfg
+	            sel: '.ws-validate',
+	            handleBubble: 'hide' // hide error bubble
+	        }
+	    });
+
+	    //load forms polyfill + iVal feature
+	    webshim.polyfill('forms');
+	})();
+	</script>    
+	
+	<style type="text/css">
+	body {
+    margin: 10px;
+    padding: 10px;
+}
+.form-group >[class*="col-"] + .ws-errorbox {
+    padding: 0 15px;
+}
+legend {
+    margin: 3px 0 10px;
+}
+	
+	</style>
+    
+    <style type="text/css">
+    
+    
+    
+
+/*  bhoechie tab */
+div.bhoechie-tab-container{
+  z-index: 10;
+  background-color: #ffffff;
+  padding: 0 !important;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  border:1px solid #ddd;
+  margin-top: 20px;
+  margin-left: 50px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  background-clip: padding-box;
+  opacity: 0.97;
+  filter: alpha(opacity=97);
+}
+div.bhoechie-tab-menu{
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group{
+  margin-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group>a{
+  margin-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group>a .glyphicon,
+div.bhoechie-tab-menu div.list-group>a .fa {
+  color: #751717;
+}
+div.bhoechie-tab-menu div.list-group>a:first-child{
+  border-top-right-radius: 0;
+  -moz-border-top-right-radius: 0;
+}
+div.bhoechie-tab-menu div.list-group>a:last-child{
+  border-bottom-right-radius: 0;
+  -moz-border-bottom-right-radius: 0;
+}
+div.bhoechie-tab-menu div.list-group>a.active,
+div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
+div.bhoechie-tab-menu div.list-group>a.active .fa{
+  /* background-color: #5A55A3; */
+  background-color: #751717;
+  background-image: #751717;
+  color: #ffffff;
+}
+div.bhoechie-tab-menu div.list-group>a.active:after{
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  margin-top: -13px;
+  border-left: 0;
+  border-bottom: 13px solid transparent;
+  border-top: 13px solid transparent;
+  border-left: 10px solid #751717;
+}
+
+div.bhoechie-tab-content{
+  background-color: #ffffff;
+  /* border: 1px solid #eeeeee; */
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+div.bhoechie-tab div.bhoechie-tab-content:not(.active){
+  display: none;
+}
+    </style>
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+            e.preventDefault();
+            $(this).siblings('a.active').removeClass("active");
+            $(this).addClass("active");
+            var index = $(this).index();
+            $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+            $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+        });
+    });
+    </script>
+    
+
+    <link href="./../css/userVehicles.css" rel="stylesheet">
+    <script src="./../js/userVehicles.js"></script> 
+    
+    
+<script>
+var domainName = '' ;
+var app = angular.module("myApp5", []);
+app.controller("myCtrl5", function($scope) {
+  $scope.records = [
+    {
+      "Name" : "Alfreds Futterkiste ",
+      "Country" : "Germany",
+      "Description":".. Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+    },
+    {
+      "Name" : "Berglunds snabbköp",
+      "Country" : "Sweden",
+      "Description":".. Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh "
+    },
+    {
+      "Name" : "Centro comercial Moctezuma",
+      "Country" : "Mexico"
+    },
+    {
+      "Name" : "Ernst Handel",
+      "Country" : "Austria",
+      "Description":".. Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+    },
+    {
+        "Name" : "Berglunds snabbköp",
+        "Country" : "Sweden",
+        "Description":".. Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh "
+      },
+      {
+        "Name" : "Centro comercial Moctezuma",
+        "Country" : "Mexico"
+      },
+      {
+        "Name" : "Ernst Handel",
+        "Country" : "Austria",
+        "Description":".. Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+      }
+  ]
+});
+
+
+
+
+//var app = angular.module("myApp7", []);
+app.controller("myCtrl7", function($scope, $http) {
+	$scope.addVehicle = function() {
+		/* alert($('#slctMakeList').val()); */
+		/* alert($('#slctCarModelList').val());
+		alert($('#slctCarSubModelList').val());
+
+		alert($('#slctColourList').val());
+		alert($('#slctFuelList').val());
+
+
+		alert($('#txtRtoNumber').val());
+		alert($('#txtRegNumber').val());
+
+		alert($('#txtVehicleContactNumber').val()); */
+
+		
+		
+
+			var modelsListIndexWithValue = $('#slctCarModelList').val();
+			var modelsListResult = modelsListIndexWithValue.split("#");
+			var modelsListIndex = modelsListResult[0];
+			var modelsListOptionVal = modelsListResult[1];
+			
+			
+			var subModelsListIndexWithValue = $('#slctCarSubModelList').val();
+			var subModelsListResult = subModelsListIndexWithValue.split("#");
+			var subModelsListIndex = subModelsListResult[0];
+			var subModelsListOptionVal = subModelsListResult[1];
+
+			//alert(vehicles[$('#slctMakeList').val()].makeId);
+			//alert($scope.modelsList[modelsListIndex].modelId);
+	/* 		
+			alert(subModelsListIndexWithValue);
+			alert(subModelsListIndex);
+			alert($scope.subModelsList[subModelsListIndex].subModelId);
+			alert($scope.subModelsList[subModelsListIndex].subModel); */
+			
+			var data = {
+					makeId : $scope.vehicles[$('#slctMakeList').val()].makeId,
+					modelId : $scope.modelsList[modelsListIndex].modelId,
+					subModelId : $scope.subModelsList[subModelsListIndex].subModelId,
+					colourId : $scope.colourList[0].colourId ,
+					fuel : $('#slctFuelList').val(),
+					rtoNumber : $('#txtRtoNumber').val(),
+					regNumber : $('#txtRegNumber').val(),
+					vehicleContact : $('#txtVehicleContactNumber').val()
+			};
+
+			alert(data);
+
+		}
+
+		$scope.vehicles = [];
+		$scope.modelsList = [];
+		$scope.subModelsList = [];
+		$scope.colourList = [];
+
+		$http.get(domainName + '/rest/vehicles/make').success(
+				function(response) {
+
+					$scope.messsageCode = response.messsageCode;
+
+					$scope.vehicles = JSON.parse(response.reply);
+
+					vehicles = JSON.parse(response.reply);
+
+					if ($scope.messsageCode == 'SCS') {
+
+						if (typeof (Storage) !== "undefined") {
+
+						} else {
+							alert("Your browser do not support..");
+						}
+					}
+
+				});
+
+		$http.get(domainName + '/rest/colours').success(function(response) {
+
+			$scope.messsageCode = response.messsageCode;
+
+			$scope.vehicles = JSON.parse(response.reply);
+
+			$scope.colourList = JSON.parse(response.reply);
+
+		});
+
+		$scope.populateModels = function() {
+			$scope.subModelsList = [];
+			//$('#slctCarSubModelList').val('default');
+
+			if ($('#slctMakeList').val() != 'default') {
+				$scope.modelsList = vehicles[$('#slctMakeList').val()].models;
+			} else {
+				$scope.modelsList = [];
+			}
+
+		}
+
+		$scope.populateSubModels = function() {
+
+			var str = $('#slctCarModelList').val();
+			var res = str.split("#");
+			var index = res[0];
+			var optionVal = res[1];
+
+			if ($('#slctCarModelList').val() != 'default') {
+				$scope.subModelsList = $scope.modelsList[index].subModels;
+			} else {
+				$scope.subModelsList = [];
+			}
+
+		}
+
+		// GET THE FILE INFORMATION.
+		$scope.getFileDetails = function(e) {
+
+			$scope.files = [];
+			$scope.$apply(function() {
+
+				// STORE THE FILE OBJECT IN AN ARRAY.
+				for (var i = 0; i < e.files.length; i++) {
+					$scope.files.push(e.files[i])
+				}
+
+			});
+		};
+
+		// NOW UPLOAD THE FILES.
+		$scope.uploadFiles = function() {
+
+			//FILL FormData WITH FILE DETAILS.
+			var data = new FormData();
+
+			for ( var i in $scope.files) {
+				data.append("uploadedFile", $scope.files[i]);
+			}
+
+			// ADD LISTENERS.
+			var objXhr = new XMLHttpRequest();
+			objXhr.addEventListener("progress", updateProgress, false);
+
+			// SEND FILE DETAILS TO THE API.
+			objXhr.open("POST", "/rest/fileupload/");
+			objXhr.send(data);
+
+			objXhr.addEventListener("load", transferComplete, false);
+
+		}
+
+		// UPDATE PROGRESS BAR.
+		function updateProgress(e) {
+			if (e.lengthComputable) {
+				document.getElementById('pro').setAttribute('value', e.loaded);
+				document.getElementById('pro').setAttribute('max', e.total);
+			}
+		}
+
+		// CONFIRMATION.
+		function transferComplete(e) {
+			alert("Files uploaded successfully.");
+		}
+
+	});
+</script>
+    
+ 
+ </head>
+ <body>
+
+<div  ng-app="myApp5" >
+
+		<!-- Modal -->
+		<div ng-controller="myCtrl7" border="1">
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog modal-lg">
+
+					<!-- Modal content-->
+
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Add New Vehicle</h4>
+						</div>
+						<div class="modal-body">
+							<p>Fill all details -</p>
+
+							<form action="#" class="form-horizontal ws-validate">
+
+
+
+
+
+								
+								<div class="form-group">
+								<label class="col-sm-2 control-label">Maker : </label>
+								<div class="col-sm-4">
+								<select class="form-control" id="slctMakeList" ng-model="slctMakeList" ng-change='populateModels()' required>
+    								<option value="default" selected="selected">Select Vehicle Maker</option>
+   									 <option ng-repeat="vehicle in vehicles " value="{{$index}}">{{vehicle.make}}</option>
+</select>
+								</div>
+								</div>
+									<div class="form-group">
+								
+								<label class="col-sm-2 control-label">Model : </label>
+								<div class="col-sm-3">
+										<select class="form-control" id="slctCarModelList"
+											ng-model="slctCarModelList"
+											ng-change='populateSubModels()'>
+											<option value="default" selected="selected">Select
+												Model</option>
+											<option ng-repeat="mod in modelsList " value="{{$index+'#'+mod.model}}">{{mod.model}}</option>
+										</select>
+
+
+
+
+									</div>
+								
+								
+								<label class="col-sm-2 control-label">Sub Model : </label>
+								<div class="col-sm-3">
+								<select class="form-control" id="slctCarSubModelList" ng-model="slctCarSubModelList" >
+    								<option value="default" selected="selected">Select Sub Model</option>
+   									 <option ng-repeat="subMod in subModelsList " value="{{$index+'#'+subMod.subModel}}">{{subMod.subModel}}</option>
+</select>
+								</div>
+								
+								</div>
+								
+								
+								<div class="form-group">
+								<label class="col-sm-2 control-label">Colour : </label>
+								<div class="col-sm-3">
+								<select class="form-control" id="slctColourList" ng-model="slctColourList" required>
+    								<option value="default" selected="selected">Select Vehicle Colour</option>
+   									 <option ng-repeat="col in colourList " value="{{$index}}">{{col.colour}}</option>
+</select>
+								</div>
+								
+								
+								<label class="col-sm-2 control-label">Fuel Type : </label>
+								<div class="col-sm-3">
+								<select class="form-control" id="slctFuelList" ng-model="slctFuelList" required="required">
+    								<option value="default" selected="selected">Select Fuel Type</option>
+   									<option value="Petrol" >Petrol</option>
+   									<option value="Diesel" >Diesel</option>
+   									<option value="LPG" >LPG</option>
+   									<option value="Biofuels" >Biofuels</option>
+</select>
+								</div>
+								
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label" >Registraion Numer </label>
+									<div class="col-sm-3">
+										<input maxlength="5" type="text" class="form-control"
+											placeholder="District RTO-eg MH-12" id="txtRtoNumber"
+											ng-model="txtRtoNumber" required />
+											
+									</div>
+									<div class="col-sm-3">
+										
+											<input maxlength="5" type="text" class="form-control"
+											placeholder="" id="txtRegNumber"
+											ng-model="txtRegNumber" required />
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label" >Contact For this vehicle</label>
+									<div class="col-sm-3">
+										<input maxlength="10" type="text" class="form-control"
+											placeholder="1111111111" id="txtVehicleContactNumber"
+											ng-model="txtVehicleContactNumber" required />
+											
+									</div>
+									
+								</div>
+								
+								<!-- 
+
+								<div class="form-group">
+									<input type="file" id="file" name="file" multiple
+										onchange="angular.element(this).scope().getFileDetails(this)" />
+
+									<input type="button" ng-click="uploadFiles()" value="Upload" />
+
+									ADD A PROGRESS BAR ELEMENT.
+									<p>
+										<progress id="pro" value="0"></progress>
+									</p>
+								</div> -->
+
+
+
+								<br>
+							</form>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" ng-click='addVehicle()'>Add</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+		<!-- <div class="container"> -->
+
+	<div class="row">
+        <div class="col-lg-11 col-md-11 col-sm-8 col-xs-9 bhoechie-tab-container">
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 bhoechie-tab-menu">
+              <div class="list-group">
+              
+               <a href="#" class="list-group-item text-center ">
+                  <h4 class="glyphicon glyphicon-home"></h4><br/>Home
+                </a>
+                
+                <a href="#" class="list-group-item  text-center">
+                  <h4 class="glyphicon glyphicon-user"></h4><br/>Profile
+                </a>
+               
+                <a href="#" class="list-group-item text-center">
+                  <h4 class="glyphicon glyphicon-chevron-right
+"></h4><br/>Bookings
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4 class="glyphicon glyphicon-chevron-left
+"></h4><br/>History
+                </a>
+                 <a href="#" class="list-group-item text-center active">
+                  <h4 class="glyphicon glyphicon-th-list
+"></h4><br/>Vehicles
+                </a>
+               
+              </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                <!-- flight section -->
+                <div class="bhoechie-tab-content active">
+                    <center>
+                      <h1 class="" style="font-size:14em;color:#4D0D0D"></h1>
+                      
+                    </center>
+                </div>
+                <!-- train section -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                    
+                    
+                    
+						<form action="#" class="form-horizontal ws-validate">
+						
+						
+						<legend>Login Details:</legend>
+
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label" >Email</label>
+									<div class="col-sm-6">
+										<input maxlength="20" type="text" class="form-control"
+											placeholder="Enter email" id="txtFirstName"
+											ng-model="txtFirstName" required readonly="readonly" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Password</label>
+									<div class="col-sm-6">
+										<input type="password" class="form-control"
+											id="inputPassword3" placeholder="Password" required readonly="true"/>
+									</div>
+								</div>
+							
+							<br>
+
+							<legend>Personal Details:</legend>
+
+								<!-- <div class="row"> -->
+								
+									<div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label">First Name</label>
+										 <input  maxlength="20" type="text"  class="form-control" placeholder="Enter First Name" id="txtFirstName" ng-model="txtFirstName" required/>
+									</div>
+									</div>
+									<div class="col-sm-4">
+									<!-- <div class="form-group"> -->
+										<label class="control-label">Middle Name</label>
+										
+										<input  maxlength="20" type="text"  class="form-control" placeholder="Enter Middle Name" id="txtMiddleName" ng-model="txtMiddleName"/>
+										</div>
+									<!-- </div> -->
+									<div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label">Last Name</label>
+										<input maxlength="20" type="text" required="required" class="form-control" placeholder="Enter Last Name"  id="txtLastName" ng-model="txtLastName" />
+										</div>
+									</div>
+								<!-- </div> -->
+
+								
+								<hr>
+								
+								<div class="row">
+
+									<div class="col-sm-1">
+									</div>
+									<div class="col-sm-5">
+										<div class="form-group">
+										<label class="control-label">Gender:</label> <label
+											class="radio-gender"> <input type="radio"
+											name="optradio" required="" >Male
+										</label> <label class="radio-gender"> <input type="radio"
+											name="optradio">Female
+										</label>
+										</div>
+
+									</div>
+									
+
+									<div class="col-sm-6">
+									<div class="form-group">
+									<div class="col-sm-2">
+										<label class="control-label">DOB:</label>
+									</div>
+									<div class="col-sm-8">
+										 <input type="date"
+											id="fromDateId" class="form-control" ng-model="fromDate"
+											id="fromDateId" required />
+									</div>
+									</div>
+
+									</div>
+
+								
+
+								</div>
+								
+								
+								<br>
+								
+								<legend>Contact Details:</legend>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label" >Email</label>
+									<div class="col-sm-6">
+										<input maxlength="20" type="text" class="form-control"
+											placeholder="Enter email" id="txtFirstName"
+											ng-model="txtFirstName" required readonly="readonly" />
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label" >Contact (Primary)</label>
+									<div class="col-sm-6">
+										<input type="tel" class="form-control ol-xs-8"
+												title="Enter valid 10 digit mobile number"
+												pattern="[0-9]{10,10}" required="" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label" >Contact (Secondary)</label>
+									<div class="col-sm-6">
+										<input type="tel" class="form-control ol-xs-8"
+												title="Enter valid 10 digit mobile number"
+												pattern="[0-9]{10,10}" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Contact (Office)</label>
+									<div class="col-sm-6">
+										<input type="tel" class="form-control ol-xs-8"
+											title="Enter valid 10 digit mobile number"
+											pattern="[0-9]{10,10}" />
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Address 1</label>
+									<div class="col-sm-6">
+										<textarea  class="form-control" placeholder="Enter your address"  id="txtAddress" ng-model="txtAddress"></textarea>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label" >Pin code</label>
+									<div class="col-sm-4">
+										<input maxlength="20" type="text" class="form-control"
+											placeholder="Enter pin code" id="txtFirstName"
+											ng-model="txtFirstName" />
+									</div>
+									<label class="col-sm-2 control-label" >City</label>
+									<div class="col-sm-4">
+										<input maxlength="20" type="text" class="form-control"
+											placeholder="Enter city" id="txtFirstName"
+											ng-model="txtFirstName" />
+									</div>
+									
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label" >Tal : </label>
+									<div class="col-sm-4">
+										<input maxlength="20" type="text" class="form-control"
+											placeholder="Enter taluka" id="txtFirstName"
+											ng-model="txtFirstName" />
+									</div>
+									<label class="col-sm-2 control-label" >Dist:</label>
+									<div class="col-sm-4">
+										<input maxlength="20" type="text" class="form-control"
+											placeholder="Enter district" id="txtFirstName"
+											ng-model="txtFirstName" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" >State : </label>
+									<div class="col-sm-4">
+										<input maxlength="20" type="text" class="form-control"
+											placeholder="Enter state" id="txtFirstName"
+											ng-model="txtFirstName" />
+									</div>
+									<label class="col-sm-2 control-label" >Country:</label>
+									<div class="col-sm-4">
+										<input maxlength="20" type="text" class="form-control"
+											placeholder="Enter country" id="txtFirstName"
+											ng-model="txtFirstName" />
+									</div>
+								</div>
+
+							<!-- <div class="form-group">
+								<fieldset class="col-sm-10">
+									<legend>telephone group</legend>
+									<div class="row">
+										<div class="col-xs-4">
+											<input type="tel" class="form-control"
+												title="Telephone prefix. Allows digits, + and space signs. At least 2. characters."
+												pattern="[\+\s0-9]{2,6}" required="" />
+										</div>
+										<div class="col-xs-8">
+											<input type="tel" class="form-control"
+												title="Telephone number. Allows at least 3 characters. Only digits and space signs are allowed"
+												pattern="[\+\s0-9]{3,9}" required="" />
+										</div>
+									</div>
+								</fieldset>
+							</div> 
+							<div class="form-group">
+								<fieldset class="col-sm-10">
+									<legend>radio group</legend>
+									<div class="radio">
+										<label> <input type="radio" name="optionsRadios"
+											id="optionsRadios1" value="option1" required="" />Option one
+											is this and that&mdash;be sure to include why it's great
+										</label>
+									</div>
+									<div class="radio">
+										<label> <input type="radio" name="optionsRadios"
+											id="optionsRadios2" value="option2" />Option two can be
+											something else and selecting it will deselect option one
+										</label>
+									</div>
+								</fieldset>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-2 control-label">Email*</label>
+								<div class="col-sm-10">
+									<input type="email" class="form-control" id="inputEmail3"
+										placeholder="Email" required />
+										
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-2 control-label">Password*</label>
+								<div class="col-sm-10">
+									<input type="password" class="form-control" id="inputPassword3"
+										placeholder="Password" required />
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<div class="checkbox">
+										<label> <input type="checkbox" data-error="Before you wreck yourself" required/>Remember me
+										</label>
+									</div>
+								</div>
+							</div>
+							-->
+							<div class="form-group">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-primary">submit</button>
+								</div>
+							</div>
+						</form>
+					</center>
+                </div>
+    
+                <!-- hotel search -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                     <legend>Bookings Details:</legend>
+                      
+                      No Booking yet
+                    </center>
+                </div>
+                <div class="bhoechie-tab-content">
+                    <center>
+                       <legend>Bookings History Details:</legend>
+                      
+                      No Booking in history yet
+                    </center>
+                </div>
+                <div class="bhoechie-tab-content">
+                    <center>
+                      <legend>Vehicle Details:</legend>
+						No vehicle added yet, add vehicle
+                   <!--    <script src="http://www.w3schools.com/lib/w3data.js"></script>
+                      <div w3-include-html="userVehicles.html"></div>
+						<script>
+							w3IncludeHTML();
+						</script> -->
+
+
+
+						<!-- <div class="container"> -->
+						<div class="well well-sm">
+							<strong>Display</strong>
+							<div class="btn-group">
+								<a href="#" id="list" class="btn btn-default btn-sm"><span
+									class="glyphicon glyphicon-th-list"> </span>List</a> <a href="#"
+									id="grid" class="btn btn-default btn-sm"><span
+									class="glyphicon glyphicon-th"></span>Grid</a>
+									
+							</div>
+							<button type="buttion" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">Add New Vehicle</button>
+
+
+							
+
+						</div>
+						<div id="products" class="row list-group">
+						<div ng-controller="myCtrl5" ng-app="myApp5" border="1"> 
+						<div ng-repeat="x in records">
+							<div class="item  col-xs-4 col-lg-4">
+								<div class="thumbnail">
+									<img class="group list-group-image"
+										src="./img/logo/pp.jpg" alt="" height="30%" width="35%"/>
+									<div class="caption">
+										<h4 class="group inner list-group-item-heading">Product
+											title {{x.Name}}</h4>
+										<p class="group inner list-group-item-text">{{x.Description}}</p>
+										<div class="row">
+											<div class="col-xs-12 col-md-6">
+												<p class="lead">$21.000</p>
+											</div>
+											<div class="col-xs-12 col-md-6">
+												<a class="btn btn-success"
+													href="#>View Details</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							</div>
+							</div> 
+						</div>
+
+					</center>
+                    </center>
+                </div>
+            </div>
+        </div>
+  </div>
+<!-- </div> -->
+
+</div>
+</body>
+</html>

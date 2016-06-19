@@ -1,6 +1,6 @@
 package com.ss.bean;
 
-import com.cft.pojo.BookTour;
+import com.cft.entity.BookTour;
 
 public interface Communicable {
 

@@ -11,146 +11,78 @@
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-<div class="panel-group" id="accordion">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-													<i class="icon icon-usd"></i>
-													login details
-												</a>
-											</h4>
-										</div>
-										<div id="collapseOne" class="accordion-body collapse in">
-											<div class="panel-body">
-												<div class="form-group">
-										<input type="text" name="name" id="txtName" tabindex="1" class="form-control" placeholder="Name" value="" ng-model="txtName">
-									</div>
-									<div class="form-group">
-										<input type="email" name="email" id="txtEmail" tabindex="1" class="form-control" placeholder="Email Address" value="" ng-model="txtEmail">
-									</div>
-									
-									
-									
-									<div class="form-group">
-										<input type="password" name="password" id="txtPassword" tabindex="2" class="form-control" placeholder="Password" ng-model="txtPassword">
-											</div>
-
-											<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="registerSubmit" id="registerSubmit" class="form-control btn btn-register" value="Continue" href="#collapseTwo">
-											</div>
-										</div>
-									</div>
-										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-													<i class="icon icon-comment"></i>
-													Commumnication Details
-												</a>
-											</h4>
-										</div>
-										<div id="collapseTwo" class="accordion-body collapse">
-											<div class="panel-body">
-												<div class="form-group">
-										<input type="text" name="contact" id="txtContact"  class="form-control" placeholder="Contact Number " value="" ng-model="txtContact">
-									</div>
-									<div class="form-group">
-										<input type="text" name="altContact" id="txtAltContact"  class="form-control" placeholder="Alternate Contact Number " value="" ng-model="txtAltContact">
-									</div>
-
-									<div class="form-group">
-										<input type="text" name="location" id="txtLocation"  class="form-control" placeholder="Location " value="" ng-model="txtLocation">
+<div class="container">
+		<div class="row">
+					<div id="content" class="col-sm-12 full">
+			<div class="row">
+				<div class="login-box">
+					
+					<div class="header">
+						Login to Genius Dashboard
+					</div>
+					<p>
+						<a class="btn btn-facebook"><span>Login via Facebook</span></a>
+					</p>
+					<p>	
+						<a class="btn btn-twitter"><span>Login via Twitter</span></a>
+					</p>
+					<p>	
+						<a class="btn btn-linkedin"><span>Login via LinkedIn</span></a>	
+					</p>
+					
+					<div class="text-with-hr">
+						<span>or use your username</span>
+					</div>
+					
+					<form class="form-horizontal login" action="index.html" method="post">
+						
+						<fieldset class="col-sm-12">
+							<div class="form-group">
+							  	<div class="controls row">
+									<div class="input-group col-sm-12">	
+										<input type="text" class="form-control" id="username" placeholder="Username or E-mail"/>
+										<span class="input-group-addon"><i class="fa fa-user"></i></span>
 									</div>	
-									<div class="form-group">
-										<input type="text" name="region" id="txtRegion"  class="form-control" placeholder="Region " value="" ng-model="txtRegion">
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><input type="label" name="registerSubmit" id="registerSubmit"  value="Continue">
-													</a>
-											</div>
-										</div>
-									</div>
-										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-													<i class="icon icon-laptop"></i>
-													Vehicle Details
-												</a>
-											</h4>
-										</div>
-										<div id="collapseThree" class="accordion-body collapse">
-											<div class="panel-body">
-												<div class="form-group">
-										<input type="text" name="vehicle" id="txtVehicle"  class="form-control" placeholder="Vehicle " value="" ng-model="txtVehicle">
-									</div>
-									<div class="form-group">
-										<input type="text" name="subCatogory" id="txtSubCatogory"  class="form-control" placeholder=" Sub Category" value="" ng-model="txtSubCatogory">
-									</div>
-									<div class="form-group">
-										<input type="text" name="typeOfPermit" id="txtTypeOfPermit"  class="form-control" placeholder="Type Of Permit " value="" ng-model="txtTypeOfPermit">
-									</div>
-									<div  class="form-group">
-									<select class="form-control" id="slctTypeOfPermit" ng-model="selectTypeOfPermit">
-    								<option value="" selected="false">Type Of Permit</option>
-    								<option value="Private">Private</option>
-    								<option value="Tourist">Tourist</option>   									 
-   									</select> </div>
-									<div class="form-group">
-										<input type="text" name="availability" id="txtAvailability"  class="form-control" placeholder="Availability " value="" ng-model="txtAvailability">
-									</div>
-									<div class="form-group">
-										<input type="text" name="seat" id="txtSeat"  class="form-control" placeholder="Seat" value="" ng-model="txtSeat">
-									</div>
-									<div class="form-group">
-										<input type="text" name="vehicleType" id="txtVehicleType"  class="form-control" placeholder="Vehicle Type " value="" ng-model="txtVehicleType">
-									</div>
-									
-									<div class="form-group">
-										<input type="text" name="vehicleNumber" id="txtVehicleNumber"  class="form-control" placeholder="Vehicle Number " value="" ng-model="txtVehicleNumber">
-									</div>
-									<div class="form-group">
-										<input type="text" name="color" id="txtColour"  class="form-control" placeholder="Colour " value="" ng-model="txtColour">
-									</div>
-									<div  class="form-group">
-									<select class="form-control" id="slctFuelTypeList" ng-model="selectFuelType">
-    								<option value="" selected="false">Fuel</option>
-    								<option value="Diesel">Diesel</option>
-    								<option value="CNG">CNG</option>   									 
-   									</select> </div>
-									<div  class="form-group">
-									<select class="form-control" id="slctACTypeList" ng-model="selectACNonAC">
-    								<option value="" selected="false">AC/Non-AC</option>
-    								<option value="AC">AC</option>
-    								<option value="Non-AC">Non-AC</option>   									 
-   									</select> </div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="registerSubmit" id="registerSubmit" class="form-control btn btn-register" value="Continue" >
-											</div>
-										</div>
-									</div>
+							  	</div>
+							</div>
+							
+							<div class="form-group">
+							  	<div class="controls row">
+									<div class="input-group col-sm-12">	
+										<input type="password" class="form-control" id="password" placeholder="Password"/>
+										<span class="input-group-addon"><i class="fa fa-key"></i></span>
+									</div>	
+							  	</div>
+							</div>
 
+							<div class="confirm">
+								<input type="checkbox" name="remember"/>
+								<label for="remember">Remember me</label>
+							</div>	
 
+							<div class="row">
+							
+								<button type="submit" class="btn btn-lg btn-primary col-xs-12">Login</button>
+							
+							</div>
+								
+						</fieldset>	
 
+					</form>
+					
+					<a class="pull-left" href="page-login.html#">Forgot Password?</a>
+					<a class="pull-right" href="page-register.html">Sign Up!</a>
+					
+					<div class="clearfix"></div>				
+						
+				</div>
+			</div><!--/row-->
+		
+		</div>	
 
-											</div>
-										</div>
-									</div>
-								</div>
-								</div>
-								</div>
-</body>
+			
+			
+				</div><!--/row-->		
+		
+	</div><!--/container-->
 </html>

@@ -1,15 +1,23 @@
-package com.cft.pojo;
+package com.cft.entity;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 
 
 
@@ -34,6 +42,13 @@ public class User {
 	
 	@Transient
 	String otp;
+	
+	/*@OneToOne( mappedBy = "user")
+	UserRole userRole;
+	*/
+	
+	@OneToMany( mappedBy = "user",fetch=FetchType.EAGER)
+	List<UserRole> userRoles;
 
 	public Integer getUserId() {
 		return userId;
@@ -113,6 +128,14 @@ public class User {
 
 	public void setOtp(String otp) {
 		this.otp = otp;
+	}
+
+	public List<UserRole> getUserRoles() {
+		return userRoles;
+	}
+
+	public void setUserRoles(List<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 
 	

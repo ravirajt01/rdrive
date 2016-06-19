@@ -7,9 +7,9 @@ import java.util.List;
 import org.hsqldb.Session;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import com.cft.pojo.BookTour;
-import com.cft.pojo.Staging;
-import com.cft.pojo.User;
+import com.cft.entity.BookTour;
+import com.cft.entity.Staging;
+import com.cft.entity.User;
 
 public class BookTourBean {
 	User user;

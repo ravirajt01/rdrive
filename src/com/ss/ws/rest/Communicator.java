@@ -12,7 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.cft.bean.BookTourBean;
-import com.cft.pojo.BookTour;
+import com.cft.entity.BookTour;
 import com.javatpoint.Employee;
 import com.javatpoint.EmployeeDao;
 import com.javatpoint.InitialLoader;

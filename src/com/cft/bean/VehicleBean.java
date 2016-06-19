@@ -1,5 +1,6 @@
 package com.cft.bean;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,12 +9,15 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import com.cft.entity.Colour;
+import com.cft.entity.Make;
+import com.cft.entity.Staging;
+import com.cft.entity.User;
+import com.cft.entity.Vehicle;
+import com.cft.entity.VehiclePhoto;
 import com.cft.exception.UnActiveUser;
 import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
-import com.cft.pojo.Staging;
-import com.cft.pojo.User;
-import com.cft.pojo.Vehicle;
 import com.javatpoint.Employee;
 import com.ss.bean.CommunicateBean;
 import com.ss.bean.CommunicateBean.MailType;
@@ -53,5 +57,30 @@ public class VehicleBean {
 		List<Vehicle> list=new ArrayList<Vehicle>();  
 		list=template.loadAll(Vehicle.class);  
 		return list;  
+	}
+
+
+
+	public List<Make> getVehiclesMakers() {
+		List<Make> list=new ArrayList<Make>();  
+		list=template.loadAll(Make.class);  
+		return list;  
+	}
+
+
+
+	public List<Colour> getColours() {
+		List<Colour> list=new ArrayList<Colour>();  
+		list=template.loadAll(Colour.class);  
+		return list;  
+	}
+
+
+
+	public Integer addVehiclePhoto(VehiclePhoto vehiclePhoto) {
+		
+		Integer vehiclephotoId= (Integer) template.save(vehiclePhoto);
+		return vehiclephotoId;  
+		
 	}
 }

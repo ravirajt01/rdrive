@@ -1,4 +1,4 @@
-package com.cft.pojo;
+package com.cft.entity;
 import java.util.Calendar;
 import java.util.Date;
 

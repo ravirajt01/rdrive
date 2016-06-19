@@ -7,12 +7,12 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import com.cft.entity.Staging;
+import com.cft.entity.User;
+import com.cft.entity.Vender;
 import com.cft.exception.UnActiveUser;
 import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
-import com.cft.pojo.Staging;
-import com.cft.pojo.User;
-import com.cft.pojo.Vender;
 import com.javatpoint.Employee;
 import com.ss.bean.CommunicateBean;
 import com.ss.bean.CommunicateBean.MailType;

@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import com.cft.pojo.City;
+import com.cft.entity.City;
 import com.ss.utility.Utils;
 
 
