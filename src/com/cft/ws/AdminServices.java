@@ -3,6 +3,7 @@ package com.cft.ws;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -51,18 +52,18 @@ import com.studytrails.tutorials.springhibernatejpa.PersonDao;
 
 public class AdminServices {
 
+	private static final Logger logger = Logger.getLogger(AdminServices.class.getName());
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)  
 	@Path("/admin/bookings")  
 	public String getbookings(){ 
-		//List<BookTour> bookTour=new ArrayList<BookTour>(); 
 		
-		System.out.println("method : getbookings");
-		BookTourBean bookTourBean=(BookTourBean)InitialLoader.ctx.getBean("booktourBean");
+		logger.info("method : getbookings");
+		BookTourBean bookTourBean = InitialLoader.ctx.getBean(BookTourBean.class);
 		
 		
-		List<BookTour> bookTour =bookTourBean.getbookings();
+		List<BookTour> bookTour = bookTourBean.getbookings();
 
 		return Reply.formatReply(bookTour,ExceptionCode.SCS);
 
@@ -74,8 +75,8 @@ public class AdminServices {
 	@Path("/admin/cities")  
 	public String getcities(){ 
 		
-		System.out.println("method : getcities");
-		CityBean cityBean=(CityBean)InitialLoader.ctx.getBean("cityBean");
+		logger.info("method : getcities");
+		CityBean cityBean = InitialLoader.ctx.getBean(CityBean.class);
 		
 		
 		List<City> city =cityBean.getcities();
@@ -90,9 +91,9 @@ public class AdminServices {
 	@Path("/admin/city")  
 	public String addUpdateCities(City city ) throws UnAuthorisedUser, UnActiveUser { 
 
-		System.out.println("method : addUpdateCitys" +  Utils.objectToJsonStirng(city));
+		logger.info("method : addUpdateCitys" +  Utils.objectToJsonStirng(city));
 
-		CityBean cityBean = (CityBean)InitialLoader.ctx.getBean("cityBean");
+		CityBean cityBean = InitialLoader.ctx.getBean(CityBean.class);
 
 		if(city.getCityId()==null){
 			Integer cityId= cityBean.addCity(city);

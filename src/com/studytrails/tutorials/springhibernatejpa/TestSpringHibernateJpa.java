@@ -8,9 +8,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestSpringHibernateJpa {
 
 	public static void main(String[] args) {
-		System.out.println("************** BEGINNING PROGRAM **************");
+		/*System.out.println("************** BEGINNING PROGRAM **************");
 
-		/*ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 		PersonService personService = (PersonService) context.getBean("personService");
 
 		Person person = new Person();
@@ -20,8 +20,8 @@ public class TestSpringHibernateJpa {
 		System.out.println("Person : " + person + " added successfully");
 
 		List<Person> persons = personService.fetchAllPersons();
-		System.out.println("The list of all persons = " + persons);*/
+		System.out.println("The list of all persons = " + persons);
 
-		System.out.println("************** ENDING PROGRAM *****************");
+		System.out.println("************** ENDING PROGRAM *****************");*/
 	}
 }

@@ -1,4 +1,6 @@
 package com.ss.ws.rest;  
+import java.util.logging.Logger;
+
 import javax.ejb.AfterBegin;
 import javax.ejb.BeforeCompletion;
 import javax.ws.rs.GET;  
@@ -9,18 +11,21 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;  
 import javax.ws.rs.core.Response;
 
+import com.cft.ws.VehicleServices;
 import com.ss.utility.Reply;
 import com.ss.utility.GenericVariables.ExceptionCode;
 @Path("/")  
 public class TestServices {  
   // This method is called if HTML and XML is not requested  
 	
+	private static final Logger logger = Logger.getLogger(TestServices.class.getName());
+
 	@GET  
 	  @Produces(MediaType.APPLICATION_JSON)  
 	  @Path("/hello")  
 	  public String helloM() { 
 		 
-		  System.out.println("getTask method invoked");
+		  logger.info("getTask method invoked");
 		
 		  String reply = "{ \"records\":[ {\"Name\":\"Alfreds Futterkiste\",\"City\":\"Berlin\",\"Country\":\"Germany\"} ] }";
 		  
@@ -40,16 +45,17 @@ public class TestServices {
 		  @PathParam("taskName") String taskName , 
 		  @QueryParam(value = "taskNum") Integer taskNum) { 
 	  msg();
-	  System.out.println("getTask method invoked");
+	  logger.info("getTask method invoked");
 	String  result=  taskId + taskNum + "" +taskName;  
 	return Response.status(500).entity(result).build();
 
 	
     
   }
-  public void msg(){System.out.println("msg method invoked");}  
-  public int m(){System.out.println("m method invoked");return 2;}  
-  public int k(){System.out.println("k method invoked");return 3;}  
+  
+  public void msg(){logger.info("msg method invoked");}  
+  public int m(){logger.info("m method invoked");return 2;}  
+  public int k(){logger.info("k method invoked");return 3;}  
 
   // This method is called if XML is requested  
   /* 

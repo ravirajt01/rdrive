@@ -3,6 +3,7 @@ package com.ss.bean;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -18,10 +19,12 @@ import com.cft.entity.Template;
 import com.cft.entity.User;
 import com.cft.entity.Vender;
 import com.cft.pojo.MailDetails;
+import com.ss.exceptions.CustomExceptionMapper;
 
 public class CommunicateBean /*implements Communicable */{
 
-	
+	private static final Logger logger = Logger.getLogger(CommunicateBean.class.getName());
+
 	private static String fromEmail = "carfortour@gmail.com" ;
 	private static String fromPW = "CarForTour2015" ;
 	
@@ -81,7 +84,7 @@ public class CommunicateBean /*implements Communicable */{
 /*
 		 EmployeeDao dao=(EmployeeDao)InitialLoader.ctx.getBean("edao");
 		    int status= employeeDao.saveEmployee(new Employee(102,"Amit",35000));  
-		    System.out.println(status);*/  
+		    logger.info(status);*/  
 		/*
 			Employee employee = new Employee();
 			employee.setId(22);
@@ -89,7 +92,7 @@ public class CommunicateBean /*implements Communicable */{
 			employee.setSalary(100000);
 			
 		    employeeDao.saveEmployee(employee);  
-		    System.out.println("saved..");*/
+		    logger.info("saved..");*/
 		    
 	}
 	
@@ -120,7 +123,7 @@ public class CommunicateBean /*implements Communicable */{
 		props.put("mail.smtp.port", "587");
 		props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
-		System.out.println("conf set...");
+		logger.info("conf set...");
 
 		//Session session = Session.getDefaultInstance(props,  
 		Session session = Session.getInstance(props,  
@@ -136,7 +139,7 @@ public class CommunicateBean /*implements Communicable */{
 			
 			
 			
-			System.out.println("session:"+session);
+			logger.info("session:"+session);
 			MimeMessage message = new MimeMessage(session);  
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(sendTo));  
 			message.setSubject(subject);  
@@ -146,7 +149,7 @@ public class CommunicateBean /*implements Communicable */{
 			//send message  
 			Transport.send(message);  
 
-			//System.out.println("message sent successfully");  
+			//logger.info("message sent successfully");  
 
 		} catch (MessagingException e) {throw new RuntimeException(e);}  
 
@@ -288,7 +291,7 @@ public class CommunicateBean /*implements Communicable */{
 		}
 		
 		mailDetails.setBody(body);
-		//System.out.println("body"+body  );
+		//logger.info("body"+body  );
 	}
 
 	private Template getMessageSubjectAndText(MailType mailType) {
@@ -313,7 +316,7 @@ public class CommunicateBean /*implements Communicable */{
 		props.put("mail.smtp.port", "587");
 		props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
-		System.out.println("conf set...");
+		logger.info("conf set...");
 
 		//Session session = Session.getDefaultInstance(props,  
 		Session session = Session.getInstance(props,  
@@ -326,7 +329,7 @@ public class CommunicateBean /*implements Communicable */{
 		//compose message  
 		try {  
 			
-			System.out.println("session:"+session);
+			logger.info("session:"+session);
 			MimeMessage message = new MimeMessage(session);  
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(sendTo));  
 			message.setSubject(subject);  
@@ -336,7 +339,7 @@ public class CommunicateBean /*implements Communicable */{
 			//send message  
 			Transport.send(message);  
 
-			System.out.println("message sent successfully");  
+			logger.info("message sent successfully");  
 
 		} catch (MessagingException e) {throw new RuntimeException(e);}  
 	}

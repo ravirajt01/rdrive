@@ -2,6 +2,7 @@ package com.cft.bean;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -19,11 +20,11 @@ import com.ss.bean.CommunicateBean.MailType;
 import com.ss.utility.Utils;
 
 
+public class VendorBean {
 
+	private static final Logger logger = Logger.getLogger(VehicleBean.class.getName());
 
-public class VenderBean {
-
-HibernateTemplate template;  
+	HibernateTemplate template;  
 	
 	StagingBean stagingBean;
 	CommunicateBean communicateBean;
@@ -72,7 +73,7 @@ HibernateTemplate template;
 		vender.setRegistrationDate(new Date());
 		Integer venderId =  (Integer) template.save(vender);  
 
-		System.out.println("venderId : "+ venderId);
+		logger.info("venderId : "+ venderId);
 
 		boolean isDuplicate = true;
 		String emailToken = null;
@@ -86,7 +87,7 @@ HibernateTemplate template;
 		}
 
 
-		System.out.println("emailToken :"+ emailToken);
+		logger.info("emailToken :"+ emailToken);
 
 		Staging staging = new Staging();
 		staging.setOtp(emailToken);
@@ -106,7 +107,7 @@ public int verifyVenderRegistration(String token) {
 		
 		List<Staging> venderToVerify =template.find("from Staging where otp=?",token);
 		
-		System.out.println("tokenForvenderToVerify"+venderToVerify.size());
+		logger.info("tokenForvenderToVerify"+venderToVerify.size());
 		
 		if(venderToVerify.size()==0){
 			return 0;

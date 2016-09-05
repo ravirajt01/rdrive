@@ -1,27 +1,32 @@
 package com.cft.bean;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.logging.Logger;
 
-import org.hibernate.Criteria;
-import org.hibernate.SessionFactory;
+import org.jboss.resteasy.spi.UnauthorizedException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cft.entity.Staging;
 import com.cft.entity.User;
 import com.cft.exception.UnActiveUser;
 import com.cft.exception.UnAuthorisedUser;
 import com.cft.exception.UserAlreadyExist;
-import com.javatpoint.Employee;
 import com.ss.bean.CommunicateBean;
 import com.ss.bean.CommunicateBean.MailType;
 import com.ss.utility.Utils;
+import com.ss.utility.GenericVariables.ROLE;
 
 
 public class UserBean {
 
+	
+	private static final Logger logger = Logger.getLogger(UserBean.class.getName());
+
+	
 	HibernateTemplate template;  
 	
 	StagingBean stagingBean;
@@ -50,7 +55,7 @@ public class UserBean {
 		user.setRegistrationDate(new Date());
 		Integer userId =  (Integer) template.save(user);  
 
-		System.out.println("userId : "+ userId);
+		logger.info("userId : "+ userId);
 
 		boolean isDuplicate = true;
 		String emailToken = null;
@@ -64,7 +69,7 @@ public class UserBean {
 		}
 
 
-		System.out.println("emailToken :"+ emailToken);
+		logger.info("emailToken :"+ emailToken);
 
 		Staging staging = new Staging();
 		staging.setOtp(emailToken);
@@ -106,7 +111,7 @@ public class UserBean {
 		
 		List<Staging> userToVerify =template.find("from Staging where otp=?",token);
 		
-		System.out.println("tokenForuserToVerify"+userToVerify.size());
+		logger.info("tokenForuserToVerify"+userToVerify.size());
 		
 		if(userToVerify.size()==0){
 			return 0;
@@ -136,17 +141,21 @@ public class UserBean {
 		else{
 
 			loggedInUser = users.get(0);
-
+			
+			if(! loggedInUser.getRoles().contains(user.getUserRoles().toString())){
+				throw new UnAuthorisedUser("Not having correct role"+user.getUserRoles().toString());
+			}
+			
 			if(!loggedInUser.isRegistrationConfirmed()){
 				throw new UnActiveUser("User is not active yet")  ;
 			}
 
+			
+			
 		}
 		return loggedInUser;
 	}  
 	
-	
-
 	public List<User> getAllUsers(){
 		
 		return this.getUsers();
@@ -169,8 +178,6 @@ public void forgotpass(User user) throws UnAuthorisedUser {
 		//return reguser;
 		
 	}  
-	
-	
-	
+
 	
 }

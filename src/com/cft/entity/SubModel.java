@@ -22,6 +22,8 @@ public class SubModel {
     String subModel;
     String subModelCode ;
     
+    Integer modelId;
+    
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="modelId",insertable=false,updatable=false)
     private Model model ;
@@ -49,5 +51,14 @@ public class SubModel {
 	public void setSubModelCode(String subModelCode) {
 		this.subModelCode = subModelCode;
 	}
+
+	public Integer getModelId() {
+		return modelId;
+	}
+
+	public void setModelId(Integer modelId) {
+		this.modelId = modelId;
+	}
     
+	
 }

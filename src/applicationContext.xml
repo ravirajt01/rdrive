@@ -12,7 +12,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
   
- <property name="url" value="jdbc:mysql://localhost:3306/testsDB"/>
+ <property name="url" value="jdbc:mysql://localhost:3306/testDB"/>
       <property name="username" value="root"/>
       <property name="password" value="asdf12345"/> 
    
@@ -81,7 +81,8 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 		<list>
 			<value>com.javatpoint.Employee</value>
 			<value>com.cft.entity.User</value>
-			<value>com.cft.entity.UserRole</value>
+			<!-- <value>com.cft.entity.UserRole</value> -->
+			<!-- <value>com.cft.entity.Role</value> -->
 			<value>com.cft.entity.Staging</value>
 			<value>com.cft.entity.BookTour</value>
 			<value>com.cft.entity.Vender</value>
@@ -92,7 +93,12 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<value>com.cft.entity.Model</value>
 			<value>com.cft.entity.SubModel</value>
 			<value>com.cft.entity.Colour</value>
+			<value>com.cft.entity.UserVehicle</value>
+			<value>com.cft.entity.UserVehicleView</value>
+			
 			<value>com.cft.entity.VehiclePhoto</value>
+			
+			
 		</list>
 	</property>
 		 
@@ -120,7 +126,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	</bean>  
 
 	
-	<bean id="booktourBean" class="com.cft.bean.BookTourBean">
+	<bean id="bookTourBean" class="com.cft.bean.BookTourBean">
 			<property name="template" ref="template"></property>
 	</bean>
 	
@@ -136,7 +142,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			
 	</bean> 
 	
-	<bean id="venderBean" class="com.cft.bean.VenderBean">
+	<bean id="vendorBean" class="com.cft.bean.VendorBean">
 			<property name="template" ref="template"></property>
 			<property name="stagingBean" ref="stagingBean"></property>
 			<property name="communicateBean" ref="communicateBean"></property>
@@ -158,7 +164,11 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="cityBean" class="com.cft.bean.CityBean">
 			<property name="template" ref="template"></property>
 	</bean>  
-
+	
+	 <bean id="opBean" class="com.javatpoint_old.Operation">   </bean>  
+    <bean id="trackMyBean" class="com.mkyong.rest.TrackOperation"></bean>
+        <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"></bean>  
+    
 
   
 </beans>  

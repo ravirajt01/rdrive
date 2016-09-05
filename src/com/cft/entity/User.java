@@ -1,22 +1,20 @@
 package com.cft.entity;
 
-import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+import java.util.EnumSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import com.ss.utility.GenericVariables.ROLE;
 
 
 
@@ -34,11 +32,19 @@ public class User {
 	String email ;
 	String password;
 	
+	 
+	 
+	 
+	
 	Date registrationDate;
 	boolean isRegistrationConfirmed ;
 	Date registrationConfirmDate;
 	@Column(columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	Date lastTimeStamp;
+
+	String roles ;
+	@Transient
+	public ROLE userRoles;
 	
 	@Transient
 	String otp;
@@ -46,9 +52,8 @@ public class User {
 	/*@OneToOne( mappedBy = "user")
 	UserRole userRole;
 	*/
-	
-	@OneToMany( mappedBy = "user",fetch=FetchType.EAGER)
-	List<UserRole> userRoles;
+	//@OneToMany( mappedBy = "user",fetch=FetchType.EAGER)userRoles
+	//List<UserRole> userRoles;
 
 	public Integer getUserId() {
 		return userId;
@@ -130,17 +135,23 @@ public class User {
 		this.otp = otp;
 	}
 
-	public List<UserRole> getUserRoles() {
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+		
+	}
+
+	public ROLE getUserRoles() {
 		return userRoles;
 	}
 
-	public void setUserRoles(List<UserRole> userRoles) {
+	public void setUserRoles(ROLE userRoles) {
 		this.userRoles = userRoles;
 	}
 
 	
 	
-
-	
-
 }

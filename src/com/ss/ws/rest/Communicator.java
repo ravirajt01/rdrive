@@ -1,5 +1,7 @@
 package com.ss.ws.rest; 
 
+import java.util.logging.Logger;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -12,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.cft.bean.BookTourBean;
+import com.cft.bean.UserBean;
 import com.cft.entity.BookTour;
 import com.javatpoint.Employee;
 import com.javatpoint.EmployeeDao;
@@ -31,22 +34,24 @@ import com.studytrails.tutorials.springhibernatejpa.PersonDao;
 @Path("/")  
 
 public class Communicator {  
+	
+	
 /*
 	@Autowired
 	private PersonDao personDao;*/
+	
+	private static final Logger logger = Logger.getLogger(Communicator.class.getName());
+
 	
 	@GET 
 	@Produces(MediaType.APPLICATION_JSON)  
 	@Path("/suscribe")  
 	public String suscribe( @QueryParam(value = "email") String email ){ 
 
-		System.out.println("method : suscribe"  );
+		logger.info("method : suscribe input : "+ email );
 		
 		CommunicateBean communicable = new CommunicateBean();
-		
 		communicable.suscribe(email);
-				
-		System.out.println("input : "+ email);
 
 		return Reply.formatReply("",ExceptionCode.SCS);
 
@@ -57,12 +62,12 @@ public class Communicator {
 	@Path("/book_tour")  
 	public String putTourBookRequest( BookTour bookTour  ){ 
 
-		System.out.println("method : putTourBookRequest" +"input : "+ Utils.objectToJsonStirng(bookTour) );
+		logger.info("method : putTourBookRequest" +"input : "+ Utils.objectToJsonStirng(bookTour) );
 
 		BookTourBean booktourBean=(BookTourBean)InitialLoader.ctx.getBean("booktourBean");
 		//booktourBean.addBookTour(bookTour);
 		
-		CommunicateBean communicateBean=(CommunicateBean)InitialLoader.ctx.getBean("communicateBean");
+		//CommunicateBean communicateBean=(CommunicateBean)InitialLoader.ctx.getBean("communicateBean");
 		
 		
 		if(bookTour.getFromDate()!=null)

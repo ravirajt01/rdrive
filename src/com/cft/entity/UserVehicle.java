@@ -15,21 +15,17 @@ public class UserVehicle {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer userVehicleId;
+    private Integer userId;
     
-    Integer makeId;
-    Integer modelId;
-    Integer subModelId;
-    Integer colourId;
-    String fuel;
-    String rtoNumber;
-    String regNumber;
-    String vehicleContact ;
-    
-    
-    
-    boolean isActive ;
-    boolean isDeleted ;
-	
+    private Integer makeId;
+    private Integer modelId;
+    private Integer subModelId;
+    private Integer colourId;
+    private String fuel;
+    private String rtoNumber;
+    private String regNumber;
+    private String vehicleContactNumber ;
+    private String vehicleContactEmail ;
     
     
 	public Integer getUserVehicleId() {
@@ -80,24 +76,28 @@ public class UserVehicle {
 	public void setRegNumber(String regNumber) {
 		this.regNumber = regNumber;
 	}
-	public String getVehicleContact() {
-		return vehicleContact;
+	
+	public String getVehicleContactNumber() {
+		return vehicleContactNumber;
 	}
-	public void setVehicleContact(String vehicleContact) {
-		this.vehicleContact = vehicleContact;
+	public void setVehicleContactNumber(String vehicleContactNumber) {
+		this.vehicleContactNumber = vehicleContactNumber;
 	}
-	public boolean isActive() {
-		return isActive;
+	public String getVehicleContactEmail() {
+		return vehicleContactEmail;
 	}
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setVehicleContactEmail(String vehicleContactEmail) {
+		this.vehicleContactEmail = vehicleContactEmail;
 	}
-	public boolean isDeleted() {
-		return isDeleted;
+	
+	public Integer getUserId() {
+		return userId;
 	}
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
+
+	
 
     
     

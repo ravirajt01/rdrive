@@ -1,27 +1,32 @@
 package com.javatpoint;
 
+import java.util.logging.Logger;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpServlet;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.ss.exceptions.CustomExceptionMapper;
+
 
 
 public  class InitialLoader  extends HttpServlet  {
 
+	private static final Logger logger = Logger.getLogger(CustomExceptionMapper.class.getName());
+
 	public static ApplicationContext ctx = null;
 	static {
 
-		System.out.println("before initialised .. applicationContext");
+		logger.info("before initialised .. applicationContext");
 		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-		System.out.println("after .. applicationContext");
+		logger.info("after .. applicationContext");
 	}
-	
 	
 	private void Init(ServletConfig confg) {
 		
-		System.out.println("this is in init method");
+		//logger.info("this is in init method");
 	}
 	
 }

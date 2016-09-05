@@ -1,6 +1,7 @@
 package com.cft.ws;  
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -46,31 +47,32 @@ import com.studytrails.tutorials.springhibernatejpa.PersonDao;
 
 public class ConfigurationMgmtServices {  
 
-	
+	private static final Logger logger = Logger.getLogger(ConfigurationMgmtServices.class.getName());
+
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)  
 	@Path("/templates")  
 	public String getTemplates( ) throws UnAuthorisedUser, UnActiveUser { 
 
-		System.out.println("method : getTemplates" );
+		logger.info("method : getTemplates" );
 
-		ConfigurationMgmtBean configurationMgmtBean = (ConfigurationMgmtBean)InitialLoader.ctx.getBean("configurationMgmtBean");
-		 List<Template> templates= configurationMgmtBean.getTemplates();
+		ConfigurationMgmtBean configurationMgmtBean = InitialLoader.ctx.getBean(ConfigurationMgmtBean.class);
+		List<Template> templates= configurationMgmtBean.getTemplates();
 
 		return Reply.formatReply(templates,ExceptionCode.SCS);
 
 	}
 
+	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)  
 	@Path("/template")  
 	public String addUpdateTemplate(Template template ) throws UnAuthorisedUser, UnActiveUser { 
 
-		System.out.println("method : addUpdateTemplate" +  Utils.objectToJsonStirng(template));
+		logger.info("method : addUpdateTemplate" +  Utils.objectToJsonStirng(template));
 
-		ConfigurationMgmtBean configurationMgmtBean = (ConfigurationMgmtBean)InitialLoader.ctx.getBean("configurationMgmtBean");
-
+		ConfigurationMgmtBean configurationMgmtBean = (ConfigurationMgmtBean)InitialLoader.ctx.getBean(ConfigurationMgmtBean.class);
 		if(template.getTemplateId()==null){
 		
 		}else{

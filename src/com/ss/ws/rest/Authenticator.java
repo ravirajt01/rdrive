@@ -1,4 +1,6 @@
 package com.ss.ws.rest;  
+import java.util.logging.Logger;
+
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,6 +20,9 @@ import com.studytrails.tutorials.springhibernatejpa.Person;
 import com.studytrails.tutorials.springhibernatejpa.PersonDao;
 @Path("/")  
 public class Authenticator {  
+	
+	private static final Logger logger = Logger.getLogger(Authenticator.class.getName());
+
 /*
 	@Autowired
 	private PersonDao personDao;*/
@@ -27,13 +32,13 @@ public class Authenticator {
 	@Path("/login")  
 	public String login( LoginUser loginUser){ 
 
-		System.out.println("method : login"  );
+		logger.info("method : login"  );
 		
 		Autheticable autheticable = new AutheticatorBean();
 		
 		String token = autheticable.login(loginUser);
 		
-		System.out.println("input : "+ Utils.objectToJsonStirng(loginUser));
+		logger.info("input : "+ Utils.objectToJsonStirng(loginUser));
 		
 	/*	Person p = new Person() ;
 		p.setName(loginUser.getUserName());
@@ -51,7 +56,7 @@ public class Authenticator {
 		
 		 accountsDao.createAccount(15, "Jai Kumar", 41000);  
 		 accountsDao.createAccount(20, "Rishi ", 35000);  
-		 System.out.println("Accounts created");  
+		 logger.info("Accounts created");  
 		
 		
 		return Reply.formatReply("",ExceptionCode.SCS);

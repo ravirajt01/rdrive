@@ -20,7 +20,7 @@ import javax.persistence.Transient;
 
 
 @Entity
-@Table(name= "user_role")  
+@Table(name= "user_role2")  
 public class UserRole {
 	
 	@Id
@@ -35,20 +35,20 @@ public class UserRole {
 	private User user;
 	*/
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	/*@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="userId",insertable=false,updatable=false)
-	private User user;
+	private User user;*/
 	
-	
+	/*
 	public Integer getUserRoleId() {
 		return userRoleId;
-	}
+	}*/
 	public void setUserRoleId(Integer userRoleId) {
 		this.userRoleId = userRoleId;
 	}
-	public Integer getUserId() {
+	/*public Integer getUserId() {
 		return userId;
-	}
+	}*/
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}

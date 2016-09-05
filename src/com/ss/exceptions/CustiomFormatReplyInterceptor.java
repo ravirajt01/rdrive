@@ -23,9 +23,6 @@ public class CustiomFormatReplyInterceptor implements PostProcessInterceptor{
 		serverResponse.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 		serverResponse.setHeader("Access-Control-Allow-Credentials", "true");
 		
-		
-	//	System.out.println("testing ............");
-		
 	}
 
 }

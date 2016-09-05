@@ -4,14 +4,12 @@
 <head>
 
 <!-- jquery lib-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
+<script src="/resource/external/ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <!-- angular js lib -->
-<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src= "/resource/external/ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+<script type="text/javascript" src="/resource/external/cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
 
   <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -137,7 +135,7 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
     	$('#loginSubmit').attr('disabled', true);
     	
 
-		$http.post(domainName + '/rest/vender/login', data).success(
+		$http.post(domainName + '/rest/user/vendor/login', data).success(
 					function(response) {
 
 						$scope.messsageCode = response.messsageCode;
@@ -145,18 +143,6 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
 						console.log($scope.messsageCode);
 
 						if ($scope.messsageCode == 'SCS'){
-							/* 
-							delete sessionStorage.SessionMessage;
-							  $sessionStorage.SessionMessage =''+ $scope.txtLoginEmail;//response.reply ;
-							  
-							  /* $localStorage.LocalMessage  = "bb";//response.reply ; 
-							    console.log( $localStorage.LocalMessage); */
-							    /* 
-							    $sessionStorage.setItem('myKey', 'myValue');
-							    
-							    console.log( $sessionStorage.getItem('myKey')); */
-							    
-							    
 							    sessionStorage.currentUser = null;
 							    if(typeof(Storage) !== "undefined") {
 							    	sessionStorage.currentUser = response.reply;
@@ -166,21 +152,7 @@ app.controller('loginCtrl', function($scope, $http,$window,$sessionStorage) {
 							    	alert("Your browser do not support..");
 							    }
 
-								 
-							
-							
-							//delete sessionStorage.SessionMessage;
-							/* console.log("befre..");
-						    $sessionStorage["msg"] = "demo.." ;//response.reply ;
-						    console.log("after..");
-							
-						    console.log($sessionStorage["msg"]); */
-						    /* console.log(response.reply);
-						    $sessionStorage.currentUser = response.reply ;
-						    console.log($sessionStorage.currentUser);
-						    $sessionStorage.currentUserName = "test"; */
-						    
-							 $window.location.href = '/';
+							    $window.location.href = '/home.html';
 
 						}else if ($scope.messsageCode == 'UNAU'){
 							alert("Wrong user name or password");

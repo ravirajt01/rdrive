@@ -1,30 +1,24 @@
 package com.cft.bean;
 
-import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.SessionFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.cft.entity.Colour;
 import com.cft.entity.Make;
-import com.cft.entity.Staging;
-import com.cft.entity.User;
+import com.cft.entity.Model;
+import com.cft.entity.SubModel;
+import com.cft.entity.UserVehicle;
+import com.cft.entity.UserVehicleView;
 import com.cft.entity.Vehicle;
 import com.cft.entity.VehiclePhoto;
-import com.cft.exception.UnActiveUser;
-import com.cft.exception.UnAuthorisedUser;
-import com.cft.exception.UserAlreadyExist;
-import com.javatpoint.Employee;
-import com.ss.bean.CommunicateBean;
-import com.ss.bean.CommunicateBean.MailType;
-import com.ss.utility.Utils;
+import com.cft.exception.RecordAlreadyExist;
 
 
 public class VehicleBean {
+
 
 	HibernateTemplate template;  
 	
@@ -43,6 +37,63 @@ public class VehicleBean {
 	public void updateVehicle(Vehicle vehicle){  
 		template.update(vehicle);  
 	}
+	
+	public Integer addMake(Make make) throws RecordAlreadyExist{  
+		Integer makeId= null; 
+		try{
+			makeId= (Integer) template.save(make);
+		}catch(DataIntegrityViolationException e){
+			throw new RecordAlreadyExist("RecordAlreadyExist");
+		}
+		
+		return makeId;  
+	}
+
+	public void updateMake(Make make){  
+		template.update(make);  
+	}
+	
+	
+	
+	public Integer addModel(Model model) throws RecordAlreadyExist{  
+		Integer modelId= null; 
+		try{
+			modelId= (Integer) template.save(model);
+		}catch(DataIntegrityViolationException e){
+			throw new RecordAlreadyExist("RecordAlreadyExist");
+		}
+		
+		return modelId;  
+	}
+	public void updateModel(Model model){  
+		template.update(model);  
+	}
+	
+	
+	public Integer addSubModel(SubModel subModel) throws RecordAlreadyExist{  
+		Integer subModelId= null; 
+		try{
+			subModelId= (Integer) template.save(subModel);
+		}catch(DataIntegrityViolationException e){
+			throw new RecordAlreadyExist("RecordAlreadyExist");
+		}
+		
+		return subModelId;  
+	}
+	public void updateSubModel(SubModel subModel){  
+		template.update(subModel);  
+	}
+	
+	
+	public Integer addUserVehicle(UserVehicle userVehicle){  
+		Integer userVehicleId= (Integer) template.save(userVehicle);
+		return userVehicleId;  
+	}
+	
+	public void updateUserVehicle(UserVehicle userVehicle){  
+		template.update(userVehicle);  
+	}
+	
 	
 	public void deleteVehicle(Vehicle vehicle){  
 		template.delete(vehicle);  
@@ -75,6 +126,17 @@ public class VehicleBean {
 		return list;  
 	}
 
+	public List<UserVehicleView> getUserVehicles(Integer userId){  
+		
+		List<UserVehicleView> userVehicles=new ArrayList<UserVehicleView>();
+		
+		if(userId != null)
+			userVehicles=template.find("from UserVehicleView where userId = ? order by UserVehicleId",userId); 
+		else
+			userVehicles=template.loadAll(UserVehicleView.class);
+		 
+		return userVehicles;  
+	}
 
 
 	public Integer addVehiclePhoto(VehiclePhoto vehiclePhoto) {

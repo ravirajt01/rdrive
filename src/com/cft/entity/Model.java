@@ -24,8 +24,10 @@ public class Model {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer modelId;
     
-    String model;
-    String modelCode ;
+    private String model;
+    private String modelCode ;
+    
+    private Integer makeId ;
     
     @OneToMany( mappedBy = "model",fetch=FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
@@ -59,6 +61,12 @@ public class Model {
 	}
 	public void setSubModels(List<SubModel> subModels) {
 		this.subModels = subModels;
+	}
+	public Integer getMakeId() {
+		return makeId;
+	}
+	public void setMakeId(Integer makeId) {
+		this.makeId = makeId;
 	}
     
     

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Enumeration;
+import java.util.logging.Logger;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,7 +15,12 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import com.cft.ws.UserServices;
+
 public class RequestFilter implements Filter {
+	
+	private static final Logger logger = Logger.getLogger(RequestFilter.class.getName());
+
 
 	@Override
 	public void destroy() {
@@ -55,7 +61,7 @@ public class RequestFilter implements Filter {
 			} else {
 				stringBuilder.append("");
 			}
-			System.out.println(bodyParam.append(stringBuilder));
+			logger.info(bodyParam.append(stringBuilder).toString());
 		} catch (IOException ex) {
 			throw ex;
 		}
@@ -65,24 +71,19 @@ public class RequestFilter implements Filter {
 	}
 
 	private static void getRequestInfo(HttpServletRequest servletRequest) {
-		System.out.println("Client Addr : " + servletRequest.getRemoteAddr()+":"+servletRequest.getRemotePort());
-		System.out.println("Request URI : "+servletRequest.getRequestURI());
-		System.out.println("Method Type : "+servletRequest.getMethod());
 
+		StringBuilder resource = new StringBuilder("Method : ") ;
 		Enumeration<String> en=servletRequest.getParameterNames();
-		StringBuilder inputParams = new StringBuilder("Query Param : ") ;
-		StringBuilder inputParam = new StringBuilder() ;
-		while(en.hasMoreElements())
-		{
+		resource.append(servletRequest.getRemoteAddr()).append(" -> ").append(servletRequest.getMethod()).append(" ").append(servletRequest.getRequestURI())  ;
+
+		resource.append(" -> param : ");
+		while(en.hasMoreElements()){
 			String param=(String)en.nextElement();
-			inputParam.append(param).append(" : ").append((servletRequest).getParameter(param)).append(", ")  ;
+			resource.append(param).append(" : ").append((servletRequest).getParameter(param)).append(", ")  ;
 		}
-		System.out.println(inputParams.append(inputParam));
-	/*	try {
-			getBody( servletRequest);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
+
+		logger.info(resource.toString());
+
 	}
 	
 }
